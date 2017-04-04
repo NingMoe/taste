@@ -8,7 +8,7 @@
     </header>
     <ul class="taste-list" v-for="taste in tasteList">
       <li>
-        <div class="item-face">
+        <div class="taste-face">
           <img src="./item-face.jpg" alt="">
           <div class="time-sign"> {{ taste.timeOut }} </div>
         </div>
@@ -53,7 +53,7 @@
       margin-bottom: 10px
       padding:15px 20px
       background: #ffffff
-      .item-face
+      .taste-face
         margin-bottom: 10px
         position: relative
         .time-sign

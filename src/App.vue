@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :tasteList="tasteList"></router-view>
+    <router-view :tasteList="tasteList" :goodsList="goodsList"></router-view>
     <v-nav></v-nav>
   </div>
 </template>
@@ -12,12 +12,16 @@ export default {
   name: 'app',
   data () {
     return {
-      tasteList: []
+      tasteList: [],
+      goodsList: []
     }
   },
   mounted () {
     this.$http.get('api/tasteList').then((res) => {
       this.tasteList = res.body
+    })
+    this.$http.get('api/goodsList').then((res) => {
+      this.goodsList = res.body
     })
   },
   components: {
