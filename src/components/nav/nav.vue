@@ -2,19 +2,19 @@
   <div class="nav">
     <ul>
       <li>
-        <router-link to="/face" class="nav-item nav-face">
+        <router-link to="/" class="nav-item nav-face" :class="{on: name==='home'}">
           <i class="icon"></i>
           <span>体验中心</span>
         </router-link>
       </li>
       <li>
-        <router-link to="/mall" class="nav-item nav-mall">
+        <router-link to="/mall" class="nav-item nav-mall" :class="{on: name==='mall'}">
           <i class="icon"></i>
           <span>积分商城</span>
         </router-link>
       </li>
       <li>
-        <router-link to="/profile" class="nav-item nav-profile">
+        <router-link to="/profile" class="nav-item nav-profile" :class="{on: name==='profile'}">
           <i class="icon"></i>
           <span>个人中心</span>
         </router-link>
@@ -25,7 +25,8 @@
 
 <script type="text/ecmascript-6">
   export default{
-    name: 'vNav'
+    name: 'vNav',
+    props: ['name']
   }
 </script>
 
@@ -64,13 +65,13 @@
         .nav-profile i
           background: url("./img/nav-profile-off.png") no-repeat center
           background-size: 18px auto
-        .nav-face.router-link-active i
+        .nav-face.on i
           background: url("./img/nav-face-on.png") no-repeat center
           background-size: 18px auto
-        .nav-mall.router-link-active i
+        .nav-mall.on i
           background: url("./img/nav-mall-on.png") no-repeat center
           background-size: 18px auto
-        .nav-profile.router-link-active i
+        .nav-profile.on i
           background: url("./img/nav-profile-on.png") no-repeat center
           background-size: 18px auto
       li:last-child

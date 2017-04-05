@@ -1,35 +1,27 @@
 <template>
   <div id="app">
-    <router-view :tasteList="tasteList" :goodsList="goodsList" :userInfo="userInfo"></router-view>
+    <router-view :appData="appData"></router-view>
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 
 export default {
   name: 'app',
   data () {
     return {
-      tasteList: [],
-      goodsList: [],
-      userInfo: {}
+      appData: {}
     }
   },
   mounted () {
-    this.$http.get('api/tasteList').then((res) => {
-      this.tasteList = res.body
-    })
-    this.$http.get('api/goodsList').then((res) => {
-      this.goodsList = res.body
-    })
-    this.$http.get('api/getUserInfo').then((res) => {
-      this.userInfo = res.body
+    this.$http.get('/api/getAppData').then((res) => {
+      this.appData = res.body
     })
   }
 }
 </script>
 
-<style>
+<style lang="stylus" rel="stylesheet/stylus">
   @import './common/common.css';
 
 </style>

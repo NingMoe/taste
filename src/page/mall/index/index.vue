@@ -14,17 +14,26 @@
         <span class="cash-btn">兑换</span>
       </li>
     </ul>
+    <v-nav :name="name"></v-nav>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
+  import vNav from '@/components/nav/nav'
+
   export default{
-    name: 'mall',
+    name: 'mallIndex',
     props: {
       goodsList: {
         type: Array
       }
-    }
+    },
+    data () {
+      return {
+        name: 'mall'
+      }
+    },
+    components: { vNav }
   }
 </script>
 
@@ -44,7 +53,7 @@
       padding: 12px
       line-height: 1.2
       text-align: center
-    ul
+    & > ul
       display: flex
       flex-wrap: wrap
       justify-content: space-between
@@ -97,4 +106,6 @@
           border-right: 0.6em solid transparent
           border-left: 0.6em solid #fabe00
           border-bottom: 0.6em solid #fabe00
+
+
 </style>

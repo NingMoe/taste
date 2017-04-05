@@ -1,13 +1,13 @@
 <template>
-  <section class="face">
+  <section class="home">
     <header class="head">
       <h1>所有体验</h1>
       <div class="banner">
         <img src="./banner.jpg" alt="">
       </div>
     </header>
-    <ul class="taste-list" v-for="taste in tasteList">
-      <li>
+    <ul class="taste-list">
+      <li v-for="taste in tasteList">
         <div class="taste-face">
           <img src="./item-face.jpg" alt="">
           <div class="time-sign"> {{ taste.timeOut }} </div>
@@ -18,37 +18,46 @@
         </div>
       </li>
     </ul>
+    <v-nav :name="name"></v-nav>
   </section>
+
 </template>
 
 <script type="text/ecmascript-6">
+  import vNav from '@/components/nav/nav'
+
   export default{
-    name: 'face',
+    name: 'homeIndex',
+    data () {
+      return {
+        name: 'home'
+      }
+    },
     props: {
       tasteList: {
         type: Array
       }
-    }
-
+    },
+    components: { vNav }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
 
-  .face
+  .home
     padding-bottom: 40px
     .head
       padding:20px
-    .banner
-      width: 100%
-      height: 120px
-      margin-top 8px
-      background: #ccc
-      overflow: hidden
-      img
+      h1
+        font-size: 16px
+      .banner
         width: 100%
-    h1
-      font-size: 16px
+        height: 120px
+        margin-top 8px
+        background: #ccc
+        overflow: hidden
+        img
+          width: 100%
     .taste-list li
       margin-bottom: 10px
       padding:15px 20px
@@ -100,4 +109,6 @@
           border-bottom: 2px solid #eb191a
       img
         width: 100%
+
+
 </style>

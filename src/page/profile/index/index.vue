@@ -1,12 +1,10 @@
 <template>
-  <section class="profile">
+  <section class="profile" v-if="userInfo">
     <header class="head">
       <div class="avatar img-width">
         <img src="./avatar.jpg" alt="">
       </div>
-      <div class="nick">
-        {{ userInfo.nick }}
-      </div>
+      <div class="nick">{{ userInfo.nick }}</div>
       <div class="points">
         剩余积分: {{ userInfo.points }}
       </div>
@@ -110,13 +108,20 @@
         </div>
       </div>
     </div>
-
+    <v-nav :name="name"></v-nav>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
+  import VNav from '@/components/nav/nav'
   export default{
-    name: 'profile',
+    components: {VNav},
+    name: 'profileIndex',
+    data () {
+      return {
+        name: 'profile'
+      }
+    },
     props: {
       userInfo: {
         type: Object
@@ -132,7 +137,7 @@
       height: 115px
       padding: 15px 0 0 0
       margin-bottom: 10px
-      background: url("./profile-head-bg.jpg") no-repeat center top
+      background: url("profile-head-bg.jpg") no-repeat center top
       background-size: 100% auto
       text-align: center
       color: #fff
@@ -146,8 +151,6 @@
         margin:4px auto
       .points
         font-size: 12px
-
-
     .module
       padding: 10px 20px 15px 20px
       margin-bottom: 10px
@@ -168,4 +171,5 @@
           .text
             color: #666
             line-height: 1.2
+
 </style>

@@ -1,15 +1,10 @@
 <template>
-  <router-view :userInfo="appData.userInfo"></router-view>
+
 </template>
 
 <script type="text/ecmascript-6">
   export default{
-    name: 'profile',
-    props: {
-      appData: {
-        type: Object
-      }
-    }
+    name: 'goodsDetails'
   }
 </script>
 
