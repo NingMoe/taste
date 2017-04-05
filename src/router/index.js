@@ -1,27 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import face from '@/components/face/face'
-import mall from '@/components/mall/mall'
-import profile from '@/components/profile/profile'
+import home from '@/page/home/home'
+import mall from '@/page/mall/mall'
+import profile from '@/page/profile/profile'
 
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
-      path: '/face',
-      name: 'face',
-      component: face
+      path: '/home',
+      component: home
     },
     {
       path: '/mall',
-      name: 'mall',
       component: mall
     },
     {
       path: '/profile',
-      name: 'profile',
       component: profile
     }
   ]

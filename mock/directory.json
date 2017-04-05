@@ -1,0 +1,17 @@
+{
+  "face": {
+    "taste": ""
+  },
+  "mall": {
+    "goods": ""
+  },
+  "profile": {
+    "userInfo": "",
+    "myTaste": "",
+    "myReport": {
+      "report": "",
+      "writeReport": ""
+    },
+    "myCash": ""
+  }
+}

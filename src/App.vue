@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <router-view :tasteList="tasteList" :goodsList="goodsList"></router-view>
-    <v-nav></v-nav>
+    <router-view :tasteList="tasteList" :goodsList="goodsList" :userInfo="userInfo"></router-view>
   </div>
 </template>
 
 <script>
-import vNav from './components/nav/nav'
 
 export default {
   name: 'app',
   data () {
     return {
       tasteList: [],
-      goodsList: []
+      goodsList: [],
+      userInfo: {}
     }
   },
   mounted () {
@@ -23,17 +22,14 @@ export default {
     this.$http.get('api/goodsList').then((res) => {
       this.goodsList = res.body
     })
-  },
-  components: {
-    vNav
+    this.$http.get('api/getUserInfo').then((res) => {
+      this.userInfo = res.body
+    })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  @import './common/common.css';
+
 </style>

@@ -1,0 +1,24 @@
+
+
+img{
+  vertical-align: middle;
+}
+
+.img-width img{
+  width: 100%;
+}
+
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+
+.clearfix:before,.clearfix:after{
+  content:'';
+  display: block;
+  height:0;
+  visibility: hidden;
+  clear: both;
+}

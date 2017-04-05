@@ -8,6 +8,7 @@ if (!process.env.NODE_ENV) {
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
+// var history = require('connect-history-api-fallback')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
@@ -21,22 +22,14 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+// app.use(history())
 
-var userInfo = require('../mock/getUserInfo.json')
-var tasteList = require('../mock/tasteList.json')
-var goodsList = require('../mock/goodsList.json')
-
+var appData = require('../mock/appData.json')
 
 var apiRouters = express.Router()
 
-apiRouters.get('/getUserInfo',function (req, res) {
-  res.json(userInfo)
-})
-apiRouters.get('/tasteList',function (req, res) {
-  res.json(tasteList)
-})
-apiRouters.get('/goodsList',function (req, res) {
-  res.json(goodsList)
+apiRouters.get('/getAppData',function (req, res) {
+  res.json(appData)
 })
 
 app.use('/api',apiRouters)
