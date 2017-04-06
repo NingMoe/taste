@@ -6,8 +6,9 @@
         <img src="./banner.jpg" alt="">
       </div>
     </header>
+    <div class="text-center" v-if="!tasteList">没有查找到相关数据</div>
     <ul class="taste-list">
-      <li v-for="taste in tasteList">
+      <li v-for="taste in tasteList" @click="toDetails(taste.id)">
         <div class="taste-face">
           <img src="./item-face.jpg" alt="">
           <div class="time-sign"> {{ taste.timeOut }} </div>
@@ -36,6 +37,11 @@
     props: {
       tasteList: {
         type: Array
+      }
+    },
+    methods: {
+      toDetails (id) {
+        this.$router.push({name: 'tasteDetails', params: { id: id }})
       }
     },
     components: { vNav }

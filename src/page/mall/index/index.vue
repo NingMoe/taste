@@ -4,14 +4,15 @@
     <div class="welcome">
       bonny，积分商城欢迎您，您的剩余积分为：36000
     </div>
+    <div class="text-center" v-if="!goodsList">没有查找到相关数据</div>
     <ul class="goods-list">
-      <li v-for="item in goodsList">
+      <li v-for="goods in goodsList" @click="toDetails(goods.id)">
         <div class="goods-face">
-          <img src="./goods-item.jpg" alt="">
+          <img src="./goods-item.jpg" :alt="goods.title">
         </div>
-        <div class="title">{{ item.title }}</div>
-        <span class="points">{{ item.point }}积分</span>
-        <span class="cash-btn">兑换</span>
+        <div class="title">{{ goods.title }}</div>
+        <span class="points">{{ goods.point }}积分</span>
+        <span class="cash-btn" @click.stop="toCash(goods.id)">兑换</span>
       </li>
     </ul>
     <v-nav :name="name"></v-nav>
@@ -33,7 +34,15 @@
         name: 'mall'
       }
     },
-    components: { vNav }
+    components: { vNav },
+    methods: {
+      toDetails (id) {
+        this.$router.push({name: 'goodsDetails', params: {id: id}})
+      },
+      toCash (id) {
+        alert(id)
+      }
+    }
   }
 </script>
 

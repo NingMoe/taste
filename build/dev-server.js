@@ -25,11 +25,19 @@ var app = express()
 app.use(history())
 
 var appData = require('../mock/appData.json')
+var tasteData = require('../mock/taste.json')
+var goodsData = require('../mock/goods.json')
 
 var apiRouters = express.Router()
 
 apiRouters.get('/getAppData',function (req, res) {
   res.json(appData)
+})
+apiRouters.get('/getTasteById',function (req, res) {
+  res.json(tasteData)
+})
+apiRouters.get('/getGoodsById',function (req, res) {
+  res.json(goodsData)
 })
 
 app.use('/api',apiRouters)

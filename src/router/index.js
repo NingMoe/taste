@@ -26,7 +26,8 @@ export default new Router({
           component: homeIndex
         },
         {
-          path: 'tasteDetails',
+          path: 'tasteDetails/:id',
+          name: 'tasteDetails',
           component: tasteDetails
         }
       ]
@@ -40,7 +41,8 @@ export default new Router({
           component: mallIndex
         },
         {
-          path: 'goodsDetails',
+          path: 'goodsDetails/:id',
+          name: 'goodsDetails',
           component: goodsDetails
         }
       ]
