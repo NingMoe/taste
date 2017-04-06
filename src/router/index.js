@@ -11,6 +11,7 @@ import goodsDetails from '../page/mall/goodsDetails/goodsDetails'
 
 import profile from '../page/profile/profile'
 import profileIndex from '../page/profile/index/index'
+import personal from '../page/profile/personal/personal'
 
 Vue.use(Router)
 
@@ -53,7 +54,13 @@ export default new Router({
       children: [
         {
           path: '',
+          name: 'index',
           component: profileIndex
+        },
+        {
+          path: 'personal',
+          name: 'personal',
+          component: personal
         }
       ]
     }

@@ -8,6 +8,7 @@
       <div class="points">
         剩余积分: {{ userInfo.points }}
       </div>
+      <router-link to="profile/personal">账户管理 ></router-link>
     </header>
 
     <div class="module my-taste">
@@ -137,6 +138,7 @@
       height: 115px
       padding: 15px 0 0 0
       margin-bottom: 10px
+      position: relative
       background: url("profile-head-bg.jpg") no-repeat center top
       background-size: 100% auto
       text-align: center
@@ -151,6 +153,10 @@
         margin:4px auto
       .points
         font-size: 12px
+      a
+        position: absolute
+        top: 15px
+        right: 15px
     .module
       padding: 10px 20px 15px 20px
       margin-bottom: 10px
