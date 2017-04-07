@@ -15,31 +15,35 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验</h2>
         <div class="more-btn fr">
-          更多
+          <router-link to="profile/myTasteList">更多</router-link>
         </div>
       </div>
       <div class="content">
         <div class="item">
-          <div class="item-face img-width">
-            <img src="./item-face.jpg" alt="">
-          </div>
-          <div class="title">
-            我是标题我是标题
-          </div>
-          <div class="text">
-            我是一段文本我也是一段文本
-          </div>
+          <router-link :to="{name: 'myTaste', params: { id: userInfo.myTasteList[0].id }}">
+            <div class="item-face img-width">
+              <img src="./item-face.jpg" alt="">
+            </div>
+            <div class="title">
+              {{ userInfo.myTasteList[0].title }}
+            </div>
+            <div class="text">
+              {{userInfo.myTasteList[0].content}}
+            </div>
+          </router-link>
         </div>
         <div class="item">
-          <div class="item-face img-width">
-            <img src="./item-face.jpg" alt="">
-          </div>
-          <div class="title">
-            我是标题我是标题
-          </div>
-          <div class="text">
-            我是一段文本我也是一段文本
-          </div>
+          <router-link :to="{name: 'myTaste', params: { id: 123 }}">
+            <div class="item-face img-width">
+              <img src="./item-face.jpg" alt="">
+            </div>
+            <div class="title">
+              我是标题我是标题
+            </div>
+            <div class="text">
+              我是一段文本我也是一段文本
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -48,31 +52,35 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验报告</h2>
         <div class="more-btn fr">
-          更多
+          <router-link to="profile/myReportList">更多</router-link>
         </div>
       </div>
       <div class="content">
         <div class="item">
-          <div class="item-face img-width">
-            <img src="./item-face.jpg" alt="">
-          </div>
-          <div class="title">
-            我是标题我是标题
-          </div>
-          <div class="text">
-            我是一段文本我也是一段文本
-          </div>
+          <router-link :to="{name: 'myReport', params: { id: 123 }}">
+            <div class="item-face img-width">
+              <img src="./item-face.jpg" alt="">
+            </div>
+            <div class="title">
+              我是标题我是标题
+            </div>
+            <div class="text">
+              我是一段文本我也是一段文本
+            </div>
+          </router-link>
         </div>
         <div class="item">
-          <div class="item-face img-width">
-            <img src="./item-face.jpg" alt="">
-          </div>
-          <div class="title">
-            我是标题我是标题
-          </div>
-          <div class="text">
-            我是一段文本我也是一段文本
-          </div>
+          <router-link :to="{name: 'myReport', params: { id: 123 }}">
+            <div class="item-face img-width">
+              <img src="./item-face.jpg" alt="">
+            </div>
+            <div class="title">
+              我是标题我是标题
+            </div>
+            <div class="text">
+              我是一段文本我也是一段文本
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -81,7 +89,7 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的兑换记录</h2>
         <div class="more-btn fr">
-          更多
+          <router-link to="profile/myCashList">更多</router-link>
         </div>
       </div>
       <div class="content">
