@@ -15,34 +15,21 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验</h2>
         <div class="more-btn fr">
-          <router-link to="profile/myTasteList">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'taste'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
-        <div class="item">
-          <router-link :to="{name: 'myTaste', params: { id: userInfo.myTasteList[0].id }}">
+        <div class="item" v-for="item in limitMyTaste">
+          <router-link :to="{name: 'tasteDetails', params: { id: item.id }}">
             <div class="item-face img-width">
-              <img src="./item-face.jpg" alt="">
+              <img src="/static/temp/item-face.jpg" alt="item.title">
             </div>
             <div class="title">
-              {{ userInfo.myTasteList[0].title }}
+              {{ item.title }}
             </div>
-            <div class="text">
-              {{userInfo.myTasteList[0].content}}
-            </div>
-          </router-link>
-        </div>
-        <div class="item">
-          <router-link :to="{name: 'myTaste', params: { id: 123 }}">
-            <div class="item-face img-width">
-              <img src="./item-face.jpg" alt="">
-            </div>
-            <div class="title">
-              我是标题我是标题
-            </div>
-            <div class="text">
-              我是一段文本我也是一段文本
-            </div>
+            <!--<div class="text">
+              {{item.content}}
+            </div>-->
           </router-link>
         </div>
       </div>
@@ -52,34 +39,21 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验报告</h2>
         <div class="more-btn fr">
-          <router-link to="profile/myReportList">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'report'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
-        <div class="item">
-          <router-link :to="{name: 'myReport', params: { id: 123 }}">
+        <div class="item" v-for="item in limitMyReport">
+          <router-link :to="{name: 'myReport', params: {id: item.id}}">
             <div class="item-face img-width">
-              <img src="./item-face.jpg" alt="">
+              <img src="/static/temp/item-face.jpg" :alt="item.title">
             </div>
             <div class="title">
-              我是标题我是标题
+              {{ item.title }}
             </div>
-            <div class="text">
+            <!--<div class="text">
               我是一段文本我也是一段文本
-            </div>
-          </router-link>
-        </div>
-        <div class="item">
-          <router-link :to="{name: 'myReport', params: { id: 123 }}">
-            <div class="item-face img-width">
-              <img src="./item-face.jpg" alt="">
-            </div>
-            <div class="title">
-              我是标题我是标题
-            </div>
-            <div class="text">
-              我是一段文本我也是一段文本
-            </div>
+            </div>-->
           </router-link>
         </div>
       </div>
@@ -89,31 +63,20 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的兑换记录</h2>
         <div class="more-btn fr">
-          <router-link to="profile/myCashList">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'cash'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
-        <div class="item">
+        <div class="item" v-for="item in limitMyCash">
           <div class="item-face img-width">
-            <img src="./item-face.jpg" alt="">
+            <img src="/static/temp/item-face.jpg" :alt="item.title">
           </div>
           <div class="title">
-            我是标题我是标题
+            {{ item.title }}
           </div>
-          <div class="text">
+          <!--<div class="text">
             我是一段文本我也是一段文本
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-face img-width">
-            <img src="./item-face.jpg" alt="">
-          </div>
-          <div class="title">
-            我是标题我是标题
-          </div>
-          <div class="text">
-            我是一段文本我也是一段文本
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -134,6 +97,17 @@
     props: {
       userInfo: {
         type: Object
+      }
+    },
+    computed: {
+      limitMyTaste () {
+        return this.userInfo.myTasteList.slice(0, 2)
+      },
+      limitMyReport () {
+        return this.userInfo.myReportList.slice(0, 2)
+      },
+      limitMyCash () {
+        return this.userInfo.cashRecordList.slice(0, 2)
       }
     }
   }

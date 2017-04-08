@@ -45,14 +45,17 @@
     h1
       height: 40px
       line-height: 40px
+      position: relative
       color: #fff
       background: #eb191a
       text-align: center
       a
         display: block
         width: 44px
-        height: 100%
-        float: left
+        position: absolute
+        top: 0
+        left: 0
+        bottom: 0
         img
           height: 20px
     .head

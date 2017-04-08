@@ -12,12 +12,8 @@ import goodsDetails from '../page/mall/goodsDetails/goodsDetails'
 import profile from '../page/profile/profile'
 import profileIndex from '../page/profile/index/index'
 import personal from '../page/profile/personal/personal'
-import myTasteList from '../page/profile/myTasteList/myTasteList'
-import myTaste from '../page/profile/myTaste/myTaste'
-import myReportList from '../page/profile/myReportList/myReportList'
+import list from '../page/profile/list/list'
 import myReport from '../page/profile/myReport/myReport'
-import myCashList from '../page/profile/myCashList/myCashList'
-import myCash from '../page/profile/myCash/myCash'
 
 Vue.use(Router)
 
@@ -69,34 +65,14 @@ export default new Router({
           component: personal
         },
         {
-          path: 'myTasteList',
-          name: 'myTasteList',
-          component: myTasteList
-        },
-        {
-          path: 'myTaste/:id',
-          name: 'myTaste',
-          component: myTaste
-        },
-        {
-          path: 'myReportList',
-          name: 'myReportList',
-          component: myReportList
+          path: 'list/:name',
+          name: 'list',
+          component: list
         },
         {
           path: 'myReport/:id',
           name: 'myReport',
           component: myReport
-        },
-        {
-          path: 'myCashList',
-          name: 'myCashList',
-          component: myCashList
-        },
-        {
-          path: 'myCash',
-          name: 'myCash',
-          component: myCash
         }
       ]
     }

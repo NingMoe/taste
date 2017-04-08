@@ -7,6 +7,18 @@
       <header><img src="./rules-title.png" alt=""></header>
       <div class="rules-content">{{ tasteData.rules }}</div>
     </div>
+
+    <div class="task">
+      <h2>体验任务 <span>查看并分享下方文章给好友就能获得积分噢~</span></h2>
+      <ul>
+        <li>
+          <div class="task-item-face">
+            <img src="/static/temp/item-face.jpg" alt="">
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <div class="tasteDetails-btns">
       <div class="join-btn">立即参加</div>
       <div class="back-btn" @click="back">返回</div>

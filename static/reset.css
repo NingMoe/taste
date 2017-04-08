@@ -29,7 +29,7 @@ footer, header, menu, nav, section {
     display: block;
 }
 
-body,div,section,article,p,i,span,header{
+body,div,section,article,p,i,span,header,li{
   box-sizing: border-box;
 }
 
