@@ -1,8 +1,8 @@
 <template>
   <section class="myList" v-if="userInfo">
-    <h1>
+    <h1 class="common-head">
       <router-link to="/profile"><img src="../../../common/arrow-left.png" alt=""></router-link>
-      我的体验
+      我的
     </h1>
     <ul>
       <li v-for="item in list" @click="toDetails(item.status,item.id)">
@@ -61,22 +61,6 @@
   .myList
     background: #fff
     min-height: 530px
-    h1
-      height: 40px
-      line-height: 40px
-      position: relative
-      color: #fff
-      background: #eb191a
-      text-align: center
-      a
-        display: block
-        width: 44px
-        position: absolute
-        top: 0
-        left: 0
-        bottom: 0
-        img
-          height: 20px
     ul
       display: flex
       padding: 20px 15px

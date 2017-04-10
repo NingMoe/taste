@@ -1,7 +1,7 @@
 <template>
   <article class="goodsDetails">
     <header class="head">
-      <h1>商品详情</h1>
+      <h1 class="common-head">商品详情</h1>
       <div class="carousel">
         <img src="../index/goods-item.jpg" :alt="goodsData.title">
       </div>
@@ -19,7 +19,7 @@
         {{ goodsData.description }}
       </div>
     </div>
-    <div class="goodsDetails-btns">
+    <div class="goodsDetails-btns common-bottom-btns">
       <div class="cash-btn">立即兑换</div>
       <div class="back-btn" @click="back">返回</div>
     </div>
@@ -53,12 +53,6 @@
       background: #fff
       text-align: center
       padding-bottom: 10px
-      h1
-        height: 25px
-        line-height: 25px
-        color: #fff
-        background: #eb191a
-        text-align: center
       .carousel
         height: 120px
         margin: 10px auto
@@ -73,25 +67,16 @@
       font-size: 16px
       margin-bottom: 10px
     .goodsDetails-btns
-      position: fixed
-      bottom: 0
-      left: 0
-      right: 0
-      height: 40px
-      background: #eb191a
       .cash-btn
         width: 75%
         height: 40px
-        line-height: 40px
-        text-align: center
-        color: #fff
       .back-btn
         width: 25%
         height: 36px
         position: absolute
         top: 2px
         right: 2px
-        text-align: center
         line-height: 36px
+        color: #333
         background: #fff
 </style>

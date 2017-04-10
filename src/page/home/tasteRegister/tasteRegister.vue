@@ -7,26 +7,39 @@
       <div class="rules-content">{{ tasteData.rules }}</div>
     </div>
     <div class="form-container">
-      <header><img src="./form-title.png" alt=""></header>
+      <header class="img-width"><img src="./form-title.png" alt=""></header>
       <form action="">
-        <div>
+        <div class="form-line">
           <label for="username">姓　　名: </label>
-          <input type="text" name="username" id="username">
+          <div class="input-container">
+            <input type="text" name="username" id="username" class="input">
+          </div>
         </div>
-        <div>
+        <div class="form-line">
           <label for="userphone">联系方式: </label>
-          <input type="text" name="userphone" id="userphone">
+          <div class="input-container">
+            <input type="text" name="userphone" id="userphone" class="input">
+          </div>
         </div>
-        <div>
+        <div class="form-line">
           <label for="nums">参加人数: </label>
-          <input type="text" name="nums" id="nums">
+          <div class="input-container">
+            <input type="text" name="nums" id="nums" class="input">
+          </div>
         </div>
-        <div>
+        <div class="form-line">
           <label>是否驾车: </label>
-          <input type="radio" name="usecar">是
-          <input type="radio" name="usecar">否
+          <div class="input-container">
+            <input type="radio" name="usecar" class="radio">是
+            <input type="radio" name="usecar" class="radio">否
+          </div>
         </div>
       </form>
+
+      <div class="tasteRegister-btns common-bottom-btns">
+        <div class="join-btn">立即参加</div>
+        <div class="back-btn" @click="back">返回</div>
+      </div>
     </div>
   </section>
 </template>
@@ -46,6 +59,11 @@
         this.$http.get('/api/getTasteById', {id: this.$route.params.id}).then((res) => {
           this.tasteData = res.body
         })
+      }
+    },
+    methods: {
+      back () {
+        history.back()
       }
     }
   }
@@ -80,4 +98,38 @@
       left: 5px
       bottom: 5px
       border: 1px solid #fabe00
+    .form-container
+      header
+        width: 35%
+        margin-bottom: 10px
+      .form-line
+        display: flex
+        margin: 10px 0
+        align-items: center
+        label
+          padding-left: 2em
+        .input-container
+          flex: 1
+          padding-left: 10px
+          .input
+            width: 100%
+            height: 100%
+            padding: 5px
+            border-radius: 3px
+            border: 1px solid #fabe00
+          .radio
+            vertical-align bottom
+    .tasteRegister-btns
+      .join-btn
+        width: 75%
+        height: 40px
+      .back-btn
+        width: 25%
+        height: 36px
+        position: absolute
+        top: 2px
+        right: 2px
+        line-height: 36px
+        color: #333
+        background: #fff
 </style>

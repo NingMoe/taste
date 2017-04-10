@@ -15,7 +15,7 @@
         </div>
         <div class="content">
           <h2>{{ taste.title }}</h2>
-          <p>{{ taste.description }}</p>
+          <!--<p>{{ taste.description }}</p>-->
         </div>
       </li>
     </ul>

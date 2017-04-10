@@ -1,6 +1,6 @@
 <template>
   <section class="personal">
-    <h1>
+    <h1 class="common-head">
       <router-link to="/profile"><img src="../../../common/arrow-left.png" alt=""></router-link>
       个人信息
     </h1>
@@ -42,22 +42,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .personal
-    h1
-      height: 40px
-      line-height: 40px
-      position: relative
-      color: #fff
-      background: #eb191a
-      text-align: center
-      a
-        display: block
-        width: 44px
-        position: absolute
-        top: 0
-        left: 0
-        bottom: 0
-        img
-          height: 20px
+    h1 a
+
     .head
       padding: 20px
       background: #fff

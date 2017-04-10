@@ -1,4 +1,14 @@
 
+input{
+  /*-webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;*/
+  outline:none;
+  box-sizing: border-box;
+}
+
+
 
 img{
   vertical-align: middle;
@@ -31,4 +41,72 @@ img{
 }
 .bg-red{
   background:#eb191a
+}
+
+
+/*项目通用*/
+
+/*通用顶部*/
+.common-head{
+  height: 36px;
+  line-height: 36px;
+  position: relative;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  background: #eb191a;
+}
+.common-head a{
+  display: block;
+  width: 44px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+.common-head img{
+  height: 16px
+}
+
+.common-text{
+  line-height: 1.2;
+}
+
+/*
+添加图片按钮*/
+.common-addPic-btn{
+  border: 1px solid #ccc;
+  position: relative;
+}
+.common-addPic-btn:before{
+  content:'';
+  display: block;
+  width: 70%;
+  border-top:1px solid #ccc;
+  position: absolute;
+  left: 15%;
+  top: 50%;
+}
+.common-addPic-btn:after{
+  content:'';
+  display: block;
+  height: 70%;
+  border-left:1px solid #ccc;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+}
+
+/*
+悬浮在底部的按钮*/
+.common-bottom-btns{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #eb191a;
+  color: #fff
 }

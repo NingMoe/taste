@@ -16,6 +16,10 @@ import personal from '../page/profile/personal/personal'
 import list from '../page/profile/list/list'
 import myReport from '../page/profile/myReport/myReport'
 
+import notFound from '../page/other/notFound/notFound'
+import join from '../page/other/join/join'
+import cooperation from '../page/other/cooperation/cooperation'
+
 Vue.use(Router)
 
 export default new Router({
@@ -91,6 +95,21 @@ export default new Router({
           component: myReport
         }
       ]
+    },
+    {
+      path: '/other/notFound',
+      name: 'notFound',
+      component: notFound
+    },
+    {
+      path: '/other/join',
+      name: 'join',
+      component: join
+    },
+    {
+      path: '/other/cooperation',
+      name: 'cooperation',
+      component: cooperation
     }
   ]
 })

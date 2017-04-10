@@ -18,7 +18,7 @@
             </div>
             <div class="content">
               <div class="title">{{item.title}}</div>
-              <div class="desc">{{item.desc}}</div>
+              <!--<div class="desc">{{item.desc}}</div>-->
               <span class="points">{{ item.points }}积分</span>
               <div class="task-btn bg-blue" v-if="item.status===1">已完成</div>
               <div class="task-btn bg-red" v-else="item.status===0">未完成</div>
@@ -38,7 +38,7 @@
       </ul>
     </div>
 
-    <div class="tasteDetails-btns">
+    <div class="tasteDetails-btns common-bottom-btns">
       <div class="join-btn"><router-link :to="{name: 'tasteRegister', params: {tasteData: tasteData, id: $route.params.id}}">立即参加</router-link></div>
       <div class="back-btn" @click="back">返回</div>
     </div>
@@ -101,18 +101,10 @@
       bottom: 5px
       border: 1px solid #fabe00
     .tasteDetails-btns
-      position: fixed
-      bottom: 0
-      left: 0
-      right: 0
-      height: 40px
-      background: #eb191a
       .join-btn
         width: 75%
         height: 40px
-        line-height: 40px
         text-align: center
-        color: #fff
         a
           display: block
       .back-btn
@@ -121,8 +113,8 @@
         position: absolute
         top: 2px
         right: 2px
-        text-align: center
         line-height: 36px
+        color: #333
         background: #fff
     .task
       & span
@@ -158,5 +150,5 @@
     .reg-info
       margin-top: 25px
       li
-        margin: 5px 0
+        margin: 8px 0
 </style>

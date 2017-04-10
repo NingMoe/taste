@@ -1,6 +1,6 @@
 <template>
   <section class="mall">
-    <h1>积分商城</h1>
+    <h1 class="common-head">积分商城</h1>
     <div class="welcome">
       bonny，积分商城欢迎您，您的剩余积分为：36000
     </div>
@@ -12,7 +12,7 @@
         </div>
         <div class="title">{{ goods.title }}</div>
         <span class="points">{{ goods.point }}积分</span>
-        <span class="cash-btn" @click.stop="toCash(goods.id)">兑换</span>
+        <span class="cash-btn">兑换</span>
       </li>
     </ul>
     <v-nav :name="name"></v-nav>
@@ -50,13 +50,6 @@
 
   .mall
     padding-bottom: 40px
-    h1
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-size: 16px
-      background: #eb191a
-      color: #fff
     .welcome
       background: #fff
       padding: 12px
