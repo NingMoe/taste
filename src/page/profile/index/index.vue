@@ -15,7 +15,7 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验</h2>
         <div class="more-btn fr">
-          <router-link :to="{name: 'list', params: {name: 'taste'}}">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'myTasteList'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
@@ -39,7 +39,7 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验报告</h2>
         <div class="more-btn fr">
-          <router-link :to="{name: 'list', params: {name: 'report'}}">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'myReportList'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
@@ -63,7 +63,7 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的兑换记录</h2>
         <div class="more-btn fr">
-          <router-link :to="{name: 'list', params: {name: 'cash'}}">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'myCashList'}}">更多</router-link>
         </div>
       </div>
       <div class="content">

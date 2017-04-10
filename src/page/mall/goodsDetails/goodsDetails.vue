@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="goodsDetails-btns common-bottom-btns">
-      <div class="cash-btn">立即兑换</div>
-      <div class="back-btn" @click="back">返回</div>
+      <div class="cash-btn btn">立即兑换</div>
+      <div class="back-btn btn" @click="back">返回</div>
     </div>
   </article>
 </template>
@@ -66,17 +66,5 @@
     .description h2
       font-size: 16px
       margin-bottom: 10px
-    .goodsDetails-btns
-      .cash-btn
-        width: 75%
-        height: 40px
-      .back-btn
-        width: 25%
-        height: 36px
-        position: absolute
-        top: 2px
-        right: 2px
-        line-height: 36px
-        color: #333
-        background: #fff
+
 </style>

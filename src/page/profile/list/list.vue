@@ -5,7 +5,7 @@
       我的
     </h1>
     <ul>
-      <li v-for="item in list" @click="toDetails(item.status,item.id)">
+      <li v-for="item in list" @click="toDetails(item.id, item.status)">
         <div class="item-face img-width">
           <img src="/static/temp/item-face.jpg" :alt="item.title">
         </div>
@@ -35,9 +35,9 @@
       list () {
         let name = this.$route.params.name
         let maps = {
-          'taste': this.userInfo.myTasteList,
-          'report': this.userInfo.myReportList,
-          'cash': this.userInfo.cashRecordList
+          'myTasteList': this.userInfo.myTasteList,
+          'myReportList': this.userInfo.myReportList,
+          'myCashList': this.userInfo.cashRecordList
         }
         return maps[name]
       }
@@ -47,9 +47,11 @@
       statusTag
     },
     methods: {
-      toDetails (status, id) {
-        if (status === 1) {
+      toDetails (id, status) {
+        if (this.$route.params.name === 'myTasteList') {
           this.$router.push({name: 'tasteDetails', params: {id: id}})
+        } else if (this.$route.params.name === 'myReportList') {
+          this.$router.push({name: 'myReport', params: {id: id}})
         }
       }
     }

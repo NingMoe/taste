@@ -39,8 +39,8 @@
     </div>
 
     <div class="tasteDetails-btns common-bottom-btns">
-      <div class="join-btn"><router-link :to="{name: 'tasteRegister', params: {tasteData: tasteData, id: $route.params.id}}">立即参加</router-link></div>
-      <div class="back-btn" @click="back">返回</div>
+      <div class="join-btn btn"><router-link :to="{name: 'tasteRegister', params: {tasteData: tasteData, id: $route.params.id}}">立即参加</router-link></div>
+      <div class="back-btn btn" @click="back">返回</div>
     </div>
   </article>
 </template>
@@ -100,22 +100,6 @@
       left: 5px
       bottom: 5px
       border: 1px solid #fabe00
-    .tasteDetails-btns
-      .join-btn
-        width: 75%
-        height: 40px
-        text-align: center
-        a
-          display: block
-      .back-btn
-        width: 25%
-        height: 36px
-        position: absolute
-        top: 2px
-        right: 2px
-        line-height: 36px
-        color: #333
-        background: #fff
     .task
       & span
         font-size: 12px

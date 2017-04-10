@@ -37,8 +37,8 @@
       </form>
 
       <div class="tasteRegister-btns common-bottom-btns">
-        <div class="join-btn">立即参加</div>
-        <div class="back-btn" @click="back">返回</div>
+        <div class="join-btn btn">立即参加</div>
+        <div class="back-btn btn" @click="back">返回</div>
       </div>
     </div>
   </section>
@@ -119,17 +119,4 @@
             border: 1px solid #fabe00
           .radio
             vertical-align bottom
-    .tasteRegister-btns
-      .join-btn
-        width: 75%
-        height: 40px
-      .back-btn
-        width: 25%
-        height: 36px
-        position: absolute
-        top: 2px
-        right: 2px
-        line-height: 36px
-        color: #333
-        background: #fff
 </style>
