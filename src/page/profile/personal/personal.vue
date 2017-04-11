@@ -13,7 +13,7 @@
       </div>
     </div>
     <ul class="info-list">
-      <li>
+      <li @click="showDialog">
         手机号: 18775226607
       </li>
       <li>
@@ -26,15 +26,45 @@
         剩余积分: 4534
       </li>
     </ul>
+
+    <v-dialog :dialogData="phoneDialog"></v-dialog>
+
   </section>
 </template>
 
 <script type="text/ecmascript-6">
+  import vDialog from '../../../components/dialog/dialog'
+
   export default{
     name: 'personal',
+    data () {
+      return {
+        phoneDialog: {
+          title: '请输入新手机号',
+          content: '<input type="text" name="user"><input type="text" name="phone">',
+          btns: ['取消', '确定'],
+          isShow: false,
+          callback: function (index, values) {
+            if (index === '0') {
+              this.isShow = false
+            } else {
+              alert(values.user)
+            }
+          }
+        }
+      }
+    },
     props: {
       userInfo: {
         type: Object
+      }
+    },
+    components: {
+      vDialog
+    },
+    methods: {
+      showDialog () {
+        this.phoneDialog.isShow = true
       }
     }
   }
@@ -43,7 +73,6 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .personal
     h1 a
-
     .head
       padding: 20px
       background: #fff
