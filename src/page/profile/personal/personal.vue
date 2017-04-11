@@ -27,13 +27,13 @@
       </li>
     </ul>
 
-    <v-dialog :dialogData="phoneDialog"></v-dialog>
+    <ui-dialog :dialogData="phoneDialog"></ui-dialog>
 
   </section>
 </template>
 
 <script type="text/ecmascript-6">
-  import vDialog from '../../../components/dialog/dialog'
+  import uiDialog from '../../../components/dialog/dialog'
 
   export default{
     name: 'personal',
@@ -41,14 +41,19 @@
       return {
         phoneDialog: {
           title: '请输入新手机号',
-          content: '<input type="text" name="user"><input type="text" name="phone">',
+          inputs: [
+            {label: '姓名:', name: 'username'},
+            {label: '手机号:', name: 'userphone'}
+          ],
+          username: '',
+          userphone: '',
           btns: ['取消', '确定'],
           isShow: false,
-          callback: function (index, values) {
+          callback: function (index, value) {
             if (index === '0') {
               this.isShow = false
             } else {
-              alert(values.user)
+              console.log(value)
             }
           }
         }
@@ -60,7 +65,7 @@
       }
     },
     components: {
-      vDialog
+      uiDialog
     },
     methods: {
       showDialog () {
@@ -94,4 +99,11 @@
         border-bottom: 1px solid #ccc
       li:last-child
         border-bottom: 0
+    .dialog-content
+      text-align: center
+      input
+        padding: 5px
+        margin-bottom: 10px
+        border:1px solid #ccc
+
 </style>

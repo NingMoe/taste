@@ -1,9 +1,16 @@
+<script src="../../../../../project/mui/js/actions.js"></script>
 <template>
-  <div class="vDialog" v-if="dialogData.isShow">
+  <div class="uiDialog" v-if="dialogData.isShow">
 
     <div class="dialog-wrapper">
       <div class="dialog-head">{{dialogData.title}}</div>
-      <div class="dialog-body" v-html="dialogData.content" ref="dialogBody"></div>
+      <div class="dialog-body">
+        {{dialogData.text}}
+        <div class="form-line" v-for="item in dialogData.inputs">
+          <label>{{item.label}}</label>
+          <input type="text" :name="item.name" v-model='item.name'>
+        </div>
+      </div>
       <div class="dialog-foot" @click="clickEvent">
         <div class="btn" v-for="(item,index) in dialogData.btns" :index="index">{{item}}</div>
       </div>
@@ -14,32 +21,33 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'vDialog',
+    name: 'uiDialog',
     props: {
       dialogData: {
         type: Object
       }
     },
     data () {
-      return {
-        isShow: false
+      let obj = {isShow: false}
+      for (let o of this.dialogData.inputs) {
+        obj[o.name] = ''
       }
+      return obj
+    },
+    mounted () {
+      this[this.dialogData.inputs[0].name] = ''
+      this[this.dialogData.inputs[1].name] = ''
     },
     methods: {
       clickEvent (e) {
-        let elems = this.$refs.dialogBody.querySelectorAll('input')
-        let obj = {}
-        for (let o of elems) {
-          obj[o.name] = o.value
-        }
-        this.dialogData.callback(e.target.getAttribute('index'), obj)
+        this.dialogData.callback(e.target.getAttribute('index'), this.username)
       }
     }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .vDialog
+  .uiDialog
     position: fixed
     top: -20px
     left: -20px
@@ -64,6 +72,14 @@
         padding: 0 10px
         text-align: left
         line-height: 1.2
+        .form-line
+          margin-bottom: 10px
+        .form-line label
+          display: block
+          margin-bottom: 4px
+        .form-line input
+          padding: 4px
+          border: 1px solid #ddd
       .dialog-foot
         display: flex
         height: 40px
