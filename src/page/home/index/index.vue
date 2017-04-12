@@ -2,9 +2,7 @@
   <section class="home">
     <header class="head">
       <h1>所有体验</h1>
-      <div class="banner">
-        <img src="./banner.jpg" alt="">
-      </div>
+      <carousel></carousel>
     </header>
     <div class="text-center" v-if="!tasteList">没有查找到相关数据</div>
     <ul class="taste-list">
@@ -26,6 +24,7 @@
 
 <script type="text/ecmascript-6">
   import vNav from '@/components/nav/nav'
+  import carousel from '@/components/carousel/carousel'
 
   export default{
     name: 'homeIndex',
@@ -44,12 +43,11 @@
         this.$router.push({name: 'tasteDetails', params: { id: id }})
       }
     },
-    components: { vNav }
+    components: { carousel, vNav }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
   .home
     padding-bottom: 40px
     .head
