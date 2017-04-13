@@ -2,10 +2,12 @@
   <section class="home">
     <header class="head">
       <h1>所有体验</h1>
-      <swipe class="my-swipe" :auto="5000" :speed="500">
-        <swipe-item class="slide1"><img src="../../../../static/images/yuantiao.jpg" alt=""></swipe-item>
-        <swipe-item class="slide2"><img src="../../../../static/images/muwu.jpg" alt=""></swipe-item>
-        <swipe-item class="slide3"><img src="../../../../static/images/shuijiao.jpg" alt=""></swipe-item>
+      <swipe class="my-swipe" :auto="5000" :speed="300">
+        <swipe-item v-for="item in carousels" :key="item.id">
+          <a :href="item.href">
+            <img :src="item.img" alt="">
+          </a>
+        </swipe-item>
       </swipe>
     </header>
     <div class="text-center" v-if="!tasteList">没有查找到相关数据</div>
@@ -38,6 +40,9 @@
     },
     props: {
       tasteList: {
+        type: Array
+      },
+      carousels: {
         type: Array
       }
     },

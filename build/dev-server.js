@@ -43,6 +43,9 @@ apiRouters.get('/getGoodsById',function (req, res) {
 apiRouters.get('/getQuestionById',function (req, res) {
   res.json(questions)
 })
+apiRouters.post('/test',function (req, res) {
+  res.json('ok')
+})
 
 app.use('/api',apiRouters)
 

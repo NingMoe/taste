@@ -43,5 +43,11 @@
       "points": 100,
       "status": 0
     }
+  ],
+  "questions": [
+    {
+      "name": "username",
+      "question": "姓名"
+    }
   ]
 }

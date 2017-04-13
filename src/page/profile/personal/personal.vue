@@ -28,30 +28,19 @@
     </ul>
 
     <ui-dialog :data="phone">
-      <span slot="head">提示</span>
-      <div class="phone-input-wrapper">
-        <p>请输入您的手机号</p>
-        <input type="text" name="userphone">
-      </div>
-      <div slot="foot" class="btn" index="1">取消</div>
-      <div slot="foot" class="btn" index="2">确定</div>
+      <div>我是slot插入的内容</div>
     </ui-dialog>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
-  import uiDialog from '../../../components/dialog/dialog'
   export default{
     name: 'personal',
     data () {
       return {
         phone: {
-          callback (index, val) {
-            if (index === '2') {
-              console.log(val)
-            }
-            this.visible = false
-          },
+          title: '提示',
+          btns: ['确定'],
           visible: false
         }
       }
@@ -65,9 +54,6 @@
       changePhone () {
         this.phone.visible = true
       }
-    },
-    components: {
-      uiDialog
     }
   }
 </script>

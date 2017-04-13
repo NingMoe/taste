@@ -8,48 +8,64 @@
     </div>
     <div class="form-container">
       <header class="img-width"><img src="./form-title.png" alt=""></header>
-      <form action="">
-        <div class="form-line">
-          <label for="username">姓　　名: </label>
-          <div class="input-container">
-            <input type="text" name="username" id="username" class="input">
-          </div>
-        </div>
-        <div class="form-line">
-          <label for="userphone">联系方式: </label>
-          <div class="input-container">
-            <input type="text" name="userphone" id="userphone" class="input">
-          </div>
-        </div>
-        <div class="form-line">
-          <label for="nums">参加人数: </label>
-          <div class="input-container">
-            <input type="text" name="nums" id="nums" class="input">
-          </div>
-        </div>
-        <div class="form-line">
-          <label>是否驾车: </label>
-          <div class="input-container">
-            <input type="radio" name="usecar" class="radio">是
-            <input type="radio" name="usecar" class="radio">否
-          </div>
-        </div>
-      </form>
 
+      <validator name="valida">
+        <form>
+          <div class="form-line">
+            <label for="username">姓　　名: </label>
+            <div class="input-container">
+              <input type="text" name="username" id="username" class="input" v-model="serialize.username">
+            </div>
+          </div>
+          <div class="form-line">
+            <label for="userphone">联系方式: </label>
+            <div class="input-container">
+              <input type="text" name="userphone" id="userphone" class="input" v-model="serialize.userphone">
+            </div>
+          </div>
+          <div class="form-line">
+            <label for="nums">参加人数: </label>
+            <div class="input-container">
+              <input type="text" name="nums" id="nums" class="input" v-model="serialize.nums">
+            </div>
+          </div>
+          <div class="form-line">
+            <label>是否驾车: </label>
+            <div class="input-container">
+              <input type="radio" name="usecar" class="radio" value="1" v-model="serialize.usecar">是
+              <input type="radio" name="usecar" class="radio" value="0" v-model="serialize.usecar">否
+            </div>
+          </div>
+        </form>
+      </validator>
       <div class="tasteRegister-btns common-bottom-btns">
-        <div class="join-btn btn">立即参加</div>
+        <div class="join-btn btn" @click="submit">立即参加</div>
         <div class="back-btn btn" @click="back">返回</div>
       </div>
     </div>
+
+    <ui-dialog :data="alert"></ui-dialog>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
+
   export default{
-    name: 'tasteRegister',
     data () {
       return {
-        tasteData: {}
+        tasteData: {},
+        serialize: {
+          username: null,
+          userphone: null,
+          nums: null,
+          usecar: null
+        },
+        alert: {
+          title: '提示',
+          text: '恭喜您报名成功!',
+          btns: ['确定'],
+          visible: false
+        }
       }
     },
     mounted () {
@@ -62,6 +78,16 @@
       }
     },
     methods: {
+      submit () {
+        this.$http.post('/api/test', this.serialize).then((res) => {
+          if (res.body === 'ok') {
+            this.alert.visible = true
+          } else {
+            this.alert.text = '很抱歉, 报名失败, 详情请咨询 028-86701038'
+            this.alert.visible = true
+          }
+        })
+      },
       back () {
         history.back()
       }

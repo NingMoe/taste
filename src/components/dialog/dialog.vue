@@ -1,9 +1,11 @@
 <template>
   <div class="uiDialog" v-show="data.visible">
     <div class="dialog-wrapper">
-      <div class="dialog-head"><slot name="head"></slot></div>
-      <div class="dialog-body"><slot></slot></div>
-      <div class="dialog-foot" @click="clickEvent"><slot name="foot"></slot></div>
+      <div class="dialog-head">{{data.title}}</div>
+      <div class="dialog-body"><slot></slot>{{data.text}}</div>
+      <div class="dialog-foot" @click="clickEvent">
+        <div class="btn" v-for="(btn, index) in data.btns" :index="index">{{btn}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +27,8 @@
     methods: {
       clickEvent (e) {
         if (this.data.callback) {
-          let val = document.querySelector('.dialog-body input').value
+          let input = document.querySelector('.dialog-body input')
+          let val = input ? input.value : ''
           this.data.callback(e.target.getAttribute('index'), val)
         } else {
           this.data.visible = false
@@ -59,7 +62,7 @@
       .dialog-body
         min-height: 60px
         padding: 0 10px
-        text-align: left
+        text-align: center
         line-height: 1.2
         .form-line
           margin-bottom: 10px

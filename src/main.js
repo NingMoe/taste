@@ -5,9 +5,18 @@ import App from './App'
 import router from './router'
 import resource from 'vue-resource'
 
+// 引入表单验证插件 vue-validator
+import VueValidator from 'vue-validator'
+Vue.use(VueValidator)
+
+// 引入轮播组件 vue-swipe
 import { Swipe, SwipeItem } from 'vue-swipe'
 Vue.component('swipe', Swipe)
 Vue.component('swipe-item', SwipeItem)
+
+// 引入自定义弹窗组件
+import uiDialog from '@/components/dialog/dialog'
+Vue.component('ui-dialog', uiDialog)
 
 Vue.config.productionTip = false
 Vue.use(resource)

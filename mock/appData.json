@@ -149,6 +149,23 @@
       "point":123
     }
 
+  ],
+  "carousels": [
+    {
+      "id": 1,
+      "href": "javascript:void(0)",
+      "img": "/static/images/yuantiao.jpg"
+    },
+    {
+      "id": 2,
+      "href": "javascript:void(0)",
+      "img": "/static/images/muwu.jpg"
+    },
+    {
+      "id": 3,
+      "href": "javascript:void(0)",
+      "img": "/static/images/shuijiao.jpg"
+    }
   ]
 
 }
