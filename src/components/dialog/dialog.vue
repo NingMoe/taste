@@ -1,21 +1,10 @@
-<script src="../../../../../project/mui/js/actions.js"></script>
 <template>
-  <div class="uiDialog" v-if="dialogData.isShow">
-
+  <div class="uiDialog" v-show="data.visible">
     <div class="dialog-wrapper">
-      <div class="dialog-head">{{dialogData.title}}</div>
-      <div class="dialog-body">
-        {{dialogData.text}}
-        <div class="form-line" v-for="item in dialogData.inputs">
-          <label>{{item.label}}</label>
-          <input type="text" :name="item.name" v-model='item.name'>
-        </div>
-      </div>
-      <div class="dialog-foot" @click="clickEvent">
-        <div class="btn" v-for="(item,index) in dialogData.btns" :index="index">{{item}}</div>
-      </div>
+      <div class="dialog-head"><slot name="head"></slot></div>
+      <div class="dialog-body"><slot></slot></div>
+      <div class="dialog-foot" @click="clickEvent"><slot name="foot"></slot></div>
     </div>
-
   </div>
 </template>
 
@@ -23,24 +12,24 @@
   export default {
     name: 'uiDialog',
     props: {
-      dialogData: {
+      data: {
         type: Object
       }
     },
     data () {
-      let obj = {isShow: false}
-      for (let o of this.dialogData.inputs) {
-        obj[o.name] = ''
+      return {
+        test: 'test'
       }
-      return obj
     },
-    mounted () {
-      this[this.dialogData.inputs[0].name] = ''
-      this[this.dialogData.inputs[1].name] = ''
-    },
+    mounted () {},
     methods: {
       clickEvent (e) {
-        this.dialogData.callback(e.target.getAttribute('index'), this.username)
+        if (this.data.callback) {
+          let val = document.querySelector('.dialog-body input').value
+          this.data.callback(e.target.getAttribute('index'), val)
+        } else {
+          this.data.visible = false
+        }
       }
     }
   }

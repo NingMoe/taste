@@ -5340,5 +5340,4 @@
 /*===========================
 Swiper AMD Export
 ===========================*/
-export var swiper = window.Swiper;
 //# sourceMappingURL=maps/swiper.js.map

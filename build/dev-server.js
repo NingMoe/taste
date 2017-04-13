@@ -8,7 +8,7 @@ if (!process.env.NODE_ENV) {
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
-var history = require('connect-history-api-fallback')
+// var history = require('connect-history-api-fallback')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
@@ -22,7 +22,7 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-app.use(history())
+// app.use(history())
 
 var appData = require('../mock/appData.json')
 var tasteData = require('../mock/taste.json')

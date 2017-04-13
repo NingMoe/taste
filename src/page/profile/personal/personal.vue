@@ -13,7 +13,7 @@
       </div>
     </div>
     <ul class="info-list">
-      <li @click="showDialog">
+      <li @click="changePhone">
         手机号: 18775226607
       </li>
       <li>
@@ -27,35 +27,32 @@
       </li>
     </ul>
 
-    <ui-dialog :dialogData="phoneDialog"></ui-dialog>
-
+    <ui-dialog :data="phone">
+      <span slot="head">提示</span>
+      <div class="phone-input-wrapper">
+        <p>请输入您的手机号</p>
+        <input type="text" name="userphone">
+      </div>
+      <div slot="foot" class="btn" index="1">取消</div>
+      <div slot="foot" class="btn" index="2">确定</div>
+    </ui-dialog>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
   import uiDialog from '../../../components/dialog/dialog'
-
   export default{
     name: 'personal',
     data () {
       return {
-        phoneDialog: {
-          title: '请输入新手机号',
-          inputs: [
-            {label: '姓名:', name: 'username'},
-            {label: '手机号:', name: 'userphone'}
-          ],
-          username: '',
-          userphone: '',
-          btns: ['取消', '确定'],
-          isShow: false,
-          callback: function (index, value) {
-            if (index === '0') {
-              this.isShow = false
-            } else {
-              console.log(value)
+        phone: {
+          callback (index, val) {
+            if (index === '2') {
+              console.log(val)
             }
-          }
+            this.visible = false
+          },
+          visible: false
         }
       }
     },
@@ -64,13 +61,13 @@
         type: Object
       }
     },
+    methods: {
+      changePhone () {
+        this.phone.visible = true
+      }
+    },
     components: {
       uiDialog
-    },
-    methods: {
-      showDialog () {
-        this.phoneDialog.isShow = true
-      }
     }
   }
 </script>
@@ -99,11 +96,10 @@
         border-bottom: 1px solid #ccc
       li:last-child
         border-bottom: 0
-    .dialog-content
+    .phone-input-wrapper
       text-align: center
       input
+        border: 1px solid #ddd
+        margin-top: 10px
         padding: 5px
-        margin-bottom: 10px
-        border:1px solid #ccc
-
 </style>

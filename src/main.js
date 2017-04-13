@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import resource from 'vue-resource'
 
+import { Swipe, SwipeItem } from 'vue-swipe'
+Vue.component('swipe', Swipe)
+Vue.component('swipe-item', SwipeItem)
+
 Vue.config.productionTip = false
 Vue.use(resource)
 

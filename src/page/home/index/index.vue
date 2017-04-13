@@ -2,7 +2,11 @@
   <section class="home">
     <header class="head">
       <h1>所有体验</h1>
-      <carousel></carousel>
+      <swipe class="my-swipe" :auto="5000" :speed="500">
+        <swipe-item class="slide1"><img src="../../../../static/images/yuantiao.jpg" alt=""></swipe-item>
+        <swipe-item class="slide2"><img src="../../../../static/images/muwu.jpg" alt=""></swipe-item>
+        <swipe-item class="slide3"><img src="../../../../static/images/shuijiao.jpg" alt=""></swipe-item>
+      </swipe>
     </header>
     <div class="text-center" v-if="!tasteList">没有查找到相关数据</div>
     <ul class="taste-list">
@@ -24,7 +28,6 @@
 
 <script type="text/ecmascript-6">
   import vNav from '@/components/nav/nav'
-  import carousel from '@/components/carousel/carousel'
 
   export default{
     name: 'homeIndex',
@@ -43,16 +46,19 @@
         this.$router.push({name: 'tasteDetails', params: { id: id }})
       }
     },
-    components: { carousel, vNav }
+    components: { vNav }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import '/static/vue-swipe.css'
+
   .home
     padding-bottom: 40px
     .head
       padding:20px
       h1
+        margin-bottom: 10px
         font-size: 16px
       .banner
         width: 100%
@@ -113,6 +119,12 @@
           border-bottom: 2px solid #eb191a
       img
         width: 100%
-
+  .my-swipe
+    height: 186px
+    color: #fff
+    font-size: 30px
+    text-align: center
+    img
+      width: 100%
 
 </style>
