@@ -8,36 +8,32 @@
     </div>
     <div class="form-container">
       <header class="img-width"><img src="./form-title.png" alt=""></header>
+      <form>
+        <div class="form-line">
+          <label for="username">姓　　名: </label>
+          <div class="input-container">
+            <input type="text" name="1" class="input" id="1" v-model="serialize.username">
+          </div>
+        </div>
 
-      <validator name="valida">
-        <form>
-          <div class="form-line">
-            <label for="username">姓　　名: </label>
-            <div class="input-container">
-              <input type="text" name="username" id="username" class="input" v-model="serialize.username">
-            </div>
+        <div class="form-line">
+          <label for="userphone">联系方式: </label>
+          <div class="input-container">
+            <input type="text" name="userphone" class="input" id="userphone" v-model="serialize.userphone">
           </div>
-          <div class="form-line">
-            <label for="userphone">联系方式: </label>
-            <div class="input-container">
-              <input type="text" name="userphone" id="userphone" class="input" v-model="serialize.userphone">
-            </div>
+        </div>
+        <div class="form-line">
+          <label for="nums">参加人数: </label>
+          <div class="input-container">
+            <input type="text" name="nums" id="nums" class="input" v-model="serialize.nums">
           </div>
-          <div class="form-line">
-            <label for="nums">参加人数: </label>
-            <div class="input-container">
-              <input type="text" name="nums" id="nums" class="input" v-model="serialize.nums">
-            </div>
-          </div>
-          <div class="form-line">
-            <label>是否驾车: </label>
-            <div class="input-container">
-              <input type="radio" name="usecar" class="radio" value="1" v-model="serialize.usecar">是
-              <input type="radio" name="usecar" class="radio" value="0" v-model="serialize.usecar">否
-            </div>
-          </div>
-        </form>
-      </validator>
+        </div>
+        <div class="form-line">
+          <label>是否驾车: </label>
+          <input type="radio" name="usecar" class="radio" value="1" v-model="serialize.usecar">是
+          <input type="radio" name="usecar" class="radio" value="0" v-model="serialize.usecar">否
+        </div>
+      </form>
       <div class="tasteRegister-btns common-bottom-btns">
         <div class="join-btn btn" @click="submit">立即参加</div>
         <div class="back-btn btn" @click="back">返回</div>
@@ -49,7 +45,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-
   export default{
     data () {
       return {
@@ -72,20 +67,23 @@
       if (this.$route.params.tasteData) {
         this.tasteData = this.$route.params.tasteData
       } else {
-        this.$http.get('/api/getTasteById', {id: this.$route.params.id}).then((res) => {
+        this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
           this.tasteData = res.body
         })
       }
     },
     methods: {
       submit () {
+        console.log(this.errors)
         this.$http.post('/api/test', this.serialize).then((res) => {
+          /*
           if (res.body === 'ok') {
             this.alert.visible = true
           } else {
             this.alert.text = '很抱歉, 报名失败, 详情请咨询 028-86701038'
             this.alert.visible = true
           }
+          */
         })
       },
       back () {
@@ -129,20 +127,23 @@
         width: 35%
         margin-bottom: 10px
       .form-line
-        display: flex
-        margin: 10px 0
+        margin: 18px 0
         align-items: center
-        label
-          padding-left: 2em
         .input-container
-          flex: 1
-          padding-left: 10px
-          .input
-            width: 100%
-            height: 100%
-            padding: 5px
-            border-radius: 3px
-            border: 1px solid #fabe00
-          .radio
-            vertical-align bottom
+          position: relative
+          margin-top: 5px
+        .radio
+          vertical-align bottom
+        .input
+          width: 100%
+          height: 100%
+          padding: 5px
+          border-radius: 3px
+          border: 1px solid #fabe00
+          .is-danger
+            position: absolute
+            bottom: -14px
+            left: 0
+            font-size: 12px
+            color: red
 </style>

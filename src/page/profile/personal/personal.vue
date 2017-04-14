@@ -9,7 +9,7 @@
         <img src="./avatar.jpg" alt="">
       </div>
       <div class="nick">
-        刨坟boys
+        {{userInfo.nick}}
       </div>
     </div>
     <ul class="info-list">
@@ -17,10 +17,10 @@
         手机号: 18775226607
       </li>
       <li>
-        姓名: 陈海俊
+        姓名: {{userInfo.name}}
       </li>
       <li>
-        性别: 男
+        性别: {{userInfo.gender}}
       </li>
       <li>
         剩余积分: 4534

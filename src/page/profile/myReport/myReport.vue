@@ -40,7 +40,7 @@
       }
     },
     mounted () {
-      this.$http.get('/api/getQuestionById').then(res => {
+      this.$http.get('/static/mock/question.json').then(res => {
         this.questions = res.body
       })
     },

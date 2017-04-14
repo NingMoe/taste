@@ -35,7 +35,7 @@
       }
     },
     mounted () {
-      this.$http.get('/api/getGoodsById', { id: this.$route.params.id }).then((res) => {
+      this.$http.get('/static/mock/goods.json', { id: this.$route.params.id }).then((res) => {
         this.goodsData = res.body
       })
     },

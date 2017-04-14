@@ -37,7 +37,4 @@
     .form-container .form-line
       line-height: 1.3
       padding: 0 15px 20px 15px
-  #app
-    min-height: 100vh
-    background: #fff
 </style>
