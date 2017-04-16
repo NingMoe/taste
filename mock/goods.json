@@ -1,10 +1,12 @@
 {
-  "title": "我是商品名称啊哈哈",
-  "points": 999999,
+  "goodsname": "我是商品名称啊哈哈",
+  "score": 9999,
+  "bought": "0",
   "address": "广西柳州市城中区晨华路彩虹城5栋1011",
-  "description": "我是商品描述啊哇哈哈哈哈",
-  "imgs": [
-    "a.jpg",
-    "b.jpg"
+  "goodsdetail": "我是商品描述啊哇哈哈哈哈",
+  "imgsrc": [
+    "/static/images/muwu.jpg",
+    "/static/images/shuijiao.jpg",
+    "/static/images/yuantiao.jpg"
   ]
 }

@@ -1,69 +1,43 @@
 
 {
   "id": 755,
-  "name": "皇甫狗蛋",
-  "phone": "18888888888",
-  "nums": 6,
-  "useCar": 1,
-  "title": "【属于你的十里桃林，快来看现实里的桃花，邂逅那个他/她！",
-  "author": "bonny",
-  "addTime": "2017-3-29",
+  "name": "【属于你的十里桃林，快来看现实里的桃花，邂逅那个他/她！",
+  "username": "刨坟boys",
+  "addtime": "2017-3-29",
   "content": "<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491453792904&di=3a6372579360cd895757a07db6a8ce78&imgtype=0&src=http%3A%2F%2Fimg001.photo.21cn.com%2Fphotos%2Falbum%2F20121019%2Fm600%2F098ACDE8DE08C2F25F53ACBC6187ECF4.jpg'>桃花园里不仅可以观赏花园的桃花，还可以观赏到整个龙泉山脉桃花盛开的所有景色，更可以吃到新鲜的樱桃、枇杷、水蜜桃等水果，晚上更可以观赏到美丽的龙泉夜景。拥有停车场、会议室、儿童乐园，备有多台机麻、手搓麻将、棋牌、乒乓球、羽毛球、爬山等娱乐活动供游客选择，可同时容纳近1000人前来休闲度假就餐，为使各位游客玩得尽兴，我园还特别推出烤全羊、烤鸡、烤兔等特色项目，极富乡村气息和浪漫情调！ 在你工作的闲暇时刻来到这里口味地道的农家美味，欣赏桃花源的秀美风景，是一件多么惬意的事啊。",
   "rules": "林芝嘎啦桃花村是3月赏桃花的首选之地。远方的雪峰还有皑皑白雪，桃花已如醉霞绯云般地争相斗艳，在气势磅薄的雪山怀。",
-  "taskList": [
+  "articleList": [
     {
       "id": 345,
       "title": "还可以观赏到整个龙泉山脉桃花盛开的所有景色",
-      "desc": "林芝嘎啦桃花村是3月赏桃花的首选之地",
-      "face": "item-face.jpg",
-      "points": 100,
+      "imgsrc": "/static/temp/item-face.jpg",
+      "score": 100,
       "status": 1
     },
     {
-      "id": 6767,
+      "id": 45,
       "title": "还可以观赏到整个龙泉山脉桃花盛开的所有景色",
-      "desc": "林芝嘎啦桃花村是3月赏桃花的首选之地",
-      "face": "item-face.jpg",
-      "points": 100,
-      "status": 0
-    },
-    {
-      "id": 567,
-      "title": "还可以观赏到整个龙泉山脉桃花盛开的所有景色",
-      "desc": "林芝嘎啦桃花村是3月赏桃花的首选之地",
-      "face": "item-face.jpg",
-      "points": 100,
-      "status": 1
-    },
-    {
-      "id": 234,
-      "title": "还可以观赏到整个龙泉山脉桃花盛开的所有景色",
-      "desc": "林芝嘎啦桃花村是3月赏桃花的首选之地",
-      "face": "item-face.jpg",
-      "points": 100,
+      "imgsrc": "/static/temp/item-face.jpg",
+      "score": 23,
       "status": 0
     }
   ],
-  "questions": [
+  "regInfo": [
     {
-      "id": 1,
       "question": "姓名",
-      "type": 1
+      "answer": "皇甫狗蛋"
     },
     {
-      "id": 2,
       "question": "联系方式",
-      "type": 1
+      "answer": "18775226608"
     },
     {
-      "id": 3,
       "question": "参加人数",
-      "type": 1
+      "answer": "8"
     },
     {
-      "id": 4,
       "question": "是否驾车",
-      "type": 2
+      "answer": "是"
     }
   ]
 }

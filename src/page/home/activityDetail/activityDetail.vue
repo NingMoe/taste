@@ -1,25 +1,24 @@
 <template>
   <article class="tasteDetails">
-    <h1>{{ tasteData.title }}</h1>
-    <div class="info">{{ tasteData.author }}  {{ tasteData.addTime }}</div>
+    <h1>{{ tasteData.name }}</h1>
+    <div class="info">{{ tasteData.username }}  {{ tasteData.addtime }}</div>
     <div class="content" v-html="tasteData.content"></div>
     <div class="rules">
       <header><img src="./rules-title.png" alt=""></header>
       <div class="rules-content">{{ tasteData.rules }}</div>
     </div>
 
-    <div class="task" v-if="tasteData.taskList">
+    <div class="task" v-if="tasteData.articleList">
       <h2>体验任务 <span>查看并分享下方文章给好友就能获得积分噢~</span></h2>
       <ul>
-        <li v-for="item in tasteData.taskList">
-          <router-link :to="{name: 'tasteDetails', params: {id: item.id, scroll: 20}}">
+        <li v-for="item in tasteData.articleList">
+          <router-link :to="{name: 'articleDetail', params: {id: item.id}}">
             <div class="task-item-face img-width">
               <img src="/static/temp/item-face.jpg" alt="">
             </div>
             <div class="content">
               <div class="title">{{item.title}}</div>
-              <!--<div class="desc">{{item.desc}}</div>-->
-              <span class="points">{{ item.points }}积分</span>
+              <span class="points">{{ item.score }}积分</span>
               <div class="task-btn bg-blue" v-if="item.status===1">已完成</div>
               <div class="task-btn bg-red" v-else="item.status===0">未完成</div>
             </div>
@@ -28,18 +27,20 @@
       </ul>
     </div>
 
-    <div class="reg-info">
+    <div class="reg-info" v-if="tasteData.regInfo">
       <h2>报名信息</h2>
       <ul>
-        <li>姓　　名: {{tasteData.name}}</li>
-        <li>联系方式: {{tasteData.phone}}</li>
-        <li>参加人数: {{tasteData.nums}}</li>
-        <li>是否驾车: {{tasteData.useCar?'是':'否'}}</li>
+        <li v-for="item in tasteData.regInfo">
+          {{item.question}}: {{item.answer}}
+        </li>
       </ul>
     </div>
 
     <div class="tasteDetails-btns common-bottom-btns">
-      <div class="join-btn btn"><router-link :to="{name: 'tasteRegister', params: {tasteData: tasteData, id: $route.params.id}}">立即参加</router-link></div>
+      <div class="join-btn btn">
+        <span v-if="0">已参加</span>
+        <router-link v-else :to="{name: 'activityRegister', params: {id: $route.params.id}}">立即参加</router-link>
+      </div>
       <div class="back-btn btn" @click="back">返回</div>
     </div>
   </article>
@@ -54,7 +55,8 @@
       }
     },
     mounted () {
-      this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
+      // this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
+      this.$http.get('/web/getActivityDetail', {id: this.$route.params.id}).then((res) => {
         this.tasteData = res.body
       })
     },

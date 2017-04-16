@@ -1,5 +1,5 @@
 <template>
-  <router-view :userInfo="appData.userInfo"></router-view>
+  <router-view :appData="appData"></router-view>
 </template>
 
 <script type="text/ecmascript-6">

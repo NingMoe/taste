@@ -1,12 +1,12 @@
 <template>
-  <section class="profile" v-if="userInfo">
+  <section class="profile" v-if="appData.userInfo">
     <header class="head">
       <div class="avatar img-width">
-        <img src="./avatar.jpg" alt="">
+        <img :src="appData.userInfo.headimg" alt="">
       </div>
-      <div class="nick">{{ userInfo.nick }}</div>
+      <div class="nick">{{ appData.userInfo.nick }}</div>
       <div class="points">
-        剩余积分: {{ userInfo.points }}
+        剩余积分: {{ appData.userInfo.score }}
       </div>
       <router-link to="profile/personal">账户管理 ></router-link>
     </header>
@@ -15,22 +15,20 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的体验</h2>
         <div class="more-btn fr">
-          <router-link :to="{name: 'list', params: {name: 'myTasteList'}}">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'myActivityList'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
         <div class="item" v-for="item in limitMyTaste">
-          <router-link :to="{name: 'tasteDetails', params: { id: item.id }}">
+          <router-link :to="{name: 'activityDetail', params: { id: item.id }}">
             <div class="item-face img-width">
               <img src="/static/temp/item-face.jpg" alt="item.title">
             </div>
             <div class="title">
-              {{ item.title }}
+              {{ item.name }}
             </div>
-            <!--<div class="text">
-              {{item.content}}
-            </div>-->
           </router-link>
+          <status-tag :status="item.status" :type="'myActivityList'"></status-tag>
         </div>
       </div>
     </div>
@@ -44,17 +42,15 @@
       </div>
       <div class="content">
         <div class="item" v-for="item in limitMyReport">
-          <router-link :to="{name: 'myReport', params: {id: item.id}}">
+          <router-link :to="{name: 'myReport', params: {id: item.id, activityid: item.activityid}}">
             <div class="item-face img-width">
               <img src="/static/temp/item-face.jpg" :alt="item.title">
             </div>
             <div class="title">
-              {{ item.title }}
+              {{ item.name }}
             </div>
-            <!--<div class="text">
-              我是一段文本我也是一段文本
-            </div>-->
           </router-link>
+          <status-tag :status="item.status" :type="'myReportList'"></status-tag>
         </div>
       </div>
     </div>
@@ -63,7 +59,7 @@
       <div class="module-head clearfix">
         <h2 class="fl">我的兑换记录</h2>
         <div class="more-btn fr">
-          <router-link :to="{name: 'list', params: {name: 'myCashList'}}">更多</router-link>
+          <router-link :to="{name: 'list', params: {name: 'myCashRecord'}}">更多</router-link>
         </div>
       </div>
       <div class="content">
@@ -72,11 +68,8 @@
             <img src="/static/temp/item-face.jpg" :alt="item.title">
           </div>
           <div class="title">
-            {{ item.title }}
+            {{ item.goodsname }}
           </div>
-          <!--<div class="text">
-            我是一段文本我也是一段文本
-          </div>-->
         </div>
       </div>
     </div>
@@ -85,9 +78,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import VNav from '@/components/nav/nav'
+  import vNav from '@/components/nav/nav'
+  import statusTag from '@/components/statusTag/statusTag'
+
   export default{
-    components: {VNav},
+    components: {vNav, statusTag},
     name: 'profileIndex',
     data () {
       return {
@@ -95,19 +90,19 @@
       }
     },
     props: {
-      userInfo: {
+      appData: {
         type: Object
       }
     },
     computed: {
       limitMyTaste () {
-        return this.userInfo.myTasteList.slice(0, 2)
+        return this.appData.myActivityList.slice(0, 2)
       },
       limitMyReport () {
-        return this.userInfo.myReportList.slice(0, 2)
+        return this.appData.myReportList.slice(0, 2)
       },
       limitMyCash () {
-        return this.userInfo.cashRecordList.slice(0, 2)
+        return this.appData.myCashRecord.slice(0, 2)
       }
     }
   }
@@ -152,6 +147,7 @@
         .item
           width: 48%
           padding: 5px
+          position: relative
           background: #eee
           .title
             margin: 8px 0

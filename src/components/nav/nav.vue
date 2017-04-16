@@ -2,19 +2,19 @@
   <div class="nav">
     <ul>
       <li>
-        <router-link to="/" class="nav-item nav-face" :class="{on: name==='home'}">
+        <router-link to="/home" replace class="nav-item nav-face" :class="{on: name==='home'}">
           <i class="icon"></i>
           <span>体验中心</span>
         </router-link>
       </li>
       <li>
-        <router-link to="/mall" class="nav-item nav-mall" :class="{on: name==='mall'}">
+        <router-link to="/mall" replace class="nav-item nav-mall" :class="{on: name==='mall'}">
           <i class="icon"></i>
           <span>积分商城</span>
         </router-link>
       </li>
       <li>
-        <router-link to="/profile" class="nav-item nav-profile" :class="{on: name==='profile'}">
+        <router-link to="/profile" replace class="nav-item nav-profile" :class="{on: name==='profile'}">
           <i class="icon"></i>
           <span>个人中心</span>
         </router-link>

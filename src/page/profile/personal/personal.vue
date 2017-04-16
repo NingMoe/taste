@@ -1,58 +1,114 @@
 <template>
-  <section class="personal">
+  <section class="personal" v-if="appData.userInfo">
     <h1 class="common-head">
-      <router-link to="/profile"><img src="../../../common/arrow-left.png" alt=""></router-link>
+      <a href="javascript:history.back()"><img src="../../../common/arrow-left.png" alt=""></a>
       个人信息
     </h1>
     <div class="head">
       <div class="avatar img-width">
-        <img src="./avatar.jpg" alt="">
+        <img :src="appData.userInfo.headimg" alt="">
       </div>
       <div class="nick">
-        {{userInfo.nick}}
+        {{appData.userInfo.nick}}
       </div>
     </div>
     <ul class="info-list">
       <li @click="changePhone">
-        手机号: 18775226607
+        手机号: {{appData.userInfo.telphone||'请填写'}}
+      </li>
+      <li @click="updateName">
+        姓名: {{appData.userInfo.name||'请填写姓名'}}
+      </li>
+      <li @click="updateSex">
+        性别: {{appData.userInfo.sex=='0'?'男':'女'}}
       </li>
       <li>
-        姓名: {{userInfo.name}}
-      </li>
-      <li>
-        性别: {{userInfo.gender}}
-      </li>
-      <li>
-        剩余积分: 4534
+        剩余积分: {{appData.userInfo.score}}
       </li>
     </ul>
 
-    <ui-dialog :data="phone">
-      <div>我是slot插入的内容</div>
+    <ui-dialog :data="username">
+      <div><input type="text" class="username" v-model.trim="username.val"></div>
     </ui-dialog>
+    <ui-dialog :data="sex">
+      <div class="sex-radio" value="0" @click="selectSex">男</div><div class="sex-radio" value="1" @click="selectSex">女</div>
+    </ui-dialog>
+    <ui-dialog :data="alert"></ui-dialog>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
+  import UiDialog from '../../../components/dialog/dialog'
   export default{
+    components: {UiDialog},
     name: 'personal',
     data () {
       return {
-        phone: {
+        alert: {
           title: '提示',
+          text: '',
           btns: ['确定'],
           visible: false
+        },
+        username: {
+          title: '请输入您的姓名',
+          btns: ['取消', '确定'],
+          val: '',
+          visible: false,
+          callback: (index, data) => {
+            if (index === '0') {
+              data.visible = false
+            } else if (index === '1' && data.val) {
+              this.$http.post('/web/updateName', {name: data.val}).then(res => {
+                this.alert.text = res.body === 'success' ? '修改成功!' : '修改失败, 出现未知错误'
+                data.visible = false
+                this.alert.visible = true
+              })
+            }
+          }
+        },
+        sex: {
+          title: '请选择您的性别',
+          val: '',
+          btns: ['取消', '确定'],
+          visible: false,
+          callback: (index, data) => {
+            if (index === '0') {
+              data.visible = false
+            } else if (data.val) {
+              this.$http.post('/web/updateSex').then(res => {
+                this.alert.text = res.body === 'success' ? '修改成功!' : '修改失败, 出现未知错误'
+                data.visible = false
+                this.alert.visible = true
+              })
+            }
+          }
         }
       }
     },
     props: {
-      userInfo: {
+      appData: {
         type: Object
       }
     },
     methods: {
-      changePhone () {
-        this.phone.visible = true
+      changePhone () {},
+      updateName () {
+        this.username.visible = true
+      },
+      updateSex () {
+        this.sex.visible = true
+      },
+      selectSex (e) {
+        if (e.target.classList.contains('selected')) {
+          return
+        }
+        let options = document.querySelectorAll('.sex-radio')
+        options.forEach(function (e, i) {
+          e.classList.remove('selected')
+        })
+        e.target.classList.add('selected')
+        this.sex.val = e.target.getAttribute('value')
       }
     }
   }
@@ -88,4 +144,22 @@
         border: 1px solid #ddd
         margin-top: 10px
         padding: 5px
+    .username
+      padding: 5px
+      border: 1px solid #ddd
+    .sex-radio
+      width: 5em
+      height: 2.4em
+      line-height: 2.4
+      border: 1px solid #ddd
+      display: inline-block
+    .sex-radio:first-child
+      border-top-left-radius: 3px
+      border-bottom-left-radius: 3px
+    .sex-radio:last-child
+      border-top-right-radius: 3px
+      border-bottom-right-radius: 3px
+    .sex-radio.selected
+      color: #00cc99
+      border: 1px solid #00cc99
 </style>

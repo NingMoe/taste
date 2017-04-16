@@ -1,17 +1,17 @@
 <template>
   <section class="mall">
     <h1 class="common-head">积分商城</h1>
-    <div class="welcome">
-      bonny，积分商城欢迎您，您的剩余积分为：36000
+    <div class="welcome" v-if="userInfo">
+      {{userInfo.nick}}，积分商城欢迎您，您的剩余积分为：{{userInfo.score}}
     </div>
     <div class="text-center" v-if="!goodsList">没有查找到相关数据</div>
     <ul class="goods-list">
       <li v-for="goods in goodsList" @click="toDetails(goods.id)">
         <div class="goods-face">
-          <img src="./goods-item.jpg" :alt="goods.title">
+          <img :src="goods.imgsrc" :alt="goods.goodsname">
         </div>
-        <div class="title">{{ goods.title }}</div>
-        <span class="points">{{ goods.point }}积分</span>
+        <div class="title">{{ goods.goodsname }}</div>
+        <span class="points">{{ goods.score }}积分</span>
         <span class="cash-btn">兑换</span>
       </li>
     </ul>
@@ -27,6 +27,9 @@
     props: {
       goodsList: {
         type: Array
+      },
+      userInfo: {
+        type: Object
       }
     },
     data () {
@@ -37,7 +40,7 @@
     components: { vNav },
     methods: {
       toDetails (id) {
-        this.$router.push({name: 'goodsDetails', params: {id: id}})
+        this.$router.push({name: 'goodsDetail', params: {id: id}})
       },
       toCash (id) {
         alert(id)

@@ -13,7 +13,8 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('/static/mock/appData.json').then((res) => {
+    // this.$http.get('/static/mock/appData.json').then((res) => {
+    this.$http.get('/web/appInitData').then((res) => {
       this.appData = res.body
     })
   }

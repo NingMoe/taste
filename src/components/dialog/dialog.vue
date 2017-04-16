@@ -20,16 +20,14 @@
     },
     data () {
       return {
-        test: 'test'
+        index: ''
       }
     },
     mounted () {},
     methods: {
       clickEvent (e) {
         if (this.data.callback) {
-          let input = document.querySelector('.dialog-body input')
-          let val = input ? input.value : ''
-          this.data.callback(e.target.getAttribute('index'), val)
+          this.data.callback(e.target.getAttribute('index'), this.data)
         } else {
           this.data.visible = false
         }

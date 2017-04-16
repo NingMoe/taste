@@ -1,0 +1,26 @@
+[
+  {
+    "id":657,
+    "imgsrc":"/static/temp/goods-item.jpg",
+    "goodsname":"商品名称啊",
+    "score":34
+  },
+  {
+    "id":542,
+    "imgsrc":"/static/temp/goods-item.jpg",
+    "goodsname":"商品名称啊",
+    "score":65
+  },
+  {
+    "id":645,
+    "imgsrc":"/static/temp/goods-item.jpg",
+    "goodsname":"商品名称啊",
+    "score":343
+  },
+  {
+    "id":546,
+    "imgsrc":"/static/temp/goods-item.jpg",
+    "goodsname":"商品名称啊",
+    "score":23
+  }
+]

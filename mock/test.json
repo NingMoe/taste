@@ -1,0 +1,35 @@
+{
+  "userInfo": {
+    "sex": 1,
+    "headimg": null,
+    "name": "哈啊哈",
+    "score": 16,
+    "telphone": "18775270221"
+  },
+  "myReportList": [
+    {
+      "activityid": 27,
+      "answer": "37",
+      "questionid": 43
+    },
+    {
+      "activityid": 27,
+      "answer": "豆酱",
+      "questionid": 44
+    }
+  ],
+  "myActivityList": [
+    {
+      "address": "鱼峰山",
+      "status": 2,
+      "name": "能吃海鲜？",
+      "imgsrc": "\/uploadfile\/activity\/20170412\/u81u14919690557630.jpg"
+    },
+    {
+      "address": "鱼峰山",
+      "status": 1,
+      "name": "能吃多辣？",
+      "imgsrc": "\/uploadfile\/activity\/20170412\/u81u14919691600160.jpg"
+    }
+  ]
+}

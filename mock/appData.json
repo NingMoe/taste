@@ -2,153 +2,50 @@
   "userInfo": {
     "name":"陈海俊",
     "nick":"刨坟boys",
-    "phone":"18775226607",
-    "points":9999,
-    "gender":"男",
-    "avatar":"avatar.jpg",
-    "myTasteList":[
-      {
-        "id":110,
-        "face":"face.jpg",
-        "title":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-        "status":1
-      },
-      {
-        "id":111,
-        "face":"face.jpg",
-        "title":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-        "status":3
-      },
-      {
-        "id":11,
-        "face":"face.jpg",
-        "title":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-        "status":2
-      }
-    ],
-    "myReportList":[
-      {
-        "id":676,
-        "face":"face.jpg",
-        "title":"myReportList体验新开火锅店看看你是不是最能吃辣",
-        "status":2
-      },
-      {
-        "id":234,
-        "face":"face.jpg",
-        "title":"myReportList体验新开火锅店看看你是不是最能吃辣",
-        "status":1
-      },
-      {
-        "id":567,
-        "face":"face.jpg",
-        "title":"myReportList体验新开火锅店看看你是不是最能吃辣",
-        "status":3
-      }
-    ],
-    "cashRecordList":[
-      {
-        "id":110,
-        "face":"face.jpg",
-        "title":"体验新开火锅店看看你是不是最能吃辣",
-        "points":99
-      },
-      {
-        "id":110,
-        "face":"face.jpg",
-        "title":"体验新开火锅店看看你是不是最能吃辣",
-        "points":99
-      },
-      {
-        "id":110,
-        "face":"face.jpg",
-        "title":"体验新开火锅店看看你是不是最能吃辣",
-        "points":99
-      }
-    ]
+    "telphone":"18775226607",
+    "score":9999,
+    "sex": "0",
+    "headimg":"/static/temp/avatar.jpg"
   },
   "tasteList": [
     {
       "id":234,
-      "face":"face.jpg",
-      "title":"，寻找最能吃辣的你",
-      "timeOut":"2天后结束",
-      "description": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
+      "imgsrc":"/static/temp/item-face.jpg",
+      "name":"寻找最能吃辣的你1",
+      "timeOut":"1天"
     },
     {
-      "id":565,
-      "face":"face.jpg",
-      "title":"体验新开火锅店看看你是不是最能吃辣，寻找最能吃辣的你",
-      "timeOut":"1天后结束",
-      "description": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
+      "id":454,
+      "imgsrc":"/static/temp/item-face.jpg",
+      "name":"寻找最能吃辣的你2",
+      "timeOut":"2天"
     },
     {
-      "id":787,
-      "face":"face.jpg",
-      "title":"体验新开火锅店看看你是不是最能吃辣，寻找最能吃辣的你",
-      "timeOut":"12天后结束",
-      "description": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
-    },
-    {
-      "id":345,
-      "face":"face.jpg",
-      "title":"体验新开火锅店看看你是不是最能吃辣，寻找最能吃辣的你",
-      "timeOut":"4天后结束",
-      "description": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
-    },
-    {
-      "id":898,
-      "face":"face.jpg",
-      "title":"体验新开火锅店看看你是不是最能吃辣，寻找最能吃辣的你",
-      "timeOut":"7天后结束",
-      "description": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
-    },
-    {
-      "id":544,
-      "face":"face.jpg",
-      "title":"体验新开火锅店看看你是不是最能吃辣，寻找最能吃辣的你",
-      "timeOut":"8天后结束",
-      "description": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
+      "id":23,
+      "imgsrc":"/static/temp/item-face.jpg",
+      "name":"寻找最能吃辣的你3",
+      "timeOut":"3天"
     }
   ],
   "goodsList": [
     {
       "id":657,
-      "face":"./goods-item.jpg",
-      "title":"商品名称啊",
-      "point":123
+      "imgsrc":"/static/temp/goods-item.jpg",
+      "goodsname":"商品名称啊",
+      "score":34
     },
     {
-      "id":3424,
-      "face":"./goods-item.jpg",
-      "title":"商品名称啊",
-      "point":123
+      "id":542,
+      "imgsrc":"/static/temp/goods-item.jpg",
+      "goodsname":"商品名称啊",
+      "score":65
     },
     {
-      "id":7887,
-      "face":"./goods-item.jpg",
-      "title":"商品名称啊",
-      "point":123
-    },
-    {
-      "id":6453,
-      "face":"./goods-item.jpg",
-      "title":"商品名称啊",
-      "point":123
-    },
-    {
-      "id":3243,
-      "face":"./goods-item.jpg",
-      "title":"商品名称啊",
-      "point":123
-    },
-    {
-      "id":5765,
-      "face":"./goods-item.jpg",
-      "title":"商品名称啊",
-      "point":123
+      "id":645,
+      "imgsrc":"/static/temp/goods-item.jpg",
+      "goodsname":"商品名称啊",
+      "score":343
     }
-
   ],
   "carousels": [
     {
@@ -166,6 +63,49 @@
       "href": "javascript:void(0)",
       "img": "/static/images/shuijiao.jpg"
     }
+  ],
+  "myActivityList":[
+    {
+      "id": 110,
+      "imgsrc": "/static/temp/item-face.jpg",
+      "name": "myTasteList体验新开火锅店看看你是不是最能吃辣",
+      "status": "1"
+    },
+    {
+      "id": 321,
+      "imgsrc": "/static/temp/item-face.jpg",
+      "name": "myTasteList体验新开火锅店看看你是不是最能吃辣",
+      "status": "2"
+    }
+  ],
+  "myReportList": [
+    {
+      "id":676,
+      "activityid": 34,
+      "imgsrc":"/static/temp/item-face.jpg",
+      "name":"report体验新开火锅店看看你是不是最能吃辣",
+      "status": "3"
+    },
+    {
+      "id":56,
+      "activityid": 36,
+      "imgsrc":"/static/temp/item-face.jpg",
+      "name":"report体验新开火锅店看看你是不是最能吃辣",
+      "status": "4"
+    }
+  ],
+  "myCashRecord":[
+    {
+      "id": 110,
+      "imgsrc": "/static/temp/item-face.jpg",
+      "goodsname": "螺蛳粉一碗",
+      "score": 99
+    },
+    {
+      "id": 454,
+      "imgsrc": "/static/temp/item-face.jpg",
+      "goodsname": "螺蛳粉一碗",
+      "score": 444
+    }
   ]
-
 }

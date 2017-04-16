@@ -1,16 +1,16 @@
 <template>
-  <section class="myList" v-if="userInfo">
+  <section class="myList" v-if="appData">
     <h1 class="common-head">
-      <router-link to="/profile"><img src="../../../common/arrow-left.png" alt=""></router-link>
-      我的
+      <a href="javascript:history.back()"><img src="../../../common/arrow-left.png" alt=""></a>
+      {{listData.title}}
     </h1>
     <ul>
-      <li v-for="item in list" @click="toDetails(item.id, item.status)">
+      <li v-for="item in listData.data" @click="toDetails(item.id, item.activityid)">
         <div class="item-face img-width">
-          <img src="/static/temp/item-face.jpg" :alt="item.title">
+          <img :src="item.imgsrc">
         </div>
         <div class="title">
-          {{item.title}}
+          {{item.name||item.goodsname}}
         </div>
         <status-tag :status="item.status" :type="$route.params.name"></status-tag>
       </li>
@@ -24,7 +24,7 @@
   export default{
     name: 'list',
     props: {
-      userInfo: {
+      appData: {
         type: Object
       }
     },
@@ -32,29 +32,40 @@
       return {}
     },
     computed: {
-      list () {
+      listData () {
         let name = this.$route.params.name
         let maps = {
-          'myTasteList': this.userInfo.myTasteList,
-          'myReportList': this.userInfo.myReportList,
-          'myCashList': this.userInfo.cashRecordList
+          myActivityList: {
+            data: this.appData.myActivityList,
+            title: '我的体验列表'
+          },
+          myReportList: {
+            data: this.appData.myReportList,
+            title: '我的体验报告'
+          },
+          myCashRecord: {
+            data: this.appData.myCashRecord,
+            title: '我的兑换记录'
+          }
         }
         return maps[name]
       }
-
     },
     components: {
       statusTag
     },
     methods: {
-      toDetails (id, status) {
-        if (this.$route.params.name === 'myTasteList') {
-          this.$router.push({name: 'tasteDetails', params: {id: id}})
+      toDetails (id, activityid) {
+        if (this.$route.params.name === 'myCashRecord') {
+          return
         } else if (this.$route.params.name === 'myReportList') {
-          this.$router.push({name: 'myReport', params: {id: id}})
+          this.$router.push({name: 'myReport', params: {id: id, activityid: activityid}})
+        } else {
+          this.$router.push({name: 'activityDetail', params: {id: id}})
         }
       }
-    }
+    },
+    mounted () {}
   }
 </script>
 
@@ -62,7 +73,7 @@
 
   .myList
     background: #fff
-    min-height: 530px
+    min-height: 100vh
     ul
       display: flex
       padding: 20px 15px

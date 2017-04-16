@@ -3,12 +3,13 @@ import Router from 'vue-router'
 
 import home from '../page/home/home'
 import homeIndex from '../page/home/index/index'
-import tasteDetails from '../page/home/tasteDetails/tasteDetails'
-import tasteRegister from '../page/home/tasteRegister/tasteRegister'
+import activityDetail from '../page/home/activityDetail/activityDetail'
+import activityRegister from '../page/home/activityRegister/activityRegister'
+import articleDetail from '../page/home/articleDetail/articleDetail'
 
 import mall from '../page/mall/mall'
 import mallIndex from '../page/mall/index/index'
-import goodsDetails from '../page/mall/goodsDetails/goodsDetails'
+import goodsDetail from '../page/mall/goodsDetail/goodsDetail'
 
 import profile from '../page/profile/profile'
 import profileIndex from '../page/profile/index/index'
@@ -19,6 +20,7 @@ import myReport from '../page/profile/myReport/myReport'
 import notFound from '../page/other/notFound/notFound'
 import join from '../page/other/join/join'
 import cooperation from '../page/other/cooperation/cooperation'
+import firstTime from '../page/other/firstTime/firstTime'
 
 Vue.use(Router)
 
@@ -44,14 +46,19 @@ export default new Router({
           component: homeIndex
         },
         {
-          path: 'tasteDetails/:id',
-          name: 'tasteDetails',
-          component: tasteDetails
+          path: 'activityDetail/:id',
+          name: 'activityDetail',
+          component: activityDetail
         },
         {
-          path: 'tasteRegister/:id',
-          name: 'tasteRegister',
-          component: tasteRegister
+          path: 'activityRegister/:id',
+          name: 'activityRegister',
+          component: activityRegister
+        },
+        {
+          path: 'articleDetail/:id',
+          name: 'articleDetail',
+          component: articleDetail
         }
       ]
     },
@@ -64,9 +71,9 @@ export default new Router({
           component: mallIndex
         },
         {
-          path: 'goodsDetails/:id',
-          name: 'goodsDetails',
-          component: goodsDetails
+          path: 'goodsDetail/:id',
+          name: 'goodsDetail',
+          component: goodsDetail
         }
       ]
     },
@@ -90,7 +97,7 @@ export default new Router({
           component: list
         },
         {
-          path: 'myReport/:id',
+          path: 'myReport/:activityid/:id',
           name: 'myReport',
           component: myReport
         }
@@ -110,6 +117,11 @@ export default new Router({
       path: '/other/cooperation',
       name: 'cooperation',
       component: cooperation
+    },
+    {
+      path: '/other/firstTime',
+      name: 'firstTime',
+      component: firstTime
     }
   ]
 })

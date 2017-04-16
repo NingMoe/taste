@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import resource from 'vue-resource'
 
+// 引入表单验证插件
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate)
+
 // 引入轮播组件 vue-swipe
 import { Swipe, SwipeItem } from 'vue-swipe'
 Vue.component('swipe', Swipe)

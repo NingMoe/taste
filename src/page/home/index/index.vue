@@ -2,7 +2,7 @@
   <section class="home">
     <header class="head">
       <h1>所有体验</h1>
-      <swipe class="my-swipe" :auto="5000" :speed="300">
+      <swipe class="home-swipe" :auto="5000" :speed="300">
         <swipe-item v-for="item in carousels" :key="item.id">
           <a :href="item.href">
             <img :src="item.img" alt="">
@@ -14,12 +14,11 @@
     <ul class="taste-list">
       <li v-for="taste in tasteList" @click="toDetails(taste.id)">
         <div class="taste-face">
-          <img src="./item-face.jpg" alt="">
-          <div class="time-sign"> {{ taste.timeOut }} </div>
+          <img :src="taste.imgsrc" alt="">
+          <div class="time-sign"> {{ taste.timeOut }}后结束 </div>
         </div>
         <div class="content">
-          <h2>{{ taste.title }}</h2>
-          <!--<p>{{ taste.description }}</p>-->
+          <h2>{{ taste.name }}</h2>
         </div>
       </li>
     </ul>
@@ -48,10 +47,11 @@
     },
     methods: {
       toDetails (id) {
-        this.$router.push({name: 'tasteDetails', params: { id: id }})
+        this.$router.push({name: 'activityDetail', params: { id: id }})
       }
     },
-    components: { vNav }
+    components: { vNav },
+    mounted () {}
   }
 </script>
 
@@ -65,14 +65,13 @@
       h1
         margin-bottom: 10px
         font-size: 16px
-      .banner
+      .home-swipe
+        height: 186px
+        color: #fff
+        font-size: 30px
+        text-align: center
+      .home-swipe img
         width: 100%
-        height: 120px
-        margin-top 8px
-        background: #ccc
-        overflow: hidden
-        img
-          width: 100%
     .taste-list li
       margin-bottom: 10px
       padding:15px 20px
@@ -124,12 +123,6 @@
           border-bottom: 2px solid #eb191a
       img
         width: 100%
-  .my-swipe
-    height: 186px
-    color: #fff
-    font-size: 30px
-    text-align: center
-    img
-      width: 100%
+
 
 </style>

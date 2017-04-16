@@ -1,5 +1,5 @@
 <template>
-  <div class="statusTag" :class="['bgcolor-'+status]" v-if="type!='myCashList'">
+  <div class="statusTag" :class="['bgcolor-'+status]" v-if="type!='myCashRecord'">
     {{ textMap[type][status] }}
   </div>
 </template>
@@ -16,7 +16,7 @@
     data () {
       return {
         textMap: {
-          'myTasteList': {
+          'myActivityList': {
             '1': '有任务',
             '2': '体验中',
             '3': '已结束',

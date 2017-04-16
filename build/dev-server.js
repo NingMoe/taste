@@ -25,29 +25,85 @@ var app = express()
 // app.use(history())
 
 var appData = require('../mock/appData.json')
-var tasteData = require('../mock/taste.json')
+var activityList = require('../mock/activityList.json')
+var tasteData = require('../mock/activity.json')
+var goodsList = require('../mock/goodsList.json')
 var goodsData = require('../mock/goods.json')
 var questions = require('../mock/question.json')
+var articleData = require('../mock/article.json')
+var reportDetail = require('../mock/reportDetail.json')
 
 var apiRouters = express.Router()
-
-apiRouters.get('/getAppData',function (req, res) {
+// 获取初始化信息
+apiRouters.get('/appInitData',function (req, res) {
   res.json(appData)
 })
-apiRouters.get('/getTasteById',function (req, res) {
+// 获取活动列表
+apiRouters.get('/getActivityList',function (req, res) {
+  res.json(activityList)
+})
+// 获取活动详情
+apiRouters.get('/getActivityDetail',function (req, res) {
   res.json(tasteData)
 })
-apiRouters.get('/getGoodsById',function (req, res) {
+// 获取商品列表
+apiRouters.get('/goodsList',function (req, res) {
+  res.json(goodsList)
+})
+// 获取商品详情
+apiRouters.get('/getGoodsDetail',function (req, res) {
   res.json(goodsData)
 })
-apiRouters.get('/getQuestionById',function (req, res) {
+// 获取活动报名问题 和填写体验报告问题
+apiRouters.get('/getQuestion',function (req, res) {
   res.json(questions)
 })
-apiRouters.post('/test',function (req, res) {
+// 获取已填写过的我的体验详情
+apiRouters.get('/myReportDetail',function (req, res) {
+  res.json(reportDetail)
+})
+// 获取文章详情
+apiRouters.get('/articleDetail',function (req, res) {
+  res.json(articleData)
+})
+// 活动报名
+apiRouters.post('/enroll',function (req, res) {
   res.json('ok')
 })
+// 兑换商品
+apiRouters.post('/cashGoods',function (req, res) {
+  res.json('success')
+})
+// 提交体验报告
+apiRouters.post('/postReport',function (req, res) {
+  res.json('success')
+})
+// 商家申请活动
+apiRouters.post('/applyActivity',function (req, res) {
+  res.json('success')
+})
+// 修改手机号
+apiRouters.post('/updatePhone',function (req, res) {
+  res.json('success')
+})
+// 修改名字
+apiRouters.post('/updateName',function (req, res) {
+  res.json('success')
+})
+// 修改性别
+apiRouters.post('/updateSex',function (req, res) {
+  res.json('success')
+})
+// 分享任务文章的回调
+apiRouters.post('/doTask',function (req, res) {
+  res.json('success')
+})
+// 初次参加活动答题
+apiRouters.post('/firstTime',function (req, res) {
+  res.json('success')
+})
 
-app.use('/api',apiRouters)
+app.use('/web',apiRouters)
 
 var compiler = webpack(webpackConfig)
 
