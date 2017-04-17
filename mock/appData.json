@@ -1,10 +1,12 @@
 {
+  "nowDate": "2017-04-17 11:51:07",
   "userInfo": {
     "name":"陈海俊",
     "nick":"刨坟boys",
     "telphone":"18775226607",
     "score":9999,
     "sex": "0",
+    "isanswer": 0,
     "headimg":"/static/temp/avatar.jpg"
   },
   "tasteList": [

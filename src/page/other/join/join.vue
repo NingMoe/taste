@@ -16,19 +16,19 @@
       <form action="">
         <ul>
           <li class="form-line">
-            <label for="">企业名称: </label>
+            <label>企业名称: </label>
             <div class="input-container"><input type="text" class="input"></div>
           </li>
          <li class="form-line">
-            <label for="">合作事项: </label>
+            <label>合作事项: </label>
             <div class="input-container"><input type="text" class="input"></div>
           </li>
          <li class="form-line">
-            <label for="">预计费用: </label>
+            <label>预计费用: </label>
             <div class="input-container"><input type="text" class="input"></div>
           </li>
          <li class="form-line">
-            <label for="">联系电话: </label>
+            <label>联系电话: </label>
             <div class="input-container"><input type="text" class="input"></div>
           </li>
         </ul>

@@ -1,5 +1,5 @@
 <template>
-  <section class="tasteRegister">
+  <section class="tasteRegister" v-if="tasteData">
     <h1>{{ tasteData.name }}</h1>
     <div class="info">{{ tasteData.username }}  {{ tasteData.addtime }}</div>
     <div class="rules">
@@ -10,16 +10,16 @@
       <header class="img-width"><img src="./form-title.png" alt=""></header>
 
       <form v-if="questions" id="registerform">
-        <div class="form-line" v-for="item in questions">
+        <div class="form-line" v-for="(item, index) in questions">
           <h3>{{item.question}}: </h3>
-          <div class="input-container" v-if="item.type==='1'">
-            <input type="text" :name="'input-'+item.id" class="input" v-validate="'required'" v-model="serialize[item.id]">
+          <div class="input-container" v-if="item.questiontype==='0'">
+            <input type="text" :name="'input-'+item.id" class="input" v-validate="'required'" v-model="para.answerinfo[index].answer">
             <span v-show="errors.has('input-'+item.id)" class="help is-danger">* 必填</span>
           </div>
-          <div class="input-container" v-else="item.type==='2'">
-            <template v-for="(value, key, index) in item.options">
-              <input type="radio" :name="'input-'+item.id" :id="'input-'+item.id+index" v-validate="'required'" class="radio" :value="key" v-model="serialize[item.id]">
-              <label :for="'input-'+item.id+index">{{value}}</label>
+          <div class="input-container" v-else="item.questiontype==='1'">
+            <template v-for="(inItem, ind) in item.options">
+              <input type="radio" :name="'input-'+item.id" :id="'input-'+item.id+ind" v-validate="'required'" class="radio" :value="inItem.id" v-model="para.answerinfo[index].answer">
+              <label :for="'input-'+item.id+ind">{{inItem.option}}</label>
             </template>
             <span v-show="errors.has('input-'+item.id)" class="help is-danger">请选择</span>
           </div>
@@ -40,8 +40,11 @@
     data () {
       return {
         tasteData: {},
-        questions: [],
-        serialize: {},
+        questions: {},
+        para: {
+          activityid: this.$route.params.id,
+          answerinfo: []
+        },
         alert: {
           title: '提示',
           text: '',
@@ -51,34 +54,30 @@
       }
     },
     mounted () {
-      this.$http.get('/web/getQuestion').then(res => {
-        this.questions = res.body.question
+      this.$http.get('/web/getQuestion', {activityid: this.$route.params.id, papertype: 1}).then(res => {
         this.tasteData = res.body.activity
+        this.questions = res.body.questions
         for (let o in this.questions) {
-          this.serialize[this.questions[o].id] = null
+          this.para.answerinfo.push({question: this.questions[o].id, answer: ''})
         }
       })
-    },
-    computed: {
-      test () {
-        return this.questions.slice(0, 1)
-      }
     },
     methods: {
       submit () {
         this.$validator.validateAll().then(() => {
-          let para = {
-            'activityid': this.activity.id,
-            'answerinfo': [
-              {'question': '1', 'answer': '11'},
-              {'question': '2', 'answer': '啊哈哈哈'}
-            ]
-          }
-          this.$http.post('/web/enroll', para).then((res) => {
-            if (res.body === 'ok') {
+          this.$http.post('/web/enroll', this.para).then((res) => {
+            if (res.body === 'success') {
               this.alert.text = '申请已提交，审核结果请在“个人中心-我的体验”中查看。'
               this.alert.visible = true
-              document.getElementById('registerform').reset()
+              let tempTimer = setTimeout(() => {
+                // this.$router.replace({name: 'activityDetail', params: {id: this.$route.params.id}})
+                this.$router.go(-1)
+              }, 3000)
+              this.alert.callback = () => {
+                clearTimeout(tempTimer)
+                // this.$router.replace({name: 'activityDetail', params: {id: this.$route.params.id}})
+                this.$router.go(-1)
+              }
             } else {
               this.alert.text = '很抱歉, 报名失败, 详情请咨询 028-86701038'
               this.alert.visible = true

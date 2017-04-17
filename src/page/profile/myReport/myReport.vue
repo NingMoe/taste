@@ -8,16 +8,16 @@
       <ul class="question-list">
         <li class="question-item" v-for="(item, index) in questions">
           <h3>{{index+1}}. {{item.question}}</h3>
-          <div class="input-container" v-if="item.type == 1">
+          <div class="input-container" v-if="item.questiontype == 0">
             <input type="text" :name="'input-'+item.id" class="input" v-validate="'required'">
-            <span v-show="errors.has('input-'+item.id)" class="help is-danger">* 必填</span>
+            <span v-show="errors.has('input-'+item.id)" class="is-danger">* 必填</span>
           </div>
-          <template v-else="item.type==2">
-            <div class="option" v-for="(option,key) in item.options">
-              <input type="radio" v-validate="'required'" :id="'radio'+item.id+key" :name="'input-'+item.id" :value="key" class="radio">
-              <label :for="'radio'+item.id+key">{{option}}</label>
+          <template v-else="item.questiontype==1">
+            <div class="option" v-for="(option, ind) in item.options">
+              <input type="radio" v-validate="'required'" :id="'radio'+item.id+ind" :name="'input-'+item.id" :value="option.id" class="radio">
+              <label :for="'radio'+item.id+ind">{{option.option}}</label>
             </div>
-            <span v-show="errors.has('input-'+item.id)" class="help is-danger">请选择</span>
+            <span v-show="errors.has('input-'+item.id)" class="is-danger">请选择</span>
           </template>
         </li>
       </ul>
@@ -45,14 +45,21 @@
         activity: {},
         serialize: {
           suggest: ''
+        },
+        para: {
+          activityid: this.$route.params.id,
+          answerinfo: []
         }
       }
     },
     mounted () {
       // this.$http.get('/static/mock/question.json').then(res => {
-      this.$http.get('/web/getQuestion', {id: this.$route.params.id, activityid: this.$route.params.activityid}).then(res => {
-        this.questions = res.body.question
+      this.$http.get('/web/getQuestion', {activityid: this.$route.params.activityid, papertype: 0}).then(res => {
+        this.questions = res.body.questions
         this.activity = res.body.activity
+        for (let o in this.questions) {
+          this.para.answerinfo.push({question: this.questions[o].id, answer: ''})
+        }
       })
     },
     methods: {

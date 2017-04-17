@@ -49,7 +49,23 @@
           title: '提示',
           text: '',
           visible: false,
-          btns: ['取消', '确定']
+          btns: ['取消', '确定'],
+          callback: (i) => {
+            if (i === '1') {
+              this.$http.post('/web/cashGoods').then(res => {
+                if (res.body === 'success') {
+                  this.alert.text = '兑换成功!'
+                  this.goodsData.bought = '1'
+                } else if (res.body === '2') {
+                  this.alert.text = '兑换失败, 您的积分不足'
+                } else {
+                  this.alert.text = '兑换失败, 出现未知错误, 详情请咨询 028-86701038'
+                }
+                this.alert.visible = true
+              })
+            }
+            this.confirm.visible = false
+          }
         }
       }
     },
@@ -64,24 +80,7 @@
         history.back()
       },
       buy () {
-        let _this = this
         this.confirm.text = '您确定要使用 ' + this.goodsData.score + ' 积分兑换该商品吗?'
-        this.confirm.callback = function (i) {
-          if (i === '1') {
-            _this.$http.post('/web/cashGoods').then(res => {
-              if (res.body === 'success') {
-                _this.alert.text = '兑换成功!'
-                _this.goodsData.bought = '1'
-              } else if (res.body === '2') {
-                _this.alert.text = '兑换失败, 您的积分不足'
-              } else {
-                _this.alert.text = '兑换失败, 出现未知错误, 详情请咨询 028-86701038'
-              }
-              _this.alert.visible = true
-            })
-          }
-          _this.confirm.visible = false
-        }
         this.confirm.visible = true
       }
     }

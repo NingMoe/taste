@@ -13,7 +13,7 @@
       </div>
     </div>
     <ul class="info-list">
-      <li @click="changePhone">
+      <li @click="updatePhone">
         手机号: {{appData.userInfo.telphone||'请填写'}}
       </li>
       <li @click="updateName">
@@ -27,6 +27,21 @@
       </li>
     </ul>
 
+    <ui-dialog :data="phone" class="phone-dialog">
+      <div class="input-container">
+        <input type="text" name="userphone" v-model="phone.val" v-validate="{rules: {required: true, regex: /^1[3578][0-9]{9}$/}}">
+        <span class="is-danger" v-show="errors.has('userphone')">请输入有效的手机号码</span>
+      </div>
+      <div class="input-container">
+        <div class="phonecode-con"><input v-model="phone.code" type="number" name="phonecode" v-validate="'required'"></div>
+        <div class="get-code-btn" :class="{disable: timer}" @click="getCode">
+          <span v-if="timer">{{time}}s</span>
+          <span v-else>获取</span>
+        </div>
+        <span class="is-danger" v-show="errors.has('phonecode')">请输入短信验证码</span>
+        <span class="is-danger" v-show="codeErrorShow">验证码有误</span>
+      </div>
+    </ui-dialog>
     <ui-dialog :data="username">
       <div><input type="text" class="username" v-model.trim="username.val"></div>
     </ui-dialog>
@@ -49,6 +64,41 @@
           text: '',
           btns: ['确定'],
           visible: false
+        },
+        phone: {
+          title: '请输入您的手机号',
+          btns: ['取消', '确定'],
+          val: '',
+          code: '',
+          visible: false,
+          callback: (index, data) => {
+            if (index === '0') {
+              data.visible = false
+              this.errors.clear()
+            } else {
+              this.$validator.validateAll({userphone: this.phone.val, phonecode: this.phone.code}).then(() => {
+                this.$http.post('/web/test', {phone: this.phone.val, code: this.phone.code}).then(res => {
+                  if (res.body === 'codeerror') {
+                    this.codeErrorShow = true
+                  } else if (res.body === 'fail') {
+                    this.alert.text = '提交失败'
+                  } else {
+                    this.alert.text = '修改成功!'
+                    this.alert.visible = true
+                    this.phone.visible = false
+                    this.phone.val = ''
+                    this.phone.code = ''
+                    clearInterval(this.timer)
+                    this.timer = null
+                    this.time = 60
+                    this.$nextTick(function () {
+                      this.errors.clear()
+                    })
+                  }
+                })
+              }).catch(() => {})
+            }
+          }
         },
         username: {
           title: '请输入您的姓名',
@@ -83,7 +133,10 @@
               })
             }
           }
-        }
+        },
+        codeErrorShow: false,
+        timer: null,
+        time: 60
       }
     },
     props: {
@@ -92,12 +145,38 @@
       }
     },
     methods: {
-      changePhone () {},
+      updatePhone () {
+        this.phone.visible = true
+      },
       updateName () {
         this.username.visible = true
       },
       updateSex () {
         this.sex.visible = true
+      },
+      getCode () {
+        if (this.timer) {
+          return
+        }
+        this.$validator.validate('userphone', this.phone.val).then(() => {
+          // 手机验证通过, 发送验证码
+          this.$http.post('/web/test', {phone: this.phone.val}).then(res => {
+            if (res.body === 'exist') {
+              this.alert.text = '号码被占用'
+              this.alert.visible = true
+            } else {
+              // 开始倒计时
+              this.timer = setInterval(() => {
+                if (this.time <= 0) {
+                  clearInterval(this.timer)
+                  this.timer = null
+                  this.time = 60
+                }
+                this.time--
+              }, 1000)
+            }
+          })
+        }).catch(() => {})
       },
       selectSex (e) {
         if (e.target.classList.contains('selected')) {
@@ -162,4 +241,32 @@
     .sex-radio.selected
       color: #00cc99
       border: 1px solid #00cc99
+    .phone-dialog
+      .input-container
+        width: 75%
+        position: relative
+        margin: 0 auto 18px auto
+      .is-danger
+        position: absolute
+        left: 0
+        bottom: -14px
+        color: red
+        font-size: 12px
+      .input-container:last-child
+        display: flex
+        .phonecode-con
+          padding-right: 10px
+        .get-code-btn
+          flex: 0 0 60px
+          display: flex
+          align-items: center
+          justify-content: center
+          background: #00cc99
+          color: #fff
+        .get-code-btn.disable
+          background: #999
+      input
+        width: 100%
+        padding: 5px
+        border: 1px solid #ddd
 </style>

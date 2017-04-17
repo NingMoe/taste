@@ -1,49 +1,34 @@
 {
-  "question": [
+  "questions": [
     {
       "id": 1,
       "question": "1这次体验是否满意？",
-      "type": "1",
-      "options": {
-        "1": "水电",
-        "2": "地方"
-      }
+      "questiontype": "1",
+      "options": [
+        {"id": 1, "option": "是"},
+        {"id": 2, "option": "否"}
+      ]
     },
     {
       "id": 2,
-      "question": "2这次体验是否满意？",
-      "type": "1",
-      "options": {
-        "1": "水电",
-        "2": "地方"
-      }
+      "question": "1这次体验是否满意？",
+      "questiontype": "0",
+      "options": [0]
     },
     {
       "id": 3,
-      "question": "3这次体验是否满意？",
-      "type": "2",
-      "options": {
-        "1": "水电",
-        "2": "地方"
-      }
+      "question": "1这次体验是否满意？",
+      "questiontype": "1",
+      "options": [
+        {"id": 1, "option": "是"},
+        {"id": 2, "option": "否"}
+      ]
     },
     {
       "id": 4,
-      "question": "4这次体验是否满意？",
-      "type": "1",
-      "options": {
-        "1": "水电",
-        "2": "地方"
-      }
-    },
-    {
-      "id": 5,
-      "question": "5这次体验是否满意？",
-      "type": "2",
-      "options": {
-        "1": "水电",
-        "2": "地方"
-      }
+      "question": "1这次体验是否满意？",
+      "questiontype": "0",
+      "options": []
     }
   ],
   "activity": {

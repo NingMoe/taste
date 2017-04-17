@@ -1,5 +1,5 @@
 <template>
-  <router-view :tasteList="appData.tasteList" :carousels="appData.carousels"></router-view>
+  <router-view :tasteList="appData.tasteList" :carousels="appData.carousels" :userInfo="appData.userInfo"></router-view>
 </template>
 
 <script type="text/ecmascript-6">

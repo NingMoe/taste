@@ -68,7 +68,7 @@ apiRouters.get('/articleDetail',function (req, res) {
 })
 // 活动报名
 apiRouters.post('/enroll',function (req, res) {
-  res.json('ok')
+  res.json('success')
 })
 // 兑换商品
 apiRouters.post('/cashGoods',function (req, res) {
@@ -100,6 +100,10 @@ apiRouters.post('/doTask',function (req, res) {
 })
 // 初次参加活动答题
 apiRouters.post('/firstTime',function (req, res) {
+  res.json('success')
+})
+// 测试
+apiRouters.post('/test',function (req, res) {
   res.json('success')
 })
 

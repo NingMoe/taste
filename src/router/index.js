@@ -119,7 +119,7 @@ export default new Router({
       component: cooperation
     },
     {
-      path: '/other/firstTime',
+      path: '/other/firstTime/:id',
       name: 'firstTime',
       component: firstTime
     }
