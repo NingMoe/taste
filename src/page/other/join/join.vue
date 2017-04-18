@@ -49,7 +49,7 @@
           <div class="pic-form-line">
             <div>上传营业执照：</div>
             <div class="pics-container">
-              <div class="pics-item common-addPic-btn"></div>
+              <div class="pics-item common-addPic-btn" @click="licenseClick"></div>
             </div>
           </div>
           <div class="pic-form-line">
@@ -57,6 +57,7 @@
             <div class="pics-container">
               <div class="pics-item">
                 <img src="/static/temp/item-face.jpg" alt="">
+                <div class="remove-btn"></div>
               </div>
               <div class="pics-item common-addPic-btn"></div>
             </div>
@@ -78,8 +79,33 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import wx from 'weixin-js-sdk'
   export default{
-    name: 'join'
+    name: 'join',
+    methods: {
+      licenseClick () {
+        wx.chooseImage({
+          count: 1,  // 默认9
+          sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
+          success: function (res) {
+            var localIds = res.localIds  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+            alert(localIds)
+          }
+        })
+      }
+    },
+    mounted () {
+      wx.chooseImage({
+        count: 1,  // 默认9
+        sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          var localIds = res.localIds  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          alert(localIds)
+        }
+      })
+    }
   }
 </script>
 
@@ -122,10 +148,18 @@
           flex-wrap: wrap
           margin-top: 10px
           .pics-item
+            position: relative
             width: 22%
             height: 20vw
             margin: 0 4% 10px 0
             border: 1px solid #ccc
+            .remove-btn
+              width: 15px
+              height: 15px
+              background: red
+              position: absolute
+              top: 0
+              right: 0
           .pics-item img
             width: 100%
 </style>

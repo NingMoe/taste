@@ -77,12 +77,13 @@
               this.errors.clear()
             } else {
               this.$validator.validateAll({userphone: this.phone.val, phonecode: this.phone.code}).then(() => {
-                this.$http.post('/web/test', {phone: this.phone.val, code: this.phone.code}).then(res => {
+                this.$http.post('/web/test', {params: {phone: this.phone.val, code: this.phone.code}}).then(res => {
                   if (res.body === 'codeerror') {
                     this.codeErrorShow = true
                   } else if (res.body === 'fail') {
                     this.alert.text = '提交失败'
                   } else {
+                    this.appData.userInfo.telphone = data.val
                     this.alert.text = '修改成功!'
                     this.alert.visible = true
                     this.phone.visible = false
@@ -109,7 +110,10 @@
             if (index === '0') {
               data.visible = false
             } else if (index === '1' && data.val) {
-              this.$http.post('/web/updateName', {name: data.val}).then(res => {
+              this.$http.post('/web/updateName', {params: {name: data.val}}).then(res => {
+                if (res.body === 'success') {
+                  this.appData.userInfo.name = data.val
+                }
                 this.alert.text = res.body === 'success' ? '修改成功!' : '修改失败, 出现未知错误'
                 data.visible = false
                 this.alert.visible = true
@@ -127,6 +131,9 @@
               data.visible = false
             } else if (data.val) {
               this.$http.post('/web/updateSex').then(res => {
+                if (res.body === 'success') {
+                  this.appData.userInfo.sex = data.val
+                }
                 this.alert.text = res.body === 'success' ? '修改成功!' : '修改失败, 出现未知错误'
                 data.visible = false
                 this.alert.visible = true
@@ -160,7 +167,7 @@
         }
         this.$validator.validate('userphone', this.phone.val).then(() => {
           // 手机验证通过, 发送验证码
-          this.$http.post('/web/test', {phone: this.phone.val}).then(res => {
+          this.$http.post('/web/test', {params: {phone: this.phone.val}}).then(res => {
             if (res.body === 'exist') {
               this.alert.text = '号码被占用'
               this.alert.visible = true

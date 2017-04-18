@@ -12,7 +12,7 @@
         <div class="title">
           {{item.name||item.goodsname}}
         </div>
-        <status-tag :status="item.status" :type="$route.params.name"></status-tag>
+        <status-tag :status="getStatus(item)" :type="$route.params.name"></status-tag>
       </li>
     </ul>
   </section>
@@ -62,6 +62,29 @@
           this.$router.push({name: 'myReport', params: {id: id, activityid: activityid}})
         } else {
           this.$router.push({name: 'activityDetail', params: {id: id}})
+        }
+      },
+      getStatus (item) {
+        let now = Date.parse(this.appData.nowDate)
+
+        if (this.$route.params.name === 'myActivityList') {
+          if (item.ischeck === '2') {
+            return 2
+          } else {
+            // let beginTime = Date.parse(item.begintime)
+            let endTime = Date.parse(item.endtime)
+            // let enrollBeginTime = Date.parse(item.enrollbegintime)
+            // let enrollEndTime = Date.parse(item.enrollendtime)
+            // let reportBeginTime = Date.parse(item.reportbegintime)
+            // let reportEndTime = Date.parse(item.reportendtime)
+            if (endTime > now) {
+              return 1
+            } else if (endTime < now) {
+              return 3
+            }
+          }
+        } else {
+          return item.status
         }
       }
     },

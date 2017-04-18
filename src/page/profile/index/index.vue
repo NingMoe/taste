@@ -28,7 +28,7 @@
               {{ item.name }}
             </div>
           </router-link>
-          <status-tag :status="item.status" :type="'myActivityList'"></status-tag>
+          <status-tag :status="getStatus(item, 'myActivityList')" :type="'myActivityList'"></status-tag>
         </div>
       </div>
     </div>
@@ -103,6 +103,30 @@
       },
       limitMyCash () {
         return this.appData.myCashRecord.slice(0, 2)
+      }
+    },
+    methods: {
+      getStatus (item, name) {
+        let now = Date.parse(this.appData.nowDate)
+        if (name === 'myActivityList') {
+          if (item.ischeck === '2') {
+            return 2
+          } else {
+            // let beginTime = Date.parse(item.begintime)
+            let endTime = Date.parse(item.endtime)
+            // let enrollBeginTime = Date.parse(item.enrollbegintime)
+            // let enrollEndTime = Date.parse(item.enrollendtime)
+            // let reportBeginTime = Date.parse(item.reportbegintime)
+            // let reportEndTime = Date.parse(item.reportendtime)
+            if (endTime > now) {
+              return 1
+            } else if (endTime < now) {
+              return 3
+            }
+          }
+        } else {
+          return item.status
+        }
       }
     }
   }

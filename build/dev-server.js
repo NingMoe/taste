@@ -55,7 +55,7 @@ apiRouters.get('/getGoodsDetail',function (req, res) {
   res.json(goodsData)
 })
 // 获取活动报名问题 和填写体验报告问题
-apiRouters.get('/getQuestion',function (req, res) {
+apiRouters.get('/getQuestionList',function (req, res) {
   res.json(questions)
 })
 // 获取已填写过的我的体验详情

@@ -42,7 +42,11 @@ img{
 .bg-red{
   background:#eb191a
 }
-
+.input-hide{
+  width: 0;
+  height: 0;
+  display: none;
+}
 
 /*项目通用*/
 

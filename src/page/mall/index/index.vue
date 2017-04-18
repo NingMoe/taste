@@ -8,7 +8,7 @@
     <ul class="goods-list">
       <li v-for="goods in goodsList" @click="toDetails(goods.id)">
         <div class="goods-face">
-          <img :src="goods.imgsrc" :alt="goods.goodsname">
+          <img :src="goods.imgsrcmedium" :alt="goods.goodsname">
         </div>
         <div class="title">{{ goods.goodsname }}</div>
         <span class="points">{{ goods.score }}积分</span>

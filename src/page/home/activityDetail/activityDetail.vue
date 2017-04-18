@@ -62,7 +62,7 @@
     },
     mounted () {
       // this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
-      this.$http.get('/web/getActivityDetail', {id: this.$route.params.id}).then((res) => {
+      this.$http.get('/web/getActivityDetail', {params: {id: this.$route.params.id}}).then((res) => {
         this.tasteData = res.body
       })
     },

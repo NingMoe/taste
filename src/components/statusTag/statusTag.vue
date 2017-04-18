@@ -1,5 +1,5 @@
 <template>
-  <div class="statusTag" :class="['bgcolor-'+status]" v-if="type!='myCashRecord'">
+  <div class="statusTag" :class="['bgcolor-'+classType]" v-if="type!='myCashRecord'">
     {{ textMap[type][status] }}
   </div>
 </template>
@@ -17,17 +17,52 @@
       return {
         textMap: {
           'myActivityList': {
-            '1': '有任务',
-            '2': '体验中',
-            '3': '已结束',
-            '4': '未通过'
+            '1': '体验中',
+            '2': '未通过',
+            '3': '已结束'
           },
-          'myReportList': {
+          'myReportList': {   // 0 未提交 1已填写 2已通过 3未通过
+            '0': '待填写',
             '1': '待审核',
             '2': '已通过',
             '3': '未通过',
-            '4': '已过期',
-            '5': '待填写'
+            '4': '已过期'
+          }
+        }
+      }
+    },
+    mounted () {},
+    computed: {
+      classType () {
+        if (this.$route.params.name === 'myActivityList') {
+          switch (this.status) {
+            case '1':
+            case 1:
+              return 1
+            case '2':
+            case 2:
+              return 4
+            case '3':
+            case 3:
+              return 3
+          }
+        } else {
+          switch (this.status) {
+            case '0':
+            case 0:
+              return 2
+            case '1':
+            case 1:
+              return 3
+            case '2':
+            case 2:
+              return 5
+            case '3':
+            case 3:
+              return 1
+            case '4':
+            case 4:
+              return 4
           }
         }
       }
@@ -94,4 +129,12 @@
   .statusTag.bgcolor-4:after
     border-top-color: #616161
     border-right-color: #616161
+  .statusTag.bgcolor-5
+    background: #0c9
+  .statusTag.bgcolor-5:before
+    border-top-color: #0c9
+    border-left-color: #0c9
+  .statusTag.bgcolor-5:after
+    border-top-color: #0c9
+    border-right-color: #0c9
 </style>

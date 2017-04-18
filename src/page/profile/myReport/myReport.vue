@@ -54,7 +54,7 @@
     },
     mounted () {
       // this.$http.get('/static/mock/question.json').then(res => {
-      this.$http.get('/web/getQuestion', {activityid: this.$route.params.activityid, papertype: 0}).then(res => {
+      this.$http.get('/web/getQuestion', {params: {activityid: this.$route.params.activityid, papertype: 0}}).then(res => {
         this.questions = res.body.questions
         this.activity = res.body.activity
         for (let o in this.questions) {
@@ -75,7 +75,7 @@
               {'question': '2', 'answer': '啊哈哈哈'}
             ]
           }
-          this.$http.post('/web/postReport', para).then(res => {
+          this.$http.post('/web/postReport', {params: para}).then(res => {
             if (res.body === 'success') {
               console.log('success')
             }

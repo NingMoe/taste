@@ -5,7 +5,7 @@
       <swipe class="home-swipe" :auto="5000" :speed="300">
         <swipe-item v-for="item in carousels" :key="item.id">
           <a :href="item.href">
-            <img :src="item.img" alt="">
+            <img :src="item.img">
           </a>
         </swipe-item>
       </swipe>
@@ -14,8 +14,8 @@
     <ul class="taste-list">
       <li v-for="taste in tasteList" @click="toDetails(taste.id)">
         <div class="taste-face">
-          <img :src="taste.imgsrc" alt="">
-          <div class="time-sign"> {{ taste.timeOut }}后结束 </div>
+          <img :src="taste.imgsrc">
+          <div class="status-sign"> {{ signText(taste) }} </div>
         </div>
         <div class="content">
           <h2>{{ taste.name }}</h2>
@@ -43,15 +43,32 @@
       },
       carousels: {
         type: Array
+      },
+      nowDate: {
+        type: String
       }
     },
     methods: {
       toDetails (id) {
         this.$router.push({name: 'activityDetail', params: { id: id }})
+      },
+      signText (taste) {
+        let now = Date.parse(this.nowDate)
+        let beginTime = Date.parse(taste.begintime)
+        let endTime = Date.parse(taste.endtime)
+        if (now < beginTime) {
+          return '即将开始'
+        } else if (now < endTime) {
+          let outTime = Math.floor(endTime / 86400000) - Math.floor(now / 86400000)
+          return outTime === 0 ? '今天结束' : outTime + 1 + '天后结束'
+        } else {
+          return '已结束'
+        }
       }
     },
     components: { vNav },
-    mounted () {}
+    mounted () {},
+    computed: {}
   }
 </script>
 
@@ -79,7 +96,7 @@
       .taste-face
         margin-bottom: 10px
         position: relative
-        .time-sign
+        .status-sign
           position: absolute
           top: -1px
           left: 1.2em
@@ -90,7 +107,7 @@
           background: #fabe00
           font-size: 10px
           text-align: center
-        .time-sign:before
+        .status-sign:before
           content: ''
           display: block
           width: 0
@@ -101,7 +118,7 @@
           border-right: 0.6em solid #fabe00
           border-left: 0.6em solid transparent
           border-bottom: 0.6em solid transparent
-        .time-sign:after
+        .status-sign:after
           content: ''
           display: block
           width: 0

@@ -121,7 +121,7 @@
     methods: {
       submit () {
         this.$validator.validateAll().then(() => {
-          this.$http.post('/web/firstTime', {'answerinfo': this.answerinfo}).then(res => {
+          this.$http.post('/web/firstTime', {params: {'answerinfo': this.answerinfo}}).then(res => {
             if (res.body === 'success') {
               this.alert.text = '恭喜您提交成功, 3秒后跳到报名页面'
               let tempTimer = setTimeout(() => {
