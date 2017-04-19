@@ -11,7 +11,7 @@
       <router-link to="profile/personal">账户管理 ></router-link>
     </header>
 
-    <div class="module my-taste">
+    <div class="module my-taste" v-if="appData.myActivityList">
       <div class="module-head clearfix">
         <h2 class="fl">我的体验</h2>
         <div class="more-btn fr">
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div class="module my-report">
+    <div class="module my-report" v-if="appData.myReportList">
       <div class="module-head clearfix">
         <h2 class="fl">我的体验报告</h2>
         <div class="more-btn fr">
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="module my-cash-record">
+    <div class="module my-cash-record" v-if="appData.myCashRecord.length">
       <div class="module-head clearfix">
         <h2 class="fl">我的兑换记录</h2>
         <div class="more-btn fr">
@@ -65,7 +65,7 @@
       <div class="content">
         <div class="item" v-for="item in limitMyCash">
           <div class="item-face img-width">
-            <img :src="item.imgsrc" :alt="item.title">
+            <img :src="item.imgsrcmedium" :alt="item.title">
           </div>
           <div class="title">
             {{ item.goodsname }}

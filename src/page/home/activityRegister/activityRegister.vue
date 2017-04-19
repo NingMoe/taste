@@ -12,13 +12,13 @@
       <form v-if="questions" id="registerform">
         <div class="form-line" v-for="(item, index) in questions">
           <h3>{{item.question}}: </h3>
-          <div class="input-container" v-if="item.questiontype==='0'">
-            <input type="text" :name="'input-'+item.id" class="input" v-validate="'required'" v-model="para.answerinfo[index].answer">
+          <div class="input-container" v-if="item.questiontype=='0'">
+            <input type="text" :name="'input-'+item.id" class="input" v-validate="'required'" v-model="answerinfo[index].answer">
             <span v-show="errors.has('input-'+item.id)" class="help is-danger">* 必填</span>
           </div>
-          <div class="input-container" v-else="item.questiontype==='1'">
+          <div class="input-container" v-else="item.questiontype=='1'">
             <template v-for="(inItem, ind) in item.options">
-              <input type="radio" :name="'input-'+item.id" :id="'input-'+item.id+ind" v-validate="'required'" class="radio" :value="inItem.id" v-model="para.answerinfo[index].answer">
+              <input type="radio" :name="'input-'+item.id" :id="'input-'+item.id+ind" v-validate="'required'" class="radio" :value="inItem.id" v-model="answerinfo[index].answer">
               <label :for="'input-'+item.id+ind">{{inItem.option}}</label>
             </template>
             <span v-show="errors.has('input-'+item.id)" class="help is-danger">请选择</span>
@@ -45,6 +45,7 @@
           activityid: this.$route.params.id,
           answerinfo: []
         },
+        answerinfo: [],
         alert: {
           title: '提示',
           text: '',
@@ -58,14 +59,15 @@
         this.tasteData = res.body.activity
         this.questions = res.body.questions
         for (let o in this.questions) {
-          this.para.answerinfo.push({question: this.questions[o].id, answer: ''})
+          this.answerinfo.push({question: this.questions[o].id, answer: ''})
         }
       })
     },
     methods: {
       submit () {
         this.$validator.validateAll().then(() => {
-          this.$http.post('/web/enroll', this.para).then((res) => {
+          alert(JSON.stringify(this.answerinfo))
+          this.$http.get('/web/enroll', {params: {answer: JSON.stringify({'activityid': this.$route.params.id, 'answerinfo': this.answerinfo})}}).then((res) => {
             if (res.body === 'success') {
               this.alert.text = '申请已提交，审核结果请在“个人中心-我的体验”中查看。'
               this.alert.visible = true

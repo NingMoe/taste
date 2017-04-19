@@ -51,7 +51,7 @@
             <div class="pics-container">
               <div class="pics-item" v-if="licenseImage">
                 <img :src="licenseImage" alt="">
-                <div class="remove-btn" @click="removeImgage('licenseImage')"></div>
+                <div class="remove-btn" @click="removeImgage('licenseImage')">X</div>
               </div>
               <div class="pics-item common-addPic-btn" @click="licenseAdd"></div>
             </div>
@@ -61,9 +61,9 @@
             <div class="pics-container">
               <div class="pics-item" v-if="certificateImage">
                 <img :src="certificateImage" alt="">
-                <div class="remove-btn" @click="removeImgage('certificateImage')"></div>
+                <div class="remove-btn" @click="removeImgage('certificateImage')">X</div>
               </div>
-              <div class="pics-item common-addPic-btn"></div>
+              <div class="pics-item common-addPic-btn" @click="certificateAdd"></div>
             </div>
           </div>
           <div class="pic-form-line">
@@ -71,9 +71,9 @@
             <div class="pics-container">
               <div class="pics-item" v-for="(item, index) in productImages">
                 <img :src="item" alt="">
-                <div class="remove-btn" @click="removeImgage(index)"></div>
+                <div class="remove-btn" @click="removeImgage(index)">X</div>
               </div>
-              <div class="pics-item common-addPic-btn"></div>
+              <div class="pics-item common-addPic-btn" @click="productAdd"></div>
             </div>
           </div>
         </div>
@@ -92,9 +92,9 @@
     name: 'join',
     data () {
       return {
-        licenseImage: '/static/images/muwu.jpg',
-        certificateImage: '/static/images/muwu.jpg',
-        productImages: ['/static/images/muwu.jpg', '/static/images/shuijiao.jpg', '/static/images/yuantiao.jpg']
+        licenseImage: '',
+        certificateImage: '',
+        productImages: []
       }
     },
     methods: {
@@ -147,25 +147,19 @@
           this[image] = ''
         }
       },
+      checkImage () {
+        return (this.licenseImage !== '' && this.certificateImage !== '' && this.productImages.length > 0)
+      },
       submit () {
         this.$validator.validateAll().then(() => {
-          console.log('success')
+          if (this.checkImage()) {
+            alert('test')
+          }
         }).catch(() => {})
       }
     },
     mounted () {
-      /*
-      this.$http.get('/web/getWxConfig').then(res => {
-        wx.config({
-          debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-          appId: res.body.appid,  // 必填，公众号的唯一标识
-          timestamp: res.body.timestamp,  // 必填，生成签名的时间戳
-          nonceStr: res.body.nonceStr,  // 必填，生成签名的随机串
-          signature: res.body.signature, // 必填，签名，见附录1
-          jsApiList: ['chooseImage']  // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        })
-      })
-      */
+      window.wxConfig()
     }
   }
 </script>
@@ -212,12 +206,17 @@
             position: relative
             width: 22%
             height: 20vw
+            overflow: hidden
             margin: 0 4% 10px 0
             border: 1px solid #ccc
             .remove-btn
-              width: 15px
-              height: 15px
-              background: red
+              width: 16px
+              height: 16px
+              text-align: center
+              line-height: 16px
+              font-family: '微软雅黑'
+              color: #fff
+              background: rgba(0, 0, 0, 0.5)
               position: absolute
               top: 0
               right: 0

@@ -7,7 +7,8 @@
     "score":9999,
     "sex": "0",
     "isanswer": 0,
-    "headimg":"/static/temp/avatar.jpg"
+    "headimg":"/static/temp/avatar.jpg",
+    "taskdone": ",12,34,54,56,32,345,"
   },
   "tasteList": [
     {
@@ -152,18 +153,5 @@
       "status": "3"
     }
   ],
-  "myCashRecord":[
-    {
-      "id": 110,
-      "imgsrcmedium": "/static/temp/item-face.jpg",
-      "goodsname": "螺蛳粉一碗",
-      "score": 99
-    },
-    {
-      "id": 454,
-      "imgsrcmedium": "/static/temp/item-face.jpg",
-      "goodsname": "螺蛳粉一碗",
-      "score": 444
-    }
-  ]
+  "myCashRecord":[]
 }

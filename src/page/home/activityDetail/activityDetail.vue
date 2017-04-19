@@ -18,8 +18,8 @@
             </div>
             <div class="content">
               <div class="title">{{item.title}}</div>
-              <span class="points">{{ item.score }}积分</span>
-              <div class="task-btn bg-blue" v-if="tasteData.activity.taskdone.indexOf(','+item.id+',')>-1">已完成</div>
+              <span class="points">{{item.score}}积分</span>
+              <div class="task-btn bg-blue" v-if="isDone(item)">已完成</div>
               <div class="task-btn bg-red" v-else>未完成</div>
             </div>
           </router-link>
@@ -106,6 +106,9 @@
     methods: {
       back () {
         history.back()
+      },
+      isDone (item) {
+        return this.userInfo.taskdone === null ? false : (this.userInfo.taskdone.indexOf(',' + item.id + ',') > 0)
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <header class="head">
-      <h1>所有体验4</h1>
+      <h1>所有体验6</h1>
       <swipe class="home-swipe" :auto="5000" :speed="300" v-if="tasteList">
         <swipe-item v-for="item in carousels" :key="item.id">
           <a :href="item.href">

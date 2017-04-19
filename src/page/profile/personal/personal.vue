@@ -20,7 +20,7 @@
         姓名: {{appData.userInfo.name||'请填写姓名'}}
       </li>
       <li @click="updateSex">
-        性别: {{appData.userInfo.sex=='0'?'男':'女'}}
+        性别: {{appData.userInfo.sex=='1'?'男':'女'}}
       </li>
       <li>
         剩余积分: {{appData.userInfo.score}}
@@ -46,7 +46,7 @@
       <div><input type="text" class="username" v-model.trim="username.val"></div>
     </ui-dialog>
     <ui-dialog :data="sex">
-      <div class="sex-radio" value="0" @click="selectSex">男</div><div class="sex-radio" value="1" @click="selectSex">女</div>
+      <div class="sex-radio" value="1" @click="selectSex">男</div><div class="sex-radio" value="2" @click="selectSex">女</div>
     </ui-dialog>
     <ui-dialog :data="alert"></ui-dialog>
   </section>
@@ -77,7 +77,7 @@
               this.errors.clear()
             } else {
               this.$validator.validateAll({userphone: this.phone.val, phonecode: this.phone.code}).then(() => {
-                this.$http.post('/web/test', {params: {phone: this.phone.val, code: this.phone.code}}).then(res => {
+                this.$http.get('/web/updateInfo', {params: {telphone: this.phone.val, code: this.phone.code}}).then(res => {
                   if (res.body === 'codeerror') {
                     this.codeErrorShow = true
                   } else if (res.body === 'fail') {
@@ -110,7 +110,7 @@
             if (index === '0') {
               data.visible = false
             } else if (index === '1' && data.val) {
-              this.$http.post('/web/updateName', {params: {name: data.val}}).then(res => {
+              this.$http.get('/web/updateInfo', {params: {name: data.val}}).then(res => {
                 if (res.body === 'success') {
                   this.appData.userInfo.name = data.val
                 }
@@ -130,7 +130,7 @@
             if (index === '0') {
               data.visible = false
             } else if (data.val) {
-              this.$http.post('/web/updateSex').then(res => {
+              this.$http.get('/web/updateInfo', {params: {sex: data.val}}).then(res => {
                 if (res.body === 'success') {
                   this.appData.userInfo.sex = data.val
                 }
@@ -167,7 +167,7 @@
         }
         this.$validator.validate('userphone', this.phone.val).then(() => {
           // 手机验证通过, 发送验证码
-          this.$http.post('/web/test', {params: {phone: this.phone.val}}).then(res => {
+          this.$http.get('/web/test', {params: {phone: this.phone.val}}).then(res => {
             if (res.body === 'exist') {
               this.alert.text = '号码被占用'
               this.alert.visible = true

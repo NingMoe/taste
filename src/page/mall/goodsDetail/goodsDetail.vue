@@ -51,9 +51,7 @@
           btns: ['取消', '确定'],
           callback: (i) => {
             if (i === '1') {
-              alert(this.$route.params.id)
               this.$http.get('/web/cashGoods', {params: {goodsid: this.$route.params.id}}).then(res => {
-                alert(res.body)
                 if (res.body === 'success') {
                   this.alert.text = '兑换成功!'
                 } else if (res.body === '2') {
