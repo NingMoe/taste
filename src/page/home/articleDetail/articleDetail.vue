@@ -26,6 +26,7 @@
       // this.$http.get('/web/articleDetail').then(res => {
       this.$http.get('/web/articleDetail').then(res => {
         this.articleData = res.body
+        window.wxConfig(window.location.href, res.body.name)
       })
     },
     methods: {

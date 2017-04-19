@@ -22,7 +22,7 @@
         <div class="item" v-for="item in limitMyTaste">
           <router-link :to="{name: 'activityDetail', params: { id: item.id }}">
             <div class="item-face img-width">
-              <img src="/static/temp/item-face.jpg" alt="item.title">
+              <img :src="item.imgsrc" alt="item.title">
             </div>
             <div class="title">
               {{ item.name }}
@@ -44,7 +44,7 @@
         <div class="item" v-for="item in limitMyReport">
           <router-link :to="{name: 'myReport', params: {id: item.id, activityid: item.activityid}}">
             <div class="item-face img-width">
-              <img src="/static/temp/item-face.jpg" :alt="item.title">
+              <img :src="item.imgsrc" :alt="item.title">
             </div>
             <div class="title">
               {{ item.name }}
@@ -65,7 +65,7 @@
       <div class="content">
         <div class="item" v-for="item in limitMyCash">
           <div class="item-face img-width">
-            <img src="/static/temp/item-face.jpg" :alt="item.title">
+            <img :src="item.imgsrc" :alt="item.title">
           </div>
           <div class="title">
             {{ item.goodsname }}
@@ -128,6 +128,11 @@
           return item.status
         }
       }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        window.wxConfig()
+      })
     }
   }
 </script>

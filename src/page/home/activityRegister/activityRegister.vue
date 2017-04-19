@@ -54,7 +54,7 @@
       }
     },
     mounted () {
-      this.$http.get('/web/getQuestionList', {params: {activityid: 27, papertype: 1}}).then(res => {
+      this.$http.get('/web/getQuestionList', {params: {activityid: this.$route.params.id, papertype: 1}}).then(res => {
         this.tasteData = res.body.activity
         this.questions = res.body.questions
         for (let o in this.questions) {

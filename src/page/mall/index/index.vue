@@ -45,6 +45,11 @@
       toCash (id) {
         alert(id)
       }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        window.wxConfig()
+      })
     }
   }
 </script>

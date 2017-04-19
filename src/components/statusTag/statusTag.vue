@@ -34,7 +34,7 @@
     mounted () {},
     computed: {
       classType () {
-        if (this.$route.params.name === 'myActivityList') {
+        if (this.$route.params.name === 'myActivityList' || this.type === 'myActivityList') {
           switch (this.status) {
             case '1':
             case 1:

@@ -1,8 +1,8 @@
 <template>
   <section class="home">
     <header class="head">
-      <h1>所有体验</h1>
-      <swipe class="home-swipe" :auto="5000" :speed="300">
+      <h1>所有体验4</h1>
+      <swipe class="home-swipe" :auto="5000" :speed="300" v-if="tasteList">
         <swipe-item v-for="item in carousels" :key="item.id">
           <a :href="item.href">
             <img :src="item.img">
@@ -29,7 +29,6 @@
 
 <script type="text/ecmascript-6">
   import vNav from '@/components/nav/nav'
-
   export default{
     name: 'homeIndex',
     data () {
@@ -67,7 +66,11 @@
       }
     },
     components: { vNav },
-    mounted () {},
+    mounted () {
+      this.$nextTick(() => {
+        window.wxConfig()
+      })
+    },
     computed: {}
   }
 </script>
@@ -105,7 +108,7 @@
           line-height: 2.4
           padding: 0 10px
           background: #fabe00
-          font-size: 10px
+          font-size: 12px
           text-align: center
         .status-sign:before
           content: ''

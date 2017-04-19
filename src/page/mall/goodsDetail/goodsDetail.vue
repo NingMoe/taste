@@ -22,8 +22,7 @@
       </div>
     </div>
     <div class="goodsDetails-btns common-bottom-btns">
-      <div class="btn" v-if="goodsData.bought==='0'" @click="buy">立即兑换</div>
-      <div class="btn" v-else>已兑换</div>
+      <div class="btn" @click="buy">立即兑换</div>
       <div class="back-btn btn" @click="back">返回</div>
     </div>
     <ui-dialog :data="alert"></ui-dialog>
@@ -52,10 +51,11 @@
           btns: ['取消', '确定'],
           callback: (i) => {
             if (i === '1') {
-              this.$http.post('/web/cashGoods').then(res => {
+              alert(this.$route.params.id)
+              this.$http.get('/web/cashGoods', {params: {goodsid: this.$route.params.id}}).then(res => {
+                alert(res.body)
                 if (res.body === 'success') {
                   this.alert.text = '兑换成功!'
-                  this.goodsData.bought = '1'
                 } else if (res.body === '2') {
                   this.alert.text = '兑换失败, 您的积分不足'
                 } else {
