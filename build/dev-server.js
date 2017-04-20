@@ -63,7 +63,7 @@ apiRouters.get('/myReportDetail',function (req, res) {
   res.json(reportDetail)
 })
 // 获取文章详情
-apiRouters.get('/articleDetail',function (req, res) {
+apiRouters.get('/getArticleDetail',function (req, res) {
   res.json(articleData)
 })
 // 活动报名

@@ -81,7 +81,7 @@
                 this.$router.go(-1)
               }
             } else {
-              this.alert.text = '很抱歉, 报名失败, 详情请咨询 028-86701038'
+              this.alert.text = '很抱歉, 报名失败, 详情请咨询 ' + window.commonPhone
               this.alert.visible = true
             }
           })

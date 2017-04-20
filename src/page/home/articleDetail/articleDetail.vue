@@ -1,6 +1,6 @@
 <template>
   <article class="articleDetails">
-    <h1>{{articleData.name}}</h1>
+    <h1>{{articleData.title}}</h1>
     <div class="info">{{ articleData.username }}  {{ articleData.addtime }}</div>
     <div class="content" v-html="articleData.content"></div>
     <div class="common-bottom-btns">
@@ -24,9 +24,19 @@
     },
     mounted () {
       // this.$http.get('/web/articleDetail').then(res => {
-      this.$http.get('/web/articleDetail').then(res => {
+      this.$http.get('/web/getArticleDetail', {params: {id: this.$route.params.id}}).then(res => {
         this.articleData = res.body
-        window.wxConfig(window.location.href, res.body.name)
+        // let articleid = this.$route.params.id
+        // let score = res.body.score
+        window.wxConfig(window.location.href, res.body.title, null, () => {
+          this.$http.get('/web/doTask', {params: {id: this.$route.params.id}}).then(data => {
+            if (data.body === 'success') {
+              alert('分享成功')
+            } else if (data.body !== '3') {
+              alert('分享失败, 详情请咨询' + window.commonPhone)
+            }
+          })
+        })
       })
     },
     methods: {

@@ -130,9 +130,7 @@
       }
     },
     mounted () {
-      this.$nextTick(() => {
-        window.wxConfig()
-      })
+      window.wxConfig()
     }
   }
 </script>

@@ -18,29 +18,29 @@
           <li class="form-line">
             <label>企业名称: </label>
             <div class="input-container">
-              <input v-validate="'required'" name="name" type="text" class="input">
+              <input v-validate="'required'" name="name" type="text" class="input" v-model="para.source">
               <span v-show="errors.has('name')" class="is-danger">* 必填</span>
             </div>
           </li>
          <li class="form-line">
             <label>合作事项: </label>
             <div class="input-container">
-              <input type="text" v-validate="'required'" class="input" name="business">
+              <input type="text" v-validate="'required'" class="input" name="business" v-model="para.business">
               <span v-show="errors.has('business')" class="is-danger">* 必填</span>
             </div>
           </li>
          <li class="form-line">
             <label>预计费用: </label>
             <div class="input-container">
-              <input type="text" v-validate="'required'" class="input" name="cost">
+              <input type="text" v-validate="'required'" class="input" name="cost" v-model="para.cost">
               <span v-show="errors.has('cost')" class="is-danger">* 必填</span>
             </div>
           </li>
          <li class="form-line">
             <label>联系电话: </label>
             <div class="input-container">
-              <input type="text" v-validate="'required'" class="input" name="phone">
-              <span v-show="errors.has('phone')" class="is-danger">* 必填</span>
+              <input type="text" v-validate="'required'" class="input" name="telphone" v-model="para.telphone">
+              <span v-show="errors.has('telphone')" class="is-danger">* 必填</span>
             </div>
           </li>
         </ul>
@@ -49,9 +49,9 @@
           <div class="pic-form-line">
             <div>上传营业执照：</div>
             <div class="pics-container">
-              <div class="pics-item" v-if="licenseImage">
-                <img :src="licenseImage" alt="">
-                <div class="remove-btn" @click="removeImgage('licenseImage')">X</div>
+              <div class="pics-item" v-if="licenceImage">
+                <img :src="licenceImage" alt="">
+                <div class="remove-btn" @click="removeImgage('licenceImage')">X</div>
               </div>
               <div class="pics-item common-addPic-btn" @click="licenseAdd"></div>
             </div>
@@ -59,9 +59,9 @@
           <div class="pic-form-line">
             <div>上传产品安全证明书：</div>
             <div class="pics-container">
-              <div class="pics-item" v-if="certificateImage">
-                <img :src="certificateImage" alt="">
-                <div class="remove-btn" @click="removeImgage('certificateImage')">X</div>
+              <div class="pics-item" v-if="credentialImage">
+                <img :src="credentialImage" alt="">
+                <div class="remove-btn" @click="removeImgage('credentialImage')">X</div>
               </div>
               <div class="pics-item common-addPic-btn" @click="certificateAdd"></div>
             </div>
@@ -80,6 +80,11 @@
         <div class="common-text">*请确保您所填资料符合国家相关法律规定且真实有效，否则自行承担相关法律责任。</div>
       </form>
     </div>
+
+    <div class="wait-lock" v-show="lockShow">
+      正在上传图片,请稍等...
+    </div>
+
     <div class="common-bottom-btns" @click="submit">
       立即入驻
     </div>
@@ -92,46 +97,53 @@
     name: 'join',
     data () {
       return {
-        licenseImage: '',
-        certificateImage: '',
-        productImages: []
+        para: {
+          source: '',
+          business: '',
+          cost: '',
+          telphone: '',
+          business_licence: '',
+          safety_intro_img: '',
+          productimg: ''
+        },
+        licenceImage: '',
+        credentialImage: '',
+        productImages: [],
+        lockShow: false
       }
     },
     methods: {
       licenseAdd () {
-        let _this = this
         wx.chooseImage({
           count: 1,  // 默认9
           sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
-          success: function (res) {
+          success: (res) => {
             var localIds = res.localIds  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-            _this.licenseImage = localIds[0]
+            this.licenceImage = localIds[0]
           }
         })
       },
       certificateAdd () {
-        let _this = this
         wx.chooseImage({
           count: 1,  // 默认9
           sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
-          success: function (res) {
+          success: (res) => {
             var localIds = res.localIds  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-            _this.certificateImage = localIds[0]
+            this.credentialImage = localIds[0]
           }
         })
       },
       productAdd () {
-        let _this = this
         wx.chooseImage({
           sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
-          success: function (res) {
+          success: (res) => {
             var localIds = res.localIds  // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
             for (let o in localIds) {
-              if (_this.productImages.length < 9) {
-                _this.productImages.push(localIds[o])
+              if (this.productImages.length < 9) {
+                this.productImages.push(localIds[o])
               } else {
                 alert('最多上传9张')
                 break
@@ -148,12 +160,81 @@
         }
       },
       checkImage () {
-        return (this.licenseImage !== '' && this.certificateImage !== '' && this.productImages.length > 0)
+        return (this.licenceImage !== '' && this.credentialImage !== '' && this.productImages.length > 0)
+      },
+      upLoadImage (callback) {
+        let index = 0
+        let count = (this.productImages.length + 2)
+        wx.uploadImage({
+          localId: this.licenceImage, // 需要上传的图片的本地ID，由chooseImage接口获得
+          isShowProgressTips: 0, // 默认为1，显示进度提示
+          success: (res) => {
+            var serverId = res.serverId // 返回图片的服务器端ID
+            this.para.business_licence = serverId
+            index++
+            if (index >= count) {
+              callback()
+            }
+          }
+        })
+        wx.uploadImage({
+          localId: this.credentialImage, // 需要上传的图片的本地ID，由chooseImage接口获得
+          isShowProgressTips: 0, // 默认为1，显示进度提示
+          success: (res) => {
+            var serverId = res.serverId // 返回图片的服务器端ID
+            this.para.safety_intro_img = serverId
+            index++
+            if (index >= count) {
+              callback()
+            }
+          }
+        })
+        this.para.productimg = ''
+        for (let o in this.productImages) {
+          wx.uploadImage({
+            localId: this.productImages[o], // 需要上传的图片的本地ID，由chooseImage接口获得
+            isShowProgressTips: 0, // 默认为1，显示进度提示
+            success: (res) => {
+              var serverId = res.serverId // 返回图片的服务器端ID
+              this.para.productimg += serverId + ','
+              index++
+              if (index >= count) {
+                callback()
+              }
+            }
+          })
+        }
+      },
+      reset () {
+        this.para.source = ''
+        this.para.business = ''
+        this.para.cost = ''
+        this.para.telphone = ''
+        this.para.business_licence = ''
+        this.para.safety_intro_img = ''
+        this.para.productimg = ''
+        this.licenceImage = ''
+        this.credentialImage = ''
+        this.productImages = []
       },
       submit () {
         this.$validator.validateAll().then(() => {
           if (this.checkImage()) {
-            alert('test')
+            this.lockShow = true
+            this.upLoadImage(() => {
+              this.$http.get('/web/applyActivity', {params: this.para}).then(res => {
+                this.lockShow = false
+                if (res.body === 'success') {
+                  alert('申请成功!')
+                  this.reset()
+                  this.$errors.clear()
+                } else {
+                  alert('申请失败, 详情请咨询 ' + window.commonPhone)
+                }
+              })
+            })
+          } else {
+            alert('请选择图片')
           }
         }).catch(() => {})
       }
@@ -222,4 +303,15 @@
               right: 0
           .pics-item img
             width: 100%
+    .wait-lock
+      position: fixed
+      z-index: 9999
+      top: 0
+      right: 0
+      left: 0
+      bottom: 0
+      text-align: center
+      padding-top: 48vh
+      color: #fff
+      background: rgba(0, 0, 0, 0.6)
 </style>

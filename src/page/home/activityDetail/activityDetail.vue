@@ -8,13 +8,13 @@
       <div class="rules-content" v-html="tasteData.activity.rules"></div>
     </div>
 
-    <div class="task" v-if="tasteData.enrollList.length">
+    <div class="task" v-if="tasteData.enrollList.length&&userInfo">
       <h2>体验任务 <span>查看并分享下方文章给好友就能获得积分噢~</span></h2>
       <ul>
         <li v-for="item in tasteData.articleList">
           <router-link :to="{name: 'articleDetail', params: {id: item.id}}">
             <div class="task-item-face img-width">
-              <img src="/static/temp/item-face.jpg" alt="">
+              <img :src="item.img || '/static/temp/item-face.jpg'" alt="">
             </div>
             <div class="content">
               <div class="title">{{item.title}}</div>
@@ -64,43 +64,7 @@
       // this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
       this.$http.get('/web/getActivityDetail', {params: {id: this.$route.params.id}}).then((res) => {
         this.tasteData = res.body
-        this.$nextTick(() => {
-          window.wxConfig(window.location.href, res.body.activity.name)
-        })
-        /*
-        this.$http.get('/web/getWxConfig', {params: {cururl: window.location.href}}).then(data => {
-          wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: data.body.appid,  // 必填，公众号的唯一标识
-            timestamp: data.body.timestamp,  // 必填，生成签名的时间戳
-            nonceStr: data.body.nonceStr,  // 必填，生成签名的随机串
-            signature: data.body.signature, // 必填，签名，见附录1
-            jsApiList: [
-              'chooseImage',
-              'onMenuShareTimeline',
-              'onMenuShareAppMessage',
-              'uploadImage',
-              'downloadImage'
-            ]  // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-          })
-          wx.ready(() => {
-            wx.onMenuShareTimeline({
-              title: res.body.activity.name, // 分享标题
-              link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: 'http://www.lzsunspot.com/static/images/logo.png', // 分享图标
-              success: function () {
-                // 用户确认分享后执行的回调函数
-              },
-              cancel: function () {
-                // 用户取消分享后执行的回调函数
-              }
-            })
-            wx.showMenuItems({
-              menuList: ['menuItem:share:timeline', 'menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
-            })
-          })
-        })
-        */
+        window.wxConfig(window.location.href, res.body.activity.name)
       })
     },
     methods: {
@@ -108,7 +72,7 @@
         history.back()
       },
       isDone (item) {
-        return this.userInfo.taskdone === null ? false : (this.userInfo.taskdone.indexOf(',' + item.id + ',') > 0)
+        return this.userInfo.taskdone === null ? false : (this.userInfo.taskdone.indexOf(',' + item.id + ',') > -1)
       }
     }
   }

@@ -57,7 +57,7 @@
                 } else if (res.body === '2') {
                   this.alert.text = '兑换失败, 您的积分不足'
                 } else {
-                  this.alert.text = '兑换失败, 出现未知错误, 详情请咨询 028-86701038'
+                  this.alert.text = '兑换失败, 出现未知错误, 详情请咨询 ' + window.commonPhone
                 }
                 this.alert.visible = true
               })
@@ -71,6 +71,7 @@
       // this.$http.get('/static/mock/goods.json', { id: this.$route.params.id }).then((res) => {
       this.$http.get('/web/getGoodsDetail', {params: {id: this.$route.params.id}}).then((res) => {
         this.goodsData = res.body
+        window.wxConfig(window.location.href, res.body.goodsname)
       })
     },
     methods: {
