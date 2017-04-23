@@ -103,6 +103,10 @@ apiRouters.post('/firstTime',function (req, res) {
   res.json('success')
 })
 // 测试
+apiRouters.get('/getWxConfig',function (req, res) {
+  res.json('success')
+})
+// 测试
 apiRouters.post('/test',function (req, res) {
   res.json('success')
 })
