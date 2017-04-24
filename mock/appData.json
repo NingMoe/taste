@@ -153,5 +153,21 @@
       "status": "3"
     }
   ],
-  "myCashRecord":[]
+  "myCashRecord":[
+    {
+      "id": 1,
+      "goodsname": "我是商品名称啊",
+      "imgsrcmedium": "/static/temp/item-face.jpg"
+    },
+    {
+      "id": 1,
+      "goodsname": "我是商品名称啊",
+      "imgsrcmedium": "/static/temp/item-face.jpg"
+    },
+    {
+      "id": 1,
+      "goodsname": "我是商品名称啊",
+      "imgsrcmedium": "/static/temp/item-face.jpg"
+    }
+  ]
 }

@@ -42,7 +42,7 @@
       </div>
       <div class="content">
         <div class="item" v-for="item in limitMyReport">
-          <router-link :to="{name: 'myReport', params: {id: item.id, activityid: item.activityid}}">
+          <router-link :to="{name: 'myReport', params: {id: item.activityid}}">
             <div class="item-face img-width">
               <img :src="item.imgsrc" :alt="item.title">
             </div>
@@ -112,12 +112,7 @@
           if (item.ischeck === '2') {
             return 2
           } else {
-            // let beginTime = Date.parse(item.begintime)
             let endTime = Date.parse(item.endtime)
-            // let enrollBeginTime = Date.parse(item.enrollbegintime)
-            // let enrollEndTime = Date.parse(item.enrollendtime)
-            // let reportBeginTime = Date.parse(item.reportbegintime)
-            // let reportEndTime = Date.parse(item.reportendtime)
             if (endTime > now) {
               return 1
             } else if (endTime < now) {

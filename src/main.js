@@ -28,13 +28,14 @@ window.wxConfig = (cururl, title, img, callback) => {
     //   menuList: [] // 要显示的菜单项，所有menu项见附录3
     // })
   })
+  var x = 0
   window.wx.ready(() => {
     window.wx.onMenuShareTimeline({
-      title: title || document.title, // 分享标题
+      title: '====' + x, // 分享标题
       link: cururl || hostname, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: img || 'http://www.lzsunspot.com/static/images/logo.png', // 分享图标
       success: function () {
-        alert(callback)
+        x++
       },
       cancel: function () {}
     })

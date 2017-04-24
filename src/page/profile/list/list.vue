@@ -5,9 +5,9 @@
       {{listData.title}}
     </h1>
     <ul>
-      <li v-for="item in listData.data" @click="toDetails(item.id, item.activityid)">
+      <li v-for="item in listData.data" @click="toDetails(item.id, item.activityid, item.status)">
         <div class="item-face img-width">
-          <img :src="item.imgsrc">
+          <img :src="item.imgsrc||item.imgsrcmedium">
         </div>
         <div class="title">
           {{item.name||item.goodsname}}
@@ -55,11 +55,11 @@
       statusTag
     },
     methods: {
-      toDetails (id, activityid) {
+      toDetails (id, activityid, status) {
         if (this.$route.params.name === 'myCashRecord') {
           return
         } else if (this.$route.params.name === 'myReportList') {
-          this.$router.push({name: 'myReport', params: {id: id, activityid: activityid}})
+          this.$router.push({name: 'myReport', params: {id: id, activityid: activityid, status: status}})
         } else {
           this.$router.push({name: 'activityDetail', params: {id: id}})
         }

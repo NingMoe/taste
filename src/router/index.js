@@ -97,7 +97,7 @@ export default new Router({
           component: list
         },
         {
-          path: 'myReport/:activityid/:id',
+          path: 'myReport/:id',
           name: 'myReport',
           component: myReport
         }
