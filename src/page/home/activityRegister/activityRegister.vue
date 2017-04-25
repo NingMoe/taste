@@ -4,7 +4,7 @@
     <div class="info">{{ tasteData.username }}  {{ tasteData.addtime }}</div>
     <div class="rules">
       <header><img src="../activityDetail/rules-title.png" alt=""></header>
-      <div class="rules-content">{{ tasteData.rules }}</div>
+      <div class="rules-content" v-html="tasteData.rules"></div>
     </div>
     <div class="form-container">
       <header class="img-width"><img src="./form-title.png" alt=""></header>
@@ -66,8 +66,8 @@
     methods: {
       submit () {
         this.$validator.validateAll().then(() => {
-          alert(JSON.stringify(this.answerinfo))
           this.$http.get('/web/enroll', {params: {answer: JSON.stringify({'activityid': this.$route.params.id, 'answerinfo': this.answerinfo})}}).then((res) => {
+            alert(res.body)
             if (res.body === 'success') {
               this.alert.text = '申请已提交，审核结果请在“个人中心-我的体验”中查看。'
               this.alert.visible = true

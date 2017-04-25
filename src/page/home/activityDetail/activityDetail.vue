@@ -64,7 +64,9 @@
       // this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
       this.$http.get('/web/getActivityDetail', {params: {id: this.$route.params.id}}).then((res) => {
         this.tasteData = res.body
-        window.wxConfig(window.location.href, res.body.activity.name)
+        return res.body.activity
+      }).then(data => {
+        window.wxConfig(window.location.href, data.neme)
       })
     },
     methods: {

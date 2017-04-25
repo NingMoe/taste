@@ -11,14 +11,14 @@
       <router-link to="profile/personal">账户管理 ></router-link>
     </header>
 
-    <div class="module my-taste" v-if="appData.myActivityList">
+    <div class="module my-taste">
       <div class="module-head clearfix">
         <h2 class="fl">我的体验</h2>
         <div class="more-btn fr">
           <router-link :to="{name: 'list', params: {name: 'myActivityList'}}">更多</router-link>
         </div>
       </div>
-      <div class="content">
+      <div class="content"  v-if="appData.myActivityList.length>0">
         <div class="item" v-for="item in limitMyTaste">
           <router-link :to="{name: 'activityDetail', params: { id: item.id }}">
             <div class="item-face img-width">
@@ -31,16 +31,17 @@
           <status-tag :status="getStatus(item, 'myActivityList')" :type="'myActivityList'"></status-tag>
         </div>
       </div>
+      <div class="nodata" v-else>暂时没有数据</div>
     </div>
 
-    <div class="module my-report" v-if="appData.myReportList">
+    <div class="module my-report">
       <div class="module-head clearfix">
         <h2 class="fl">我的体验报告</h2>
         <div class="more-btn fr">
           <router-link :to="{name: 'list', params: {name: 'myReportList'}}">更多</router-link>
         </div>
       </div>
-      <div class="content">
+      <div class="content" v-if="appData.myReportList.length>0">
         <div class="item" v-for="item in limitMyReport">
           <router-link :to="{name: 'myReport', params: {id: item.activityid}}">
             <div class="item-face img-width">
@@ -53,6 +54,7 @@
           <status-tag :status="item.status" :type="'myReportList'"></status-tag>
         </div>
       </div>
+      <div class="nodata" v-else>暂时没有数据</div>
     </div>
 
     <div class="module my-cash-record" v-if="appData.myCashRecord.length">
@@ -163,6 +165,9 @@
       .module-head
         padding: 10px 0
         font-size: 16px
+      .nodata
+        text-align: center
+        padding: 14px 0
       .content
         display: flex
         justify-content: space-between

@@ -16,6 +16,7 @@
       // this.$http.get('/static/mock/appData.json').then((res) => {
       this.$http.get('/web/appInitData').then((res) => {
         if (res.body === 'unlogin') {
+          // this.$router.replace({path: '/web/wxOauth?url=' + encodeURI(window.location.href)})
           window.location.href = '/web/wxOauth?url=' + encodeURI(window.location.href)
         }
         this.appData = res.body

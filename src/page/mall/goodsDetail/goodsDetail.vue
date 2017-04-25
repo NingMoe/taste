@@ -71,8 +71,8 @@
       // this.$http.get('/static/mock/goods.json', { id: this.$route.params.id }).then((res) => {
       this.$http.get('/web/getGoodsDetail', {params: {id: this.$route.params.id}}).then((res) => {
         this.goodsData = res.body
-        window.wxConfig(window.location.href, res.body.goodsname)
       })
+      window.wxConfig()
     },
     methods: {
       back () {

@@ -92,7 +92,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import wx from 'weixin-js-sdk'
   export default{
     name: 'join',
     data () {
@@ -109,12 +108,15 @@
         licenceImage: '',
         credentialImage: '',
         productImages: [],
-        lockShow: false
+        lockShow: false,
+        index: 0,
+        leng: 0
       }
     },
     methods: {
+      // 点击上传营业执照
       licenseAdd () {
-        wx.chooseImage({
+        window.wx.chooseImage({
           count: 1,  // 默认9
           sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
@@ -125,7 +127,7 @@
         })
       },
       certificateAdd () {
-        wx.chooseImage({
+        window.wx.chooseImage({
           count: 1,  // 默认9
           sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
@@ -136,7 +138,7 @@
         })
       },
       productAdd () {
-        wx.chooseImage({
+        window.wx.chooseImage({
           sizeType: ['original', 'compressed'],  // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
           success: (res) => {
@@ -162,48 +164,40 @@
       checkImage () {
         return (this.licenceImage !== '' && this.credentialImage !== '' && this.productImages.length > 0)
       },
-      upLoadImage (callback) {
-        let index = 0
-        let count = (this.productImages.length + 2)
-        wx.uploadImage({
-          localId: this.licenceImage, // 需要上传的图片的本地ID，由chooseImage接口获得
-          isShowProgressTips: 0, // 默认为1，显示进度提示
-          success: (res) => {
-            var serverId = res.serverId // 返回图片的服务器端ID
-            this.para.business_licence = serverId
-            index++
-            if (index >= count) {
-              callback()
-            }
-          }
-        })
-        wx.uploadImage({
-          localId: this.credentialImage, // 需要上传的图片的本地ID，由chooseImage接口获得
-          isShowProgressTips: 0, // 默认为1，显示进度提示
-          success: (res) => {
-            var serverId = res.serverId // 返回图片的服务器端ID
-            this.para.safety_intro_img = serverId
-            index++
-            if (index >= count) {
-              callback()
-            }
-          }
-        })
-        this.para.productimg = ''
-        for (let o in this.productImages) {
-          wx.uploadImage({
-            localId: this.productImages[o], // 需要上传的图片的本地ID，由chooseImage接口获得
-            isShowProgressTips: 0, // 默认为1，显示进度提示
-            success: (res) => {
-              var serverId = res.serverId // 返回图片的服务器端ID
-              this.para.productimg += serverId + ','
-              index++
-              if (index >= count) {
-                callback()
+      upLoad (localids) {
+        return new Promise((resolve, reject) => {
+          let index = 0
+          let leng = localids.length
+          let result = ''
+          upload()
+          function upload () {
+            window.wx.uploadImage({
+              localId: localids[index], // 需要上传的图片的本地ID，由chooseImage接口获得
+              isShowProgressTips: 0, // 默认为1，显示进度提示
+              success: res => {
+                if (++index < leng) {
+                  result += res.serverId + ','
+                  upload()
+                } else {
+                  result += res.serverId
+                  resolve(result)
+                }
               }
-            }
-          })
-        }
+            })
+          }
+        })
+      },
+      upLoadImages (callback) {
+        this.upLoad([this.licenceImage]).then(res => {
+          this.para.business_licence = res
+          return this.upLoad([this.credentialImage])
+        }).then(res => {
+          this.para.safety_intro_img = res
+          return this.upLoad(this.productImages)
+        }).then(res => {
+          this.para.productimg = res
+          callback()
+        })
       },
       reset () {
         this.para.source = ''
@@ -221,16 +215,14 @@
         this.$validator.validateAll().then(() => {
           if (this.checkImage()) {
             this.lockShow = true
-            this.upLoadImage(() => {
+            this.upLoadImages(() => {
               this.$http.get('/web/applyActivity', {params: this.para}).then(res => {
-                this.lockShow = false
                 if (res.body === 'success') {
-                  alert('申请成功!')
-                  this.reset()
-                  this.$errors.clear()
+                  alert('申请成功')
                 } else {
-                  alert('申请失败, 详情请咨询 ' + window.commonPhone)
+                  alert('申请失败')
                 }
+                this.lockShow = false
               })
             })
           } else {
@@ -249,6 +241,8 @@
   .top-join
     padding-bottom: 40px
     background: #fff
+    input
+      -webkit-appearance: none
     .head
       padding: 30px 0 0px 0
       text-align center

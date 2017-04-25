@@ -26,8 +26,6 @@
       // this.$http.get('/web/articleDetail').then(res => {
       this.$http.get('/web/getArticleDetail', {params: {id: this.$route.params.id}}).then(res => {
         this.articleData = res.body
-        // let articleid = this.$route.params.id
-        // let score = res.body.score
         window.wxConfig(window.location.href, res.body.title, null, () => {
           this.$http.get('/web/doTask', {params: {id: this.$route.params.id}}).then(data => {
             if (data.body === 'success') {
