@@ -1,13 +1,13 @@
 <template>
   <section class="myList" v-if="appData">
     <h1 class="common-head">
-      <a href="javascript:history.back()"><img src="../../../common/arrow-left.png" alt=""></a>
+      <a href="javascript:history.back()"><img src="../../../common/images/arrow-left.png" alt=""></a>
       {{listData.title}}
     </h1>
     <ul>
       <li v-for="item in listData.data" @click="toDetails(item.id, item.activityid, item.status)">
         <div class="item-face img-width">
-          <img :src="item.imgsrc||item.imgsrcmedium">
+          <img :src="item.imgsrcmedium||item.imgsrc">
         </div>
         <div class="title">
           {{item.name||item.goodsname}}
@@ -66,29 +66,29 @@
       },
       getStatus (item) {
         let now = Date.parse(this.appData.nowDate)
-
+        let endTime = Date.parse(item.endtime)
         if (this.$route.params.name === 'myActivityList') {
-          if (item.ischeck === '2') {
-            return 2
+          if (now > endTime) {
+            return 3
           } else {
-            // let beginTime = Date.parse(item.begintime)
-            let endTime = Date.parse(item.endtime)
-            // let enrollBeginTime = Date.parse(item.enrollbegintime)
-            // let enrollEndTime = Date.parse(item.enrollendtime)
-            // let reportBeginTime = Date.parse(item.reportbegintime)
-            // let reportEndTime = Date.parse(item.reportendtime)
-            if (endTime > now) {
-              return 1
-            } else if (endTime < now) {
-              return 3
-            }
+            return item.enrollstatus
           }
-        } else {
-          return item.status
+        } else if (this.$route.params.name === 'myReportList') {
+          if (now > endTime) {
+            if (item.reportstatus === 2 || item.reportstatus === 3) {
+              return item.reportstatus
+            } else {
+              return 4
+            }
+          } else {
+            return item.reportstatus
+          }
         }
       }
     },
-    mounted () {}
+    mounted () {
+      window.wxConfig()
+    }
   }
 </script>
 
@@ -103,6 +103,9 @@
       flex-wrap: wrap
       justify-content: space-between
       li
+        display: flex
+        flex-direction: column
+        justify-content: space-between
         background: #eee
         width: 48%
         padding: 5px
@@ -112,5 +115,4 @@
           margin-top: 8px
           line-height: 1.2
           font-weight: bold
-
 </style>

@@ -15,6 +15,9 @@
       toHome () {
         this.$router.replace({path: '/home'})
       }
+    },
+    mounted () {
+      window.wxConfig()
     }
   }
 </script>

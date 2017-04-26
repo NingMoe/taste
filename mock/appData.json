@@ -51,7 +51,7 @@
   "goodsList": [
     {
       "id":657,
-      "imgsrcmedium":"/static/temp/goods-item.jpg",
+      "imgsrcmedium":"/static/temp/avatar.jpg",
       "goodsname":"商品名称啊",
       "score":34
     },
@@ -96,7 +96,8 @@
       "enrollbegintime": "2017-04-10 11:51:11",
       "enrollendtime": "2017-04-13 11:51:11",
       "reportbegintime": "2017-04-15 11:51:11",
-      "reportendtime": "2017-04-17 11:51:11"
+      "reportendtime": "2017-04-17 11:51:11",
+      "enrollstatus": 1
     },
     {
       "id": 110,
@@ -108,7 +109,8 @@
       "enrollbegintime": "2017-04-10 11:51:11",
       "enrollendtime": "2017-04-13 11:51:11",
       "reportbegintime": "2017-04-15 11:51:11",
-      "reportendtime": "2017-04-17 11:51:11"
+      "reportendtime": "2017-04-17 11:51:11",
+      "enrollstatus": 2
     },
     {
       "id": 110,
@@ -120,7 +122,8 @@
       "enrollbegintime": "2017-04-10 11:51:11",
       "enrollendtime": "2017-04-13 11:51:11",
       "reportbegintime": "2017-04-15 11:51:11",
-      "reportendtime": "2017-04-17 11:51:11"
+      "reportendtime": "2017-04-17 11:51:11",
+      "enrollstatus": 3
     }
   ],
   "myReportList": [
@@ -129,28 +132,28 @@
       "activityid": 34,
       "imgsrc":"/static/temp/item-face.jpg",
       "name":"report体验新开火锅店看看你是不是最能吃辣",
-      "status": "0"
+      "reportstatus": "0"
     },
     {
       "id":56,
       "activityid": 56,
       "imgsrc":"/static/temp/item-face.jpg",
       "name":"report体验新开火锅店看看你是不是最能吃辣",
-      "status": "1"
+      "reportstatus": "1"
     },
     {
       "id":456,
       "activityid": 435,
       "imgsrc":"/static/temp/item-face.jpg",
       "name":"report体验新开火锅店看看你是不是最能吃辣",
-      "status": "2"
+      "reportstatus": "2"
     },
     {
       "id":34,
       "activityid": 86,
       "imgsrc":"/static/temp/item-face.jpg",
       "name":"report体验新开火锅店看看你是不是最能吃辣",
-      "status": "3"
+      "reportstatus": "3"
     }
   ],
   "myCashRecord":[

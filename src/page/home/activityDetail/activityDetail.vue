@@ -1,7 +1,7 @@
 <template>
   <article class="tasteDetails" v-if="tasteData.activity">
     <h1>{{ tasteData.activity.name }}</h1>
-    <div class="info">{{ tasteData.activity.username }}  {{ tasteData.activity.addtime }}</div>
+    <div class="info">{{ tasteData.activity.addtime }}</div>
     <div class="content" v-html="tasteData.activity.content"></div>
     <div class="rules">
       <header><img src="./rules-title.png" alt=""></header>
@@ -14,7 +14,7 @@
         <li v-for="item in tasteData.articleList">
           <router-link :to="{name: 'articleDetail', params: {id: item.id}}">
             <div class="task-item-face img-width">
-              <img :src="item.img || '/static/temp/item-face.jpg'" alt="">
+              <img :src="item.img || '/static/images/placeholder.jpg'" alt="">
             </div>
             <div class="content">
               <div class="title">{{item.title}}</div>
@@ -38,8 +38,9 @@
 
     <div class="tasteDetails-btns common-bottom-btns" v-if="userInfo">
       <div class="join-btn btn">
-        <router-link v-if="userInfo.isanswer === 0" :to="{name: 'firstTime', params: {id: $route.params.id}}">立即参加</router-link>
-        <span v-else-if="!tasteData.enrollList">已参加</span>
+        <span v-if="tasteData.enrollList.length>0">已参加</span>
+        <span v-else-if="enrollDisable">{{disableText}}</span>
+        <router-link v-else-if="userInfo.isanswer === 0" :to="{name: 'firstTime', params: {id: $route.params.id}}">立即参加</router-link>
         <router-link v-else :to="{name: 'activityRegister', params: {id: $route.params.id}}">立即参加</router-link>
       </div>
       <div class="back-btn btn" @click="back">返回</div>
@@ -52,7 +53,9 @@
     name: 'tasteDetails',
     data () {
       return {
-        tasteData: {}
+        tasteData: {},
+        disableText: '',
+        enrollDisable: true
       }
     },
     props: {
@@ -64,9 +67,8 @@
       // this.$http.get('/static/mock/taste.json', {id: this.$route.params.id}).then((res) => {
       this.$http.get('/web/getActivityDetail', {params: {id: this.$route.params.id}}).then((res) => {
         this.tasteData = res.body
-        return res.body.activity
-      }).then(data => {
-        window.wxConfig(window.location.href, data.neme)
+        this.checkEnrollAble()
+        window.wxConfig(window.location.href, res.body.activity.name)
       })
     },
     methods: {
@@ -75,8 +77,17 @@
       },
       isDone (item) {
         return this.userInfo.taskdone === null ? false : (this.userInfo.taskdone.indexOf(',' + item.id + ',') > -1)
+      },
+      checkEnrollAble () {
+        let nowDate = Date.parse(this.tasteData.nowDate)
+        let enrollBeginTime = Date.parse(this.tasteData.activity.enrollbegintime)
+        let enrollEndTime = Date.parse(this.tasteData.activity.enrollendtime)
+        this.enrollDisable = nowDate < enrollBeginTime || nowDate > enrollEndTime
+        this.disableText = nowDate < enrollBeginTime ? '报名即将开始' : '报名已结束'
       }
-    }
+
+    },
+    computed: {}
   }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <section class="personal" v-if="appData.userInfo">
     <h1 class="common-head">
-      <a href="javascript:history.back()"><img src="../../../common/arrow-left.png" alt=""></a>
+      <a href="javascript:history.back()"><img src="../../../common/images/arrow-left.png" alt=""></a>
       个人信息
     </h1>
     <div class="head">
@@ -32,15 +32,17 @@
         <input type="text" name="userphone" v-model="phone.val" v-validate="{rules: {required: true, regex: /^1[3578][0-9]{9}$/}}">
         <span class="is-danger" v-show="errors.has('userphone')">请输入有效的手机号码</span>
       </div>
-      <div class="input-container">
-        <div class="phonecode-con"><input v-model="phone.code" type="number" name="phonecode" v-validate="'required'"></div>
+     <!-- <div class="input-container">
+        <div class="phonecode-con">
+          <input v-model="phone.code" type="number" name="phonecode" v-validate="'required'">
+        </div>
         <div class="get-code-btn" :class="{disable: timer}" @click="getCode">
           <span v-if="timer">{{time}}s</span>
           <span v-else>获取</span>
         </div>
         <span class="is-danger" v-show="errors.has('phonecode')">请输入短信验证码</span>
         <span class="is-danger" v-show="codeErrorShow">验证码有误</span>
-      </div>
+      </div>-->
     </ui-dialog>
     <ui-dialog :data="username">
       <div><input type="text" class="username" v-model.trim="username.val"></div>
@@ -69,15 +71,15 @@
           title: '请输入您的手机号',
           btns: ['取消', '确定'],
           val: '',
-          code: '',
+          // code: '',
           visible: false,
           callback: (index, data) => {
             if (index === '0') {
               data.visible = false
               this.errors.clear()
             } else {
-              this.$validator.validateAll({userphone: this.phone.val, phonecode: this.phone.code}).then(() => {
-                this.$http.get('/web/updateInfo', {params: {telphone: this.phone.val, code: this.phone.code}}).then(res => {
+              this.$validator.validateAll({userphone: this.phone.val}).then(() => {
+                this.$http.get('/web/updateInfo', {params: {telphone: this.phone.val}}).then(res => {
                   if (res.body === 'codeerror') {
                     this.codeErrorShow = true
                   } else if (res.body === 'fail') {
@@ -88,10 +90,10 @@
                     this.alert.visible = true
                     this.phone.visible = false
                     this.phone.val = ''
-                    this.phone.code = ''
-                    clearInterval(this.timer)
-                    this.timer = null
-                    this.time = 60
+                    // this.phone.code = ''
+                    // clearInterval(this.timer)
+                    // this.timer = null
+                    // this.time = 60
                     this.$nextTick(function () {
                       this.errors.clear()
                     })
@@ -140,10 +142,10 @@
               })
             }
           }
-        },
-        codeErrorShow: false,
-        timer: null,
-        time: 60
+        }
+        // codeErrorShow: false,
+        // timer: null,
+        // time: 60
       }
     },
     props: {
@@ -196,6 +198,9 @@
         e.target.classList.add('selected')
         this.sex.val = e.target.getAttribute('value')
       }
+    },
+    mounted () {
+      window.wxConfig()
     }
   }
 </script>

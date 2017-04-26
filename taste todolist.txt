@@ -1,15 +1,7 @@
 
-timeout的处理
-活动作者
 我的 列表 项目标签卡状态处理
-我的 列表 项目点击事件处理
-首页活动列表状态卡
-
-商家申请入驻页面
 
 页面内对用户状态的过滤
-
-切换页面时对微信分享的处理
 
 所有列表页添加分页
 
@@ -20,3 +12,31 @@ timeout的处理
 密码：#%dsa&8PxU-
 数据库：root
 密码：5%6Gtjk*^c124
+
+endtime: 2017
+istop: 1
+budget:
+enrollbegintime: 2017
+begintime: 2017
+checktime:0419
+applyname: null
+enrollendtime: 0413
+type: 0
+productimg: null
+telphone: 131
+id: 29
+addtime: 0426
+name: asd
+cooperation:
+toptime: 0421
+isrequestenroll: 1
+status: 2
+enrollstatus: 2
+reportbegintime 0429
+number: 20
+checkerid: 81
+isdisplay: 1
+reportendtime: 0501
+rules: asdf
+content: asdf
+

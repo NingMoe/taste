@@ -19,17 +19,17 @@
         </div>
       </div>
       <div class="content"  v-if="appData.myActivityList.length>0">
-        <div class="item" v-for="item in limitMyTaste">
-          <router-link :to="{name: 'activityDetail', params: { id: item.id }}">
+        <template v-for="item in limitMyTaste">
+          <router-link :to="{name: 'activityDetail', params: { id: item.id }}" class="item" >
             <div class="item-face img-width">
               <img :src="item.imgsrc" alt="item.title">
             </div>
             <div class="title">
               {{ item.name }}
             </div>
+            <status-tag :status="getStatus(item, 'myActivityList')" :type="'myActivityList'"></status-tag>
           </router-link>
-          <status-tag :status="getStatus(item, 'myActivityList')" :type="'myActivityList'"></status-tag>
-        </div>
+        </template>
       </div>
       <div class="nodata" v-else>暂时没有数据</div>
     </div>
@@ -42,17 +42,17 @@
         </div>
       </div>
       <div class="content" v-if="appData.myReportList.length>0">
-        <div class="item" v-for="item in limitMyReport">
-          <router-link :to="{name: 'myReport', params: {id: item.activityid}}">
+        <template v-for="item in limitMyReport">
+          <router-link :to="{name: 'myReport', params: {id: item.activityid}}" class="item">
             <div class="item-face img-width">
               <img :src="item.imgsrc" :alt="item.title">
             </div>
             <div class="title">
               {{ item.name }}
             </div>
+            <status-tag :status="getStatus(item, 'myReportList')" :type="'myReportList'"></status-tag>
           </router-link>
-          <status-tag :status="item.status" :type="'myReportList'"></status-tag>
-        </div>
+        </template>
       </div>
       <div class="nodata" v-else>暂时没有数据</div>
     </div>
@@ -110,19 +110,23 @@
     methods: {
       getStatus (item, name) {
         let now = Date.parse(this.appData.nowDate)
+        let endTime = Date.parse(item.endtime)
         if (name === 'myActivityList') {
-          if (item.ischeck === '2') {
-            return 2
+          if (now > endTime) {
+            return 3
           } else {
-            let endTime = Date.parse(item.endtime)
-            if (endTime > now) {
-              return 1
-            } else if (endTime < now) {
-              return 3
-            }
+            return item.enrollstatus
           }
-        } else {
-          return item.status
+        } else if (name === 'myReportList') {
+          if (now > endTime) {
+            if (item.reportstatus === 2 || item.reportstatus === 3) {
+              return item.reportstatus
+            } else {
+              return 4
+            }
+          } else {
+            return item.reportstatus
+          }
         }
       }
     },
@@ -176,11 +180,13 @@
           padding: 5px
           position: relative
           background: #eee
-          .title
-            margin: 8px 0
-            font-weight: bold
-          .text
-            color: #666
-            line-height: 1.2
-
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+        .title
+          margin: 8px 0
+          font-weight: bold
+        .text
+          color: #666
+          line-height: 1.2
 </style>

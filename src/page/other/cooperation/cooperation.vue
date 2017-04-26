@@ -4,7 +4,7 @@
       合作对接
     </h1>
     <div class="logo img-width">
-      <img src="../../../common/logo.png" alt="">
+      <img src="../../../common/images/logo.png" alt="">
     </div>
     <div class="form-container">
       <div class="form-line">
@@ -22,7 +22,10 @@
 
 <script type="text/ecmascript-6">
   export default{
-    name: 'cooperation'
+    name: 'cooperation',
+    mounted () {
+      window.wxConfig()
+    }
   }
 </script>
 

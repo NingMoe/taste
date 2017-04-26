@@ -3,10 +3,18 @@
 import Vue from 'vue'
 import App from './App'
 
+const ua = navigator.userAgent
+const isIphone = /iphone/igm.test(ua)
+const wxOutTime = isIphone ? 0 : 3000
 const hostname = 'http://' + window.location.hostname
+let wxTimer = null
 window.commonPhone = '028-86701038'
 window.wxConfig = (cururl, title, img, callback) => {
-  setTimeout(() => {
+  if (wxTimer !== null) {
+    clearTimeout(wxTimer)
+    wxTimer = null
+  }
+  wxTimer = setTimeout(() => {
     Vue.http.get('/web/getWxConfig', {params: {cururl: window.location.href}}).then(res => {
       window.wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -51,7 +59,7 @@ window.wxConfig = (cururl, title, img, callback) => {
         cancel: function () {}
       })
     })
-  }, 3000)
+  }, wxOutTime)
 }
 
 // 引入表单验证插件

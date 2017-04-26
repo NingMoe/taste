@@ -26,6 +26,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import './common/common.css';
-
+  @import 'common/css/common.css'
 </style>

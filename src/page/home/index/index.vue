@@ -53,7 +53,7 @@
       },
       signText (taste) {
         let now = Date.parse(this.nowDate)
-        let beginTime = Date.parse(taste.begintime)
+        let beginTime = Date.parse(taste.enrollbegintime)
         let endTime = Date.parse(taste.endtime)
         if (now < beginTime) {
           return '即将开始'

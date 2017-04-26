@@ -62,12 +62,12 @@
           this.answerinfo.push({question: this.questions[o].id, answer: ''})
         }
       })
+      window.wxConfig()
     },
     methods: {
       submit () {
         this.$validator.validateAll().then(() => {
           this.$http.get('/web/enroll', {params: {answer: JSON.stringify({'activityid': this.$route.params.id, 'answerinfo': this.answerinfo})}}).then((res) => {
-            alert(res.body)
             if (res.body === 'success') {
               this.alert.text = '申请已提交，审核结果请在“个人中心-我的体验”中查看。'
               this.alert.visible = true
@@ -80,6 +80,9 @@
                 // this.$router.replace({name: 'activityDetail', params: {id: this.$route.params.id}})
                 this.$router.go(-1)
               }
+            } else if (res.body === '3') {
+              this.alert.text = '报名时间已结束'
+              this.alert.visible = true
             } else {
               this.alert.text = '很抱歉, 报名失败, 详情请咨询 ' + window.commonPhone
               this.alert.visible = true

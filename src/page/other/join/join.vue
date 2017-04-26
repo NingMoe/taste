@@ -2,11 +2,10 @@
   <section class="top-join">
     <h1 class="common-head">
       入驻申请
-      <router-link to="/"><img src="../../../common/arrow-left.png" alt=""></router-link>
     </h1>
     <div class="head">
       <div class="logo img-width">
-        <img src="../../../common/logo.png" alt="成都太阳黑子文化传媒有限公司">
+        <img src="../../../common/images/logo.png" alt="成都太阳黑子文化传媒有限公司">
       </div>
       <div class="title">
         品新平台商家申请活动资料填写
@@ -219,6 +218,7 @@
               this.$http.get('/web/applyActivity', {params: this.para}).then(res => {
                 if (res.body === 'success') {
                   alert('申请成功')
+                  this.reset()
                 } else {
                   alert('申请失败')
                 }
@@ -241,8 +241,6 @@
   .top-join
     padding-bottom: 40px
     background: #fff
-    input
-      -webkit-appearance: none
     .head
       padding: 30px 0 0px 0
       text-align center

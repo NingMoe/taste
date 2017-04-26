@@ -4,10 +4,10 @@
     <div class="welcome" v-if="userInfo">
       {{userInfo.nick}}，积分商城欢迎您，您的剩余积分为：{{userInfo.score}}
     </div>
-    <div class="text-center" v-if="!goodsList">没有查找到相关数据</div>
+    <div class="text-center nodata" v-if="!goodsList">没有查找到相关数据</div>
     <ul class="goods-list">
       <li v-for="goods in goodsList" @click="toDetails(goods.id)">
-        <div class="goods-face">
+        <div class="goods-face img-width">
           <img :src="goods.imgsrcmedium" :alt="goods.goodsname">
         </div>
         <div class="title">{{ goods.goodsname }}</div>
@@ -56,6 +56,8 @@
 
   .mall
     padding-bottom: 40px
+    .nodata
+      margin-top: 30px
     .welcome
       background: #fff
       padding: 12px
@@ -67,13 +69,16 @@
       justify-content: space-between
       padding: 10px 15px
       li
+        display: flex
+        flex-direction: column
+        justify-content: space-between
         width: 48%
         padding: 10px 0 30px 0
         margin-bottom: 15px
         position: relative
         background: #fff
-        img
-          width: 100%
+        .goods-face
+          overflow: hidden
         .title
           margin-top: 8px
           line-height: 1.2

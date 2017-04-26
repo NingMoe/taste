@@ -2,7 +2,7 @@
   <section class="myReportResult" v-if="answers.length>0">
     <h1 class="common-head">
       我的体验报告
-      <div class="back-btn" @click="back"><img src="../../../common/arrow-left.png" alt=""></div>
+      <div class="back-btn" @click="back"><img src="../../../common/images/arrow-left.png" alt=""></div>
     </h1>
     <ul class="answer-list">
       <li class="question-item" v-for="(item, index) in answers">
@@ -15,10 +15,10 @@
       <div class="text">{{suggest}}</div>
     </div>
   </section>
-  <section class="myReport" v-else>
+  <section class="myReport" v-else-if="questions.length>0">
     <h1 class="common-head">
       填写体验报告
-      <div class="back-btn" @click="back"><img src="../../../common/arrow-left.png" alt=""></div>
+      <div class="back-btn" @click="back"><img src="../../../common/images/arrow-left.png" alt=""></div>
     </h1>
     <ul class="question-list">
       <li class="question-item" v-for="(item, index) in questions">
@@ -47,6 +47,13 @@
       <div class="back-btn">返回</div>
     </div>
   </section>
+  <section class="reportTimeOut" v-else>
+    <h1 class="common-head">
+      我的体验报告
+      <div class="back-btn" @click="back"><img src="../../../common/images/arrow-left.png" alt=""></div>
+    </h1>
+    <div class="text">活动已结束, 感谢您的参与</div>
+  </section>
 </template>
 
 <script type="text/ecmascript-6">
@@ -69,13 +76,14 @@
       this.$http.get('/web/myReportDetail', {params: {id: this.$route.params.id}}).then(res => {
         this.answers = res.body.reportList
         this.suggest = res.body.suggest
-        return this.$http.get('/web/getQuestionList', {params: {id: this.$route.params.id}})
+        return this.$http.get('/web/getQuestionList', {params: {id: this.$route.params.id, papertype: 0}})
       }).then(res => {
         this.questions = res.body.questions
         for (let o in this.questions) {
           this.para.answerinfo.push({question: this.questions[o].id, answer: ''})
         }
       })
+      window.wxConfig()
     },
     methods: {
       back () {
@@ -156,4 +164,9 @@
         border: 1px solid #cccccc
         min-height: 100px
         padding: 10px
+  .reportTimeOut
+    min-height: 100vh
+    .text
+      margin-top: 30px
+      text-align: center
 </style>

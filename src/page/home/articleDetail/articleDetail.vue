@@ -9,7 +9,7 @@
       </div>
       <div class="back-btn btn" @click="back">返回</div>
     </div>
-    <div class="share-lock" v-show="shareLockShow" @click="hideShare"><img src="../../../common/share.png" alt=""></div>
+    <div class="share-lock" v-show="shareLockShow" @click="hideShare"><img src="../../../common/images/share.png" alt=""></div>
   </article>
 </template>
 
