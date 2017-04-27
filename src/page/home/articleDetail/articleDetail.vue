@@ -22,6 +22,11 @@
         shareLockShow: false
       }
     },
+    props: {
+      userInfo: {
+        type: Object
+      }
+    },
     mounted () {
       // this.$http.get('/web/articleDetail').then(res => {
       this.$http.get('/web/getArticleDetail', {params: {id: this.$route.params.id}}).then(res => {
@@ -29,6 +34,7 @@
         window.wxConfig(window.location.href, res.body.title, null, () => {
           this.$http.get('/web/doTask', {params: {id: this.$route.params.id}}).then(data => {
             if (data.body === 'success') {
+              this.userInfo.score = parseInt(this.userInfo.score) + parseInt(this.articleData.score)
               alert('分享成功')
             } else if (data.body !== '3') {
               alert('分享失败, 详情请咨询' + window.commonPhone)

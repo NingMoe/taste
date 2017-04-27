@@ -82,6 +82,11 @@
   export default{
     components: {UiDialog},
     name: 'firstTime',
+    props: {
+      appData: {
+        type: Object
+      }
+    },
     data () {
       return {
         alert: {
@@ -123,6 +128,7 @@
         this.$validator.validateAll().then(() => {
           this.$http.get('/web/firstLoginAnswer', {params: {'answer': JSON.stringify({'answerinfo': this.answerinfo})}}).then(res => {
             if (res.body === 'success') {
+              this.appData.userInfo.isanswer = 1
               this.alert.text = '恭喜您提交成功, 3秒后跳到报名页面'
               let tempTimer = setTimeout(() => {
                 this.$router.replace({name: 'activityRegister', params: {id: this.$route.params.id}})

@@ -91,9 +91,12 @@
       },
       submit () {
         this.$validator.validateAll().then(() => {
-          this.$http.post('/web/postReport', {params: this.para}).then(res => {
+          this.$http.get('/web/postReport', {params: {answer: JSON.stringify(this.para)}}).then(res => {
+            alert(res.body)
             if (res.body === 'success') {
               alert('提交成功!')
+            } else if (res.body === '3') {
+              alert('活动已过期')
             } else {
               alert('提交失败')
             }

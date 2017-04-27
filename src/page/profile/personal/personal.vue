@@ -82,9 +82,7 @@
                 this.$http.get('/web/updateInfo', {params: {telphone: this.phone.val}}).then(res => {
                   if (res.body === 'codeerror') {
                     this.codeErrorShow = true
-                  } else if (res.body === 'fail') {
-                    this.alert.text = '提交失败'
-                  } else {
+                  } else if (res.body === 'success') {
                     this.appData.userInfo.telphone = data.val
                     this.alert.text = '修改成功!'
                     this.alert.visible = true
@@ -97,6 +95,8 @@
                     this.$nextTick(function () {
                       this.errors.clear()
                     })
+                  } else {
+                    this.alert.text = '提交失败'
                   }
                 })
               }).catch(() => {})

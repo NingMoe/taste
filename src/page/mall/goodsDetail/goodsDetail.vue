@@ -35,6 +35,11 @@
   export default{
     components: {UiDialog},
     name: 'goodsDetails',
+    props: {
+      userInfo: {
+        type: Object
+      }
+    },
     data () {
       return {
         goodsData: {},
@@ -53,6 +58,7 @@
             if (i === '1') {
               this.$http.get('/web/cashGoods', {params: {goodsid: this.$route.params.id}}).then(res => {
                 if (res.body === 'success') {
+                  this.userInfo.score = parseInt(this.userInfo.score) - parseInt(this.goodsData.score)
                   this.alert.text = '兑换成功!'
                 } else if (res.body === '2') {
                   this.alert.text = '兑换失败, 您的积分不足'

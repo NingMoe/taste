@@ -21,6 +21,7 @@ import notFound from '../page/other/notFound/notFound'
 import join from '../page/other/join/join'
 import cooperation from '../page/other/cooperation/cooperation'
 import firstTime from '../page/other/firstTime/firstTime'
+import ad from '../page/other/ad/ad'
 
 Vue.use(Router)
 
@@ -122,6 +123,11 @@ export default new Router({
       path: '/other/firstTime/:id',
       name: 'firstTime',
       component: firstTime
+    },
+    {
+      path: '/other/ad/:id',
+      name: 'ad',
+      component: ad
     }
   ]
 })

@@ -32,6 +32,7 @@ var goodsData = require('../mock/goods.json')
 var questions = require('../mock/question.json')
 var articleData = require('../mock/article.json')
 var reportDetail = require('../mock/reportDetail.json')
+var ad = require('../mock/ad.json')
 
 var apiRouters = express.Router()
 // 获取初始化信息
@@ -102,11 +103,22 @@ apiRouters.post('/doTask',function (req, res) {
 apiRouters.post('/firstTime',function (req, res) {
   res.json('success')
 })
-// 测试
+// 获取微信配置
 apiRouters.get('/getWxConfig',function (req, res) {
   res.json('success')
 })
-// 测试
+// 获取广告
+apiRouters.get('/getAdvertInnerById',function (req, res) {
+  res.json(ad)
+})
+// 初次参加活动提交答题
+apiRouters.get('/firstLoginAnswer',function (req, res) {
+  res.json('success')
+})
+// 更改个人信息
+apiRouters.get('/updateInfo',function (req, res) {
+  res.json('success')
+})
 apiRouters.post('/test',function (req, res) {
   res.json('success')
 })
