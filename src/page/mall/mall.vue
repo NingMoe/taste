@@ -1,5 +1,5 @@
 <template>
-  <router-view :userInfo="appData.userInfo" :goodsList="appData.goodsList"></router-view>
+  <router-view :userInfo="appData.userInfo" :goodsList="appData.goodsList" :pageSize="pageSize"></router-view>
 </template>
 
 <script type="text/ecmascript-6">
@@ -7,6 +7,9 @@
     name: 'mall',
     props: {
       appData: {
+        type: Object
+      },
+      pageSize: {
         type: Object
       }
     }

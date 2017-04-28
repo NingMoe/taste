@@ -30,6 +30,9 @@
       },
       userInfo: {
         type: Object
+      },
+      pageSize: {
+        type: Object
       }
     },
     data () {
@@ -44,10 +47,45 @@
       },
       toCash (id) {
         alert(id)
+      },
+      scroll () {
+        let docHeight = document.body.clientHeight
+        let docScrollTop = document.body.scrollTop
+        let viewHeight = document.documentElement.clientHeight
+        if (docHeight - viewHeight <= docScrollTop) {
+          document.removeEventListener('scroll', this.scroll)
+          this.loadMore()
+        }
+      },
+      loadMore () {
+        if (this.pageSize.goods < 0) {
+          return
+        }
+        this.$http.get('/web/getGoodsList', {params: {page: this.pageSize.goods}}).then(res => {
+          if (res.body === '0') {
+            this.pageSize.goods = -1
+          } else {
+            for (let o in res.body) {
+              this.goodsList.push(res.body[o])
+            }
+            if (res.body.length >= 20) {
+              this.pageSize.goods++
+              document.addEventListener('scroll', this.scroll)
+            } else {
+              this.pageSize.goods = -1
+            }
+          }
+        })
       }
     },
     mounted () {
       window.wxConfig()
+      if (this.pageSize.goods > 0) {
+        document.addEventListener('scroll', this.scroll)
+      }
+    },
+    destroyed () {
+      document.removeEventListener('scroll', this.scroll)
     }
   }
 </script>

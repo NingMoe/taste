@@ -1,31 +1,41 @@
 [
   {
-    "id":234,
-    "imgsrc":"/static/temp/item-face.jpg",
-    "name":"寻找最能吃辣的你",
-    "timeOut":"2天",
-    "now": "2017-04-17 11:51:07",
-    "content": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
+    "id": 110,
+    "imgsrc": "/static/temp/item-face.jpg",
+    "name": "1myTasteList体验新开火锅店看看你是不是最能吃辣",
+    "ischeck": "2",
+    "begintime": "2017-04-13 11:51:11",
+    "endtime": "2017-04-15 11:51:11",
+    "enrollbegintime": "2017-04-10 11:51:11",
+    "enrollendtime": "2017-04-13 11:51:11",
+    "reportbegintime": "2017-04-15 11:51:11",
+    "reportendtime": "2017-04-17 11:51:11",
+    "enrollstatus": 1
   },
   {
-    "id":234,
-    "imgsrc":"/static/temp/item-face.jpg",
-    "name":"寻找最能吃辣的你",
-    "timeOut":"2天",
-    "content": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
+    "id": 112,
+    "imgsrc": "/static/temp/item-face.jpg",
+    "name": "2myTasteList体验新开火锅店看看你是不是最能吃辣",
+    "ischeck": "2",
+    "begintime": "2017-04-13 11:51:11",
+    "endtime": "2017-04-15 11:51:11",
+    "enrollbegintime": "2017-04-10 11:51:11",
+    "enrollendtime": "2017-04-13 11:51:11",
+    "reportbegintime": "2017-04-15 11:51:11",
+    "reportendtime": "2017-04-17 11:51:11",
+    "enrollstatus": 1
   },
   {
-    "id":234,
-    "imgsrc":"/static/temp/item-face.jpg",
-    "name":"寻找最能吃辣的你",
-    "timeOut":"2天",
-    "content": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
-  },
-  {
-    "id":234,
-    "imgsrc":"/static/temp/item-face.jpg",
-    "name":"寻找最能吃辣的你",
-    "timeOut":"2天",
-    "content": "活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文活动正文正文活动正文活动正文活动正文活动正文"
+    "id": 113,
+    "imgsrc": "/static/temp/item-face.jpg",
+    "name": "3myTasteList体验新开火锅店看看你是不是最能吃辣",
+    "ischeck": "2",
+    "begintime": "2017-04-13 11:51:11",
+    "endtime": "2017-04-15 11:51:11",
+    "enrollbegintime": "2017-04-10 11:51:11",
+    "enrollendtime": "2017-04-13 11:51:11",
+    "reportbegintime": "2017-04-15 11:51:11",
+    "reportendtime": "2017-04-17 11:51:11",
+    "enrollstatus": 1
   }
 ]

@@ -1,27 +1,42 @@
 
 [
   {
-    "id":111,
-    "imgsrc":"face.jpg",
-    "name":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-    "status":1
+    "id": 112,
+    "imgsrc": "/static/temp/item-face.jpg",
+    "name": "myTasteList体验新开火锅店看看你是不是最能吃辣",
+    "ischeck": "1",
+    "begintime": "2017-04-13 11:51:11",
+    "endtime": "2017-04-15 11:51:11",
+    "enrollbegintime": "2017-04-10 11:51:11",
+    "enrollendtime": "2017-04-13 11:51:11",
+    "reportbegintime": "2017-04-15 11:51:11",
+    "reportendtime": "2017-04-17 11:51:11",
+    "enrollstatus": 2
   },
   {
-    "id":112,
-    "imgsrc":"face.jpg",
-    "name":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-    "status":2
+    "id": 114,
+    "imgsrc": "/static/temp/item-face.jpg",
+    "name": "myTasteList体验新开火锅店看看你是不是最能吃辣",
+    "ischeck": "1",
+    "begintime": "2017-04-13 11:51:11",
+    "endtime": "2017-04-15 11:51:11",
+    "enrollbegintime": "2017-04-10 11:51:11",
+    "enrollendtime": "2017-04-13 11:51:11",
+    "reportbegintime": "2017-04-15 11:51:11",
+    "reportendtime": "2017-04-17 11:51:11",
+    "enrollstatus": 1
   },
   {
-    "id":113,
-    "imgsrc":"face.jpg",
-    "name":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-    "status":3
-  },
-  {
-    "id":123,
-    "imgsrc":"face.jpg",
-    "name":"myTasteList体验新开火锅店看看你是不是最能吃辣",
-    "status":4
+    "id": 115,
+    "imgsrc": "/static/temp/item-face.jpg",
+    "name": "myTasteList体验新开火锅店看看你是不是最能吃辣",
+    "ischeck": "1",
+    "begintime": "2017-04-13 11:51:11",
+    "endtime": "2017-04-15 11:51:11",
+    "enrollbegintime": "2017-04-10 11:51:11",
+    "enrollendtime": "2017-04-13 11:51:11",
+    "reportbegintime": "2017-04-15 11:51:11",
+    "reportendtime": "2017-04-17 11:51:11",
+    "enrollstatus": 2
   }
 ]

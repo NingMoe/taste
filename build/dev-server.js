@@ -33,6 +33,8 @@ var questions = require('../mock/question.json')
 var articleData = require('../mock/article.json')
 var reportDetail = require('../mock/reportDetail.json')
 var ad = require('../mock/ad.json')
+var myActivityList = require('../mock/myActivityList.json')
+var myReportList = require('../mock/myReportList.json')
 
 var apiRouters = express.Router()
 // 获取初始化信息
@@ -48,7 +50,7 @@ apiRouters.get('/getActivityDetail',function (req, res) {
   res.json(tasteData)
 })
 // 获取商品列表
-apiRouters.get('/goodsList',function (req, res) {
+apiRouters.get('/getGoodsList',function (req, res) {
   res.json(goodsList)
 })
 // 获取商品详情
@@ -83,18 +85,6 @@ apiRouters.post('/postReport',function (req, res) {
 apiRouters.post('/applyActivity',function (req, res) {
   res.json('success')
 })
-// 修改手机号
-apiRouters.post('/updatePhone',function (req, res) {
-  res.json('success')
-})
-// 修改名字
-apiRouters.post('/updateName',function (req, res) {
-  res.json('success')
-})
-// 修改性别
-apiRouters.post('/updateSex',function (req, res) {
-  res.json('success')
-})
 // 分享任务文章的回调
 apiRouters.post('/doTask',function (req, res) {
   res.json('success')
@@ -119,7 +109,17 @@ apiRouters.get('/firstLoginAnswer',function (req, res) {
 apiRouters.get('/updateInfo',function (req, res) {
   res.json('success')
 })
-apiRouters.post('/test',function (req, res) {
+// 获取我的体验列表
+apiRouters.get('/myActivityList',function (req, res) {
+  res.json(myActivityList)
+})
+// 获取我的体验报告列表
+apiRouters.get('/myReportList',function (req, res) {
+  res.json(myReportList)
+})
+
+// 测试
+apiRouters.get('/test',function (req, res) {
   res.json('success')
 })
 

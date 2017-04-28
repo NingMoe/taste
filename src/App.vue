@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :appData="appData"></router-view>
+    <router-view :appData="appData" :pageSize="pageSize"></router-view>
   </div>
 </template>
 
@@ -9,7 +9,13 @@
     name: 'app',
     data () {
       return {
-        appData: {}
+        appData: {},
+        pageSize: {
+          taste: 2,
+          goods: 2,
+          myActivityList: 2,
+          myReportList: 2
+        }
       }
     },
     mounted () {

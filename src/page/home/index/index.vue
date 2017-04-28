@@ -45,6 +45,9 @@
       },
       nowDate: {
         type: String
+      },
+      pageSize: {
+        type: Object
       }
     },
     methods: {
@@ -68,13 +71,38 @@
         let docHeight = document.body.clientHeight
         let docScrollTop = document.body.scrollTop
         let viewHeight = document.documentElement.clientHeight
-        console.log(docHeight - viewHeight <= docScrollTop)
+        if (docHeight - viewHeight <= docScrollTop) {
+          document.removeEventListener('scroll', this.scroll)
+          this.loadMore()
+        }
+      },
+      loadMore () {
+        if (this.pageSize.taste < 0) {
+          return
+        }
+        this.$http.get('/web/getActivityList', {params: {page: this.pageSize.taste}}).then(res => {
+          if (res.body === '0') {
+            this.pageSize.taste = -1
+          } else {
+            for (let o in res.body) {
+              this.tasteList.push(res.body[o])
+            }
+            if (res.body.length >= 20) {
+              this.pageSize.taste++
+              document.addEventListener('scroll', this.scroll)
+            } else {
+              this.pageSize.taste = -1
+            }
+          }
+        })
       }
     },
     components: { vNav },
     mounted () {
       window.wxConfig()
-      document.addEventListener('scroll', this.scroll)
+      if (this.pageSize.taste > 0) {
+        document.addEventListener('scroll', this.scroll)
+      }
     },
     destroyed () {
       document.removeEventListener('scroll', this.scroll)

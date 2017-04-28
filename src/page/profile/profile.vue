@@ -1,5 +1,5 @@
 <template>
-  <router-view :appData="appData"></router-view>
+  <router-view :appData="appData" :pageSize="pageSize"></router-view>
 </template>
 
 <script type="text/ecmascript-6">
@@ -7,6 +7,9 @@
     name: 'profile',
     props: {
       appData: {
+        type: Object
+      },
+      pageSize: {
         type: Object
       }
     }

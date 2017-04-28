@@ -26,14 +26,18 @@
     props: {
       appData: {
         type: Object
+      },
+      pageSize: {
+        type: Object
       }
     },
     data () {
-      return {}
+      return {
+        pageName: this.$route.params.name
+      }
     },
     computed: {
       listData () {
-        let name = this.$route.params.name
         let maps = {
           myActivityList: {
             data: this.appData.myActivityList,
@@ -48,7 +52,7 @@
             title: '我的兑换记录'
           }
         }
-        return maps[name]
+        return maps[this.pageName]
       }
     },
     components: {
@@ -56,9 +60,9 @@
     },
     methods: {
       toDetails (id, activityid, status) {
-        if (this.$route.params.name === 'myCashRecord') {
+        if (this.pageName === 'myCashRecord') {
           return
-        } else if (this.$route.params.name === 'myReportList') {
+        } else if (this.pageName === 'myReportList') {
           this.$router.push({name: 'myReport', params: {id: id, activityid: activityid, status: status}})
         } else {
           this.$router.push({name: 'activityDetail', params: {id: id}})
@@ -67,13 +71,13 @@
       getStatus (item) {
         let now = Date.parse(this.appData.nowDate)
         let endTime = Date.parse(item.endtime)
-        if (this.$route.params.name === 'myActivityList') {
+        if (this.pageName === 'myActivityList') {
           if (now > endTime) {
             return 3
           } else {
             return item.enrollstatus
           }
-        } else if (this.$route.params.name === 'myReportList') {
+        } else if (this.pageName === 'myReportList') {
           if (now > endTime) {
             if (item.reportstatus === 2 || item.reportstatus === 3) {
               return item.reportstatus
@@ -84,10 +88,46 @@
             return item.reportstatus
           }
         }
+      },
+      scroll () {
+        let docHeight = document.body.clientHeight
+        let docScrollTop = document.body.scrollTop
+        let viewHeight = document.documentElement.clientHeight
+        if (docHeight - viewHeight <= docScrollTop) {
+          document.removeEventListener('scroll', this.scroll)
+          this.loadMore()
+        }
+      },
+      loadMore () {
+        if (this.pageSize[this.pageName] < 0) {
+          return
+        }
+        this.$http.get('/web/' + this.pageName, {params: {page: this.pageSize[this.pageName]}}).then(res => {
+          if (res.body === '0') {
+            this.pageSize[this.pageName] = -1
+          } else {
+            for (let o in res.body) {
+              this.appData[this.pageName].push(res.body[o])
+            }
+            if (res.body.length >= 20) {
+              this.pageSize[this.pageName]++
+              document.addEventListener('scroll', this.scroll)
+            } else {
+              this.pageSize[this.pageName] = -1
+            }
+          }
+        })
       }
     },
     mounted () {
       window.wxConfig()
+      if (this.pageSize[this.pageName] > 0) {
+        console.log('bind')
+        document.addEventListener('scroll', this.scroll)
+      }
+    },
+    destroyed () {
+      document.removeEventListener('scroll', this.scroll)
     }
   }
 </script>
