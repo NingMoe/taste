@@ -57,14 +57,14 @@
       <div class="nodata" v-else>暂时没有数据</div>
     </div>
 
-    <div class="module my-cash-record" v-if="appData.myCashRecord.length">
+    <div class="module my-cash-record">
       <div class="module-head clearfix">
         <h2 class="fl">我的兑换记录</h2>
         <div class="more-btn fr">
           <router-link :to="{name: 'list', params: {name: 'myCashRecord'}}">更多</router-link>
         </div>
       </div>
-      <div class="content">
+      <div class="content" v-if="appData.myCashRecord.length>0">
         <div class="item" v-for="item in limitMyCash">
           <div class="item-face img-width">
             <img :src="item.imgsrcmedium" :alt="item.title">
@@ -74,6 +74,7 @@
           </div>
         </div>
       </div>
+      <div class="nodata" v-else>暂时没有数据</div>
     </div>
     <v-nav :name="name"></v-nav>
   </section>
